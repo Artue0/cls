@@ -127,7 +127,7 @@ body {
     height: 100vh;
     position: absolute;
     left: 0;
-    top: 90vh;
+    top: 80vh;
     background-color: rgb(60, 60, 60);
     z-index: 3;
     transition: transform 1s;

@@ -1,6 +1,7 @@
 :root {
     --primary-stripe-rgb: 230 230 230;
     --secondary-stripe-rgb: 240 240 240;
+    --transform-x: -3%;
 }
 
 body {
@@ -48,7 +49,7 @@ body {
 }
 
 .title {
-    font-size: 10vmin;
+    font-size: 12vmin;
     width: 100%;
     z-index: 3;
     font-family: "Concert One", sans-serif;
@@ -113,21 +114,12 @@ body {
     animation: move 360s linear infinite;
 }
 
-@keyframes move {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: 100% 100%;
-    }
-}
-
 #inventory {
     width: 100%;
     height: 100vh;
     position: absolute;
     left: 0;
-    top: 80vh;
+    top: 90vh;
     background-color: rgb(60, 60, 60);
     z-index: 3;
     transition: transform 1s;
@@ -161,4 +153,141 @@ body {
     transform: translate(-50%,-50%);
     background-color: rgb(60, 60, 60);
     border-radius: 10px;
+}
+
+#button-top {
+    z-index: 5;
+    position: absolute;
+    left: 50%;
+    top: 40vh;
+    transform: translate(-50%,-50%);
+    width: 340px;
+    height: 120px;
+    background-color: #de9f2a;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#points{
+    user-select: none;
+    font-size: 4rem;
+    font-family: "Concert One", sans-serif;
+    color: white;
+    perspective: 100px;
+    transform: rotateX(30deg);
+    white-space: nowrap;
+}
+
+#button-bottom {
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 42vh;
+    transform: translate(-50%,-50%);
+    width: 340px;
+    height: 120px;
+    background-color: #cb8c18;
+    border-radius: 35px;
+}
+
+.click {animation: clicked 0.5s;}
+
+@keyframes clicked {
+    0%{top: 40vh;}
+    50%{top: 42vh;}
+    100%{top: 40vh;}
+}
+
+#amount {
+    z-index: 5;
+    position: absolute;
+    left: 50%;
+    top: 55vh;
+    transform: translate(-50%,-50%);
+    width: 200px;
+    height: 80px;
+    clip-path: polygon(100% 0, 85% 50%, 100% 100%, 0 100%, 15% 50%, 0 0);
+}
+
+.amountContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#amountText {
+    position: absolute;
+    left: 50%;
+    top: -50%;
+    transform: translate(var(--transform-x),-50%);
+    font-size: 3rem;
+    width: 300%;
+    z-index: 3;
+    font-family: "Concert One", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+    transition: transform 1s;
+}
+
+#arrowRight, #arrowLeft {
+    position: absolute;
+    top: 55vh;
+    transform: translate(-50%,-50%);
+    z-index: 6;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #cb8c18;
+    border-radius: 50%;
+}
+
+#arrowLeft {
+    left: calc(50% - 150px);
+}
+
+#arrowRight {
+    left: calc(50% + 150px);
+}
+
+#arrowRight:hover, #arrowLeft:hover {
+    background-color: #F4B02E;
+}
+
+.unusable {
+    box-shadow: 0 0 3rem gray inset;
+}
+
+.stripes {
+    background-size: 18px 18px;
+    background-image: linear-gradient(
+      -45deg,
+      rgb(var(--primary-stripe-rgb)) 25%,
+      rgb(var(--secondary-stripe-rgb)) 25%,
+      rgb(var(--secondary-stripe-rgb)) 50%,
+      rgb(var(--primary-stripe-rgb)) 50%,
+      rgb(var(--primary-stripe-rgb)) 75%,
+      rgb(var(--secondary-stripe-rgb)) 75%,
+      rgb(var(--secondary-stripe-rgb)) 100%
+    );
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 3rem black inset;
+    animation: move 16s infinite linear;
+}
+
+@keyframes move {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 100%;
+    }
 }

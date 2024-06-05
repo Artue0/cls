@@ -6,36 +6,73 @@ function button() {
     }, 500);
 }
 
-let index = 1;
+let amountIndex = 1;
 const amountText = document.getElementById('amountText');
-let translateX = 3;
+const amountTextElementWidth = 50;
+const amountTextGapWidth = 120;
+const amount = amountTextGapWidth + amountTextElementWidth;
+let translateX = 0;
+amountText.style.setProperty('--transform-x', `${(translateX)}px`);
 
 function arrowLeft() {
-    if (index > 1){
+    if (amountIndex > 1){
         document.getElementById('arrowRight').classList.remove('unusable');
-        console.log("works");
-        amountText.style.setProperty('--transform-x', `-${(translateX - 23)}%`);
-        amountText.classList.add('moveText');
-        index--;
-        translateX = translateX - 23;
+        amountText.style.setProperty('--transform-x', `-${(translateX - amount)}px`);
+        amountIndex--;
+        translateX = translateX - amount;
     }
-    if (index < 2){
+    if (amountIndex < 2){
         document.getElementById('arrowLeft').classList.add('unusable');
     }
 }
 
 function arrowRight() {
-    if (index < 5){
+    if (amountIndex < 5){
         document.getElementById('arrowLeft').classList.remove('unusable');
-        console.log("works");
-        amountText.style.setProperty('--transform-x', `-${(translateX + 23)}%`);
-        amountText.classList.add('moveText');
-        index++;
-        translateX = translateX + 23;
+        amountText.style.setProperty('--transform-x', `-${(translateX + amount)}px`);
+        amountIndex++;
+        translateX = translateX + amount;
     }
-    if (index > 4){
+    if (amountIndex > 4){
         document.getElementById('arrowRight').classList.add('unusable');
     }
 }
 
 arrowLeft();
+
+let rarityIndex = 1;
+const rarityText = document.getElementById('rarityText');
+const rarityTextElementWidth = rarityText.querySelector('p').offsetWidth;
+const rarityTextGapWidth = 120;
+const amount2 = rarityTextGapWidth + rarityTextElementWidth;
+let translateX2 = 0;
+rarityText.style.setProperty('--transform-x2', `${(translateX2)}px`);
+console.log(translateX2);
+
+function arrowLeft2() {
+    if (rarityIndex > 1){
+        document.getElementById('arrowRight2').classList.remove('unusable');
+        rarityText.style.setProperty('--transform-x2', `-${(translateX2 - amount2)}px`);
+        rarityIndex--;
+        translateX2 = translateX2 - amount2;
+        console.log(translateX2);
+    }
+    if (rarityIndex < 2){
+        document.getElementById('arrowLeft2').classList.add('unusable');
+    }
+}
+
+function arrowRight2() {
+    if (rarityIndex < 6){
+        document.getElementById('arrowLeft2').classList.remove('unusable');
+        rarityText.style.setProperty('--transform-x2', `-${(translateX2 + amount2)}px`);22222
+        rarityIndex++;
+        translateX2 = translateX2 + amount2;
+        console.log(translateX2);
+    }
+    if (rarityIndex > 5){
+        document.getElementById('arrowRight2').classList.add('unusable');
+    }
+}
+
+arrowLeft2();

@@ -1,14 +1,13 @@
 :root {
     --primary-stripe-rgb: 230 230 230;
     --secondary-stripe-rgb: 240 240 240;
-    --transform-x: -3%;
 }
 
 body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .grad1 {
@@ -23,7 +22,7 @@ body {
     z-index: 1;
 }
 
-.starPattern {
+.catPattern {
     position: absolute;
     top: 0;
     left: 0;
@@ -57,10 +56,16 @@ body {
     font-style: normal;
     text-align: center;
     background-image: none;
-    position: relative;
+    position: absolute;
+    top: 0;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.title p {
+.pContainer p {
+    margin: 0;
     height: 100%;
     width: 100%;
     background-image: linear-gradient(
@@ -121,7 +126,7 @@ body {
     left: 0;
     top: 90vh;
     background-color: rgb(60, 60, 60);
-    z-index: 3;
+    z-index: 10;
     transition: transform 1s;
     border-radius: 20px;
 }
@@ -159,7 +164,7 @@ body {
     z-index: 5;
     position: absolute;
     left: 50%;
-    top: 40vh;
+    top: calc(50vh - 150px);
     transform: translate(-50%,-50%);
     width: 340px;
     height: 120px;
@@ -184,7 +189,7 @@ body {
     z-index: 1;
     position: absolute;
     left: 50%;
-    top: 42vh;
+    top: calc(50vh - 130px);
     transform: translate(-50%,-50%);
     width: 340px;
     height: 120px;
@@ -195,35 +200,47 @@ body {
 .click {animation: clicked 0.5s;}
 
 @keyframes clicked {
-    0%{top: 40vh;}
-    50%{top: 42vh;}
-    100%{top: 40vh;}
+    0%{top: calc(50vh - 150px);}
+    50%{top: calc(50vh - 130px);}
+    100%{top: calc(50vh - 150px);}
 }
 
-#amount {
+#amount, #rarity {
     z-index: 5;
     position: absolute;
     left: 50%;
-    top: 55vh;
+    top: 50vh;
     transform: translate(-50%,-50%);
     width: 200px;
     height: 80px;
     clip-path: polygon(100% 0, 85% 50%, 100% 100%, 0 100%, 15% 50%, 0 0);
 }
 
-.amountContainer {
+#rarity {
+    top: calc(50vh + 110px);
+}
+
+.amountContainer, .rarityContainer {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-#amountText {
+.amountContainer p {
+    width: 50px;
+}
+
+.rarityContainer p {
+    width: 150px;
+}
+
+#amountText, #rarityText {
     position: absolute;
-    left: 50%;
+    left: 37.5%;
     top: -50%;
     transform: translate(var(--transform-x),-50%);
     font-size: 3rem;
-    width: 300%;
+    width: auto;
     z-index: 3;
     font-family: "Concert One", sans-serif;
     font-weight: bold;
@@ -232,12 +249,20 @@ body {
     white-space: nowrap;
     display: flex;
     justify-content: space-between;
+    gap: 120px;
     transition: transform 1s;
 }
 
-#arrowRight, #arrowLeft {
+#rarityText {
+    font-size: 1.7rem;
+    left: 12.5%;
+    gap: 120px;
+    transform: translate(var(--transform-x2),-50%);
+}
+
+#arrowRight, #arrowLeft, #arrowRight2, #arrowLeft2 {
     position: absolute;
-    top: 55vh;
+    top: 50vh;
     transform: translate(-50%,-50%);
     z-index: 6;
     width: 50px;
@@ -249,15 +274,19 @@ body {
     border-radius: 50%;
 }
 
-#arrowLeft {
+#arrowRight2, #arrowLeft2 {
+    top: calc(50vh + 110px);
+}
+
+#arrowLeft, #arrowLeft2 {
     left: calc(50% - 150px);
 }
 
-#arrowRight {
+#arrowRight, #arrowRight2 {
     left: calc(50% + 150px);
 }
 
-#arrowRight:hover, #arrowLeft:hover {
+#arrowRight:hover, #arrowLeft:hover, #arrowRight2:hover, #arrowLeft2:hover {
     background-color: #F4B02E;
 }
 
@@ -290,4 +319,36 @@ body {
     to {
         background-position: 100% 100%;
     }
+}
+
+@media only screen and (max-width: 600px) {
+    /* #button-top {
+        top: 36vh;
+    }
+
+    #button-bottom {
+        top: 38vh;
+    }
+
+    @keyframes clicked {
+        0%{top: 36vh;}
+        50%{top: 38vh;}
+        100%{top: 36vh;}
+    }
+    
+    #amount {
+        top: 55vh;
+    }
+    
+    #rarity {
+        top: 70vh;
+    }
+
+    #arrowRight, #arrowLeft {
+        top: 55vh;
+    }
+    
+    #arrowRight2, #arrowLeft2 {
+        top: 70vh;
+    } */
 }

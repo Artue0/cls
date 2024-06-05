@@ -124,15 +124,37 @@ body {
     height: 100vh;
     position: absolute;
     left: 0;
-    top: 90vh;
+    top: 85vh;
     background-color: rgb(60, 60, 60);
     z-index: 10;
     transition: transform 1s;
     border-radius: 20px;
 }
 
-#inventory:hover {
-    transform: translateY(-80%);
+.jumpUp {
+    animation: jumpUp var(--precent) forwards;
+}
+
+@keyframes jumpUp {
+    from {
+        top: var(--top);
+    }
+    to {
+        top: 5vh;
+    }
+}
+
+.jumpDown {
+    animation: jumpDown var(--precent) forwards;
+}
+
+@keyframes jumpDown {
+    from {
+        top: var(--top);
+    }
+    to {
+        top: 85vh;
+    }
 }
 
 .container {
@@ -321,34 +343,26 @@ body {
     }
 }
 
-@media only screen and (max-width: 600px) {
-    /* #button-top {
-        top: 36vh;
-    }
+#price {
+    position: absolute;
+    left: 50%;
+    top: calc(50% + 210px);
+    transform: translate(-50%,-50%);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-family: "Concert One", sans-serif;
+    font-style: normal;
+    text-align: center;
+    height: 50px;
+    background-color: #DC981A;
+    border-radius: 15px;
+    padding: 5px;
+}
 
-    #button-bottom {
-        top: 38vh;
-    }
-
-    @keyframes clicked {
-        0%{top: 36vh;}
-        50%{top: 38vh;}
-        100%{top: 36vh;}
-    }
-    
-    #amount {
-        top: 55vh;
-    }
-    
-    #rarity {
-        top: 70vh;
-    }
-
-    #arrowRight, #arrowLeft {
-        top: 55vh;
-    }
-    
-    #arrowRight2, #arrowLeft2 {
-        top: 70vh;
-    } */
+#price img {
+    width: 50px;
+    height: 50px;
 }

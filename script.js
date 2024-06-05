@@ -113,10 +113,31 @@ let goUp = true;
 let reset = true;
 
 inventory.addEventListener('mousedown', (event) => {
-    isDragging = true;
-    offsetY = event.clientY - inventory.getBoundingClientRect().top;
-    startY = event.clientY;
-    inventory.classList.remove('jump');
+    if(window.innerWidth > 600){
+        offsetY = event.clientY - inventory.getBoundingClientRect().top;
+        startY = event.clientY;
+        inventory.classList.remove('jump');
+        isDragging = true;
+    } else {
+        console.log(goUp);
+        switch (true) {
+            case goUp:
+                console.log("goUp");
+                inventory.style.setProperty('--top', `${(inventory.getBoundingClientRect().top)}px`);
+                inventory.style.setProperty('--precent', `1s`);
+                inventory.classList.add('jumpUp');
+                inventory.classList.remove('jumpDown');
+                break;
+            case !goUp:
+                console.log("!goUp");
+                inventory.style.setProperty('--top', `${(inventory.getBoundingClientRect().top)}px`);
+                inventory.style.setProperty('--precent', `1s`);
+                inventory.classList.add('jumpDown');
+                inventory.classList.remove('jumpUp');
+                break;
+        }
+        goUp = !goUp;
+    }
 });
 
 document.addEventListener('mousemove', (event) => {

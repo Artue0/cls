@@ -77,27 +77,31 @@ function arrowRight2() {
 
 arrowLeft2();
 
+let cost;
+
 function updatePrice() {
     switch (true) {
         case rarityIndex === 1:
-            document.getElementById('price').querySelector('p').textContent = `${50 * amountIndex}`;
+            cost = 50 * amountIndex;
             break;
         case rarityIndex === 2:
-            document.getElementById('price').querySelector('p').textContent = `${100 * amountIndex}`;
+            cost = 100 * amountIndex;
             break;
         case rarityIndex === 3:
-            document.getElementById('price').querySelector('p').textContent = `${200 * amountIndex}`;
+            cost = 200 * amountIndex;
             break;
         case rarityIndex === 4:
-            document.getElementById('price').querySelector('p').textContent = `${500 * amountIndex}`;
+            cost = 500 * amountIndex;
             break;
         case rarityIndex === 5:
-            document.getElementById('price').querySelector('p').textContent = `${1000 * amountIndex}`;
+            cost = 1000 * amountIndex;
             break;
         case rarityIndex === 6:
-            document.getElementById('price').querySelector('p').textContent = `${2500 * amountIndex}`;
+            cost = 2500 * amountIndex;
             break;
     }
+    document.getElementById('price').querySelector('p').textContent = `${cost}`;
+    // document.getElementById('coins').querySelector('p').textContent = `${document.getElementById('coins').querySelector('p').textContent - cost}`;
 }
 
 document.getElementById('arrowLeft2').addEventListener('click', updatePrice);

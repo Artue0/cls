@@ -57,7 +57,7 @@ function arrowLeft2() {
 function arrowRight2() {
     if (rarityIndex < 6){
         document.getElementById('arrowLeft2').classList.remove('unusable');
-        rarityText.style.setProperty('--transform-x2', `-${(translateX2 + amount2)}px`);22222
+        rarityText.style.setProperty('--transform-x2', `-${(translateX2 + amount2)}px`);
         rarityIndex++;
         translateX2 = translateX2 + amount2;
         console.log(translateX2);
@@ -71,7 +71,9 @@ arrowLeft2();
 
 let cost = 50;
 let coins = 500;
+let catsAmount = 0;
 document.getElementById('coins').querySelector('p').textContent = coins;
+document.getElementById('catsAmount').querySelector('p').textContent = catsAmount;
 const buttonTop = document.getElementById("button-top");
 
 function updatePrice() {
@@ -104,12 +106,24 @@ function updatePrice() {
         document.getElementById('points').innerText = "BUY BOXES";
     }
 }
-
+const lootboxesContainer = document.getElementById('lootboxesContainer');
 function button() {
     if (coins - cost >= 0){
         buttonTop.classList.add("click");
         coins = coins - cost;
+        catsAmount = catsAmount + amountIndex;
+        document.getElementById('catsAmount').querySelector('p').textContent = catsAmount;
         document.getElementById('coins').querySelector('p').textContent = coins;
+
+        var newLootbox = document.createElement("div");
+        newLootbox.setAttribute("id", "lootboxContainer");
+        newLootbox.classList.add('lootbox-container');
+        lootboxesContainer.appendChild(newLootbox);
+        var newPointer = document.createElement("div");
+        newPointer.classList.add('pointer');
+        newLootbox.appendChild(newPointer);
+        startAnimation(newLootbox);
+
         setTimeout(function(){
             buttonTop.classList.remove("click");
         }, 500);
@@ -209,3 +223,80 @@ document.addEventListener('mouseup', () => {
 document.addEventListener('mouseleave', () => {
     isDragging = false;
 });
+
+function createBox(content, c) {
+    const box = document.createElement('div');
+    box.classList.add('box');
+    box.innerText = content;
+    box.style.setProperty('--color', c);
+    return box;
+}
+
+function startAnimation(lootBox) {
+    const boxWidth = 130;
+    const containerWidth = lootBox.offsetWidth;
+    let boxes = [];
+    let speed = 18;
+    const deceleration = 0.997;
+    const minSpeed = 0;
+
+    function update() {
+        boxes = boxes.filter(box => {
+            if (box.offsetLeft + boxWidth < 0) {
+                lootBox.removeChild(box);
+                return false;
+            }
+            return true;
+        });
+
+        while (boxes.length < 20) {
+            const lastBox = boxes[boxes.length - 1];
+            let rand = Math.floor(Math.random() * 100) + 1;
+            let textContent, color;
+            switch (true) {
+                case rand >= 1 && rand <= 35:
+                    textContent = 'Common';
+                    color = 'gray';
+                    break;
+                case rand > 35 && rand <= 60:
+                    textContent = 'Uncommon';
+                    color = 'green';
+                    break;
+                case rand > 60 && rand <= 75:
+                    textContent = 'Rare';
+                    color = 'blue';
+                    break;
+                case rand > 75 && rand <= 85:
+                    textContent = 'Epic';
+                    color = 'purple';
+                    break;
+                case rand > 85 && rand <= 95:
+                    textContent = 'Mythic';
+                    color = 'red';
+                    break;
+                case rand > 95 && rand <= 100:
+                    textContent = 'Legendary';
+                    color = 'gold';
+                    break;
+            }
+            const newBox = createBox(textContent, color);
+            lootBox.appendChild(newBox);
+            newBox.style.left = lastBox ? `${lastBox.offsetLeft + boxWidth + 15}px` : `${containerWidth}px`;
+            boxes.push(newBox);
+        }
+
+        boxes.forEach(box => {
+            box.style.left = `${box.offsetLeft - speed}px`;
+        });
+
+        speed = Math.max(speed * deceleration, minSpeed);
+        
+        if (speed <= 0.35) {
+            lootBox.remove();
+        } else {
+            requestAnimationFrame(update);
+        }
+    }
+
+    update();
+}

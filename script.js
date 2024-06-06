@@ -1,11 +1,3 @@
-function button() {
-    const buttonTop = document.getElementById("button-top");
-    buttonTop.classList.add("click");
-    setTimeout(function(){
-        buttonTop.classList.remove("click");
-    }, 500);
-}
-
 let amountIndex = 1;
 const amountText = document.getElementById('amountText');
 const amountTextElementWidth = 50;
@@ -77,7 +69,10 @@ function arrowRight2() {
 
 arrowLeft2();
 
-let cost;
+let cost = 50;
+let coins = 500;
+document.getElementById('coins').querySelector('p').textContent = coins;
+const buttonTop = document.getElementById("button-top");
 
 function updatePrice() {
     switch (true) {
@@ -101,7 +96,28 @@ function updatePrice() {
             break;
     }
     document.getElementById('price').querySelector('p').textContent = `${cost}`;
-    // document.getElementById('coins').querySelector('p').textContent = `${document.getElementById('coins').querySelector('p').textContent - cost}`;
+    if (coins - cost < 0){
+        document.getElementById('points').innerText = "NOT ENOUGH COINS";
+        document.getElementById('points').classList.add('notEnoughtCoins')
+    } else {
+        document.getElementById('points').classList.remove('notEnoughtCoins')
+        document.getElementById('points').innerText = "BUY BOXES";
+    }
+}
+
+function button() {
+    if (coins - cost >= 0){
+        buttonTop.classList.add("click");
+        coins = coins - cost;
+        document.getElementById('coins').querySelector('p').textContent = coins;
+        setTimeout(function(){
+            buttonTop.classList.remove("click");
+        }, 500);
+    } 
+    if (coins <= cost){
+        document.getElementById('points').innerText = "NOT ENOUGH COINS";
+        document.getElementById('points').classList.add('notEnoughtCoins')
+    }
 }
 
 document.getElementById('arrowLeft2').addEventListener('click', updatePrice);

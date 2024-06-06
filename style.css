@@ -182,7 +182,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5vmin;
+    gap: 4vmin;
 }
 
 .collection p {
@@ -399,6 +399,8 @@ body {
     transform: translate(0,0);
     background-color: #2e2e2e;
     margin-top: 20px;
+    color: white;
+    font-weight: normal;
 }
 
 #coins p, #catsAmount p {
@@ -407,4 +409,11 @@ body {
 
 #catsAmount svg {
     fill: white;
+}
+
+#points.notEnoughtCoins {
+    color: red;
+    font-size: 3rem;
+    white-space: normal;
+    text-align: center;
 }

@@ -70,33 +70,75 @@ function arrowRight2() {
 arrowLeft2();
 
 let cost = 50;
-let coins = 2500;
+let coins = 25000;
 let catsAmount = 0;
 document.getElementById('coins').querySelector('p').textContent = coins;
 document.getElementById('catsAmount').querySelector('p').textContent = catsAmount;
 const buttonTop = document.getElementById("button-top");
+let commonChance = 35;
+let uncommonChance = 25;
+let rareChance = 15;
+let epicChance = 10;
+let mythicChance = 10;
+let legendaryChance = 5;
 
 function updatePrice() {
     switch (true) {
         case rarityIndex === 1:
             cost = 50 * amountIndex;
+            commonChance = 60;
+            uncommonChance = 25;
+            rareChance = 8;
+            epicChance = 4;
+            mythicChance = 2;
+            legendaryChance = 1;
             break;
         case rarityIndex === 2:
             cost = 100 * amountIndex;
+            commonChance = 50;
+            uncommonChance = 25;
+            rareChance = 10;
+            epicChance = 7;
+            mythicChance = 5;
+            legendaryChance = 3;
             break;
         case rarityIndex === 3:
             cost = 200 * amountIndex;
+            commonChance = 40;
+            uncommonChance = 25;
+            rareChance = 15;
+            epicChance = 10;
+            mythicChance = 7;
+            legendaryChance = 3;
             break;
         case rarityIndex === 4:
             cost = 500 * amountIndex;
+            commonChance = 30;
+            uncommonChance = 25;
+            rareChance = 20;
+            epicChance = 12;
+            mythicChance = 8;
+            legendaryChance = 5;
             break;
         case rarityIndex === 5:
             cost = 1000 * amountIndex;
+            commonChance = 20;
+            uncommonChance = 20;
+            rareChance = 20;
+            epicChance = 15;
+            mythicChance = 15;
+            legendaryChance = 10;
             break;
         case rarityIndex === 6:
             cost = 2500 * amountIndex;
+            commonChance = 10;
+            uncommonChance = 15;
+            rareChance = 20;
+            epicChance = 20;
+            mythicChance = 20;
+            legendaryChance = 15;
             break;
-    }
+    }       
     document.getElementById('price').querySelector('p').textContent = `${cost}`;
     if (coins - cost < 0){
         document.getElementById('points').innerText = "NOT ENOUGH COINS";
@@ -258,27 +300,27 @@ function startAnimation(lootBox) {
             let rand = Math.floor(Math.random() * 100) + 1;
             let textContent, color;
             switch (true) {
-                case rand >= 1 && rand <= 35:
+                case rand >= 1 && rand <= commonChance:
                     textContent = 'Common';
                     color = 'gray';
                     break;
-                case rand > 35 && rand <= 60:
+                case rand > commonChance && rand <= commonChance + uncommonChance:
                     textContent = 'Uncommon';
                     color = 'green';
                     break;
-                case rand > 60 && rand <= 75:
+                case rand > commonChance + uncommonChance && rand <= commonChance + uncommonChance + rareChance:
                     textContent = 'Rare';
                     color = 'blue';
                     break;
-                case rand > 75 && rand <= 85:
+                case rand > commonChance + uncommonChance + rareChance && rand <= commonChance + uncommonChance + rareChance + epicChance:
                     textContent = 'Epic';
                     color = 'purple';
                     break;
-                case rand > 85 && rand <= 95:
+                case rand > commonChance + uncommonChance + rareChance + epicChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance:
                     textContent = 'Mythic';
                     color = 'red';
                     break;
-                case rand > 95 && rand <= 100:
+                case rand > commonChance + uncommonChance + rareChance + epicChance + mythicChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance:
                     textContent = 'Legendary';
                     color = 'gold';
                     break;

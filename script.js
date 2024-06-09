@@ -70,7 +70,7 @@ function arrowRight2() {
 arrowLeft2();
 
 let cost = 50;
-let coins = 500;
+let coins = 2500;
 let catsAmount = 0;
 document.getElementById('coins').querySelector('p').textContent = coins;
 document.getElementById('catsAmount').querySelector('p').textContent = catsAmount;
@@ -108,27 +108,31 @@ function updatePrice() {
 }
 const lootboxesContainer = document.getElementById('lootboxesContainer');
 function button() {
-    if (coins - cost >= 0){
+    if (coins - cost >= 0 && !lootboxesContainer.hasChildNodes()){
         buttonTop.classList.add("click");
         coins = coins - cost;
         catsAmount = catsAmount + amountIndex;
         document.getElementById('catsAmount').querySelector('p').textContent = catsAmount;
         document.getElementById('coins').querySelector('p').textContent = coins;
 
-        var newLootbox = document.createElement("div");
-        newLootbox.setAttribute("id", "lootboxContainer");
-        newLootbox.classList.add('lootbox-container');
-        lootboxesContainer.appendChild(newLootbox);
-        var newPointer = document.createElement("div");
-        newPointer.classList.add('pointer');
-        newLootbox.appendChild(newPointer);
-        startAnimation(newLootbox);
+        for(var i = 1; i <= amountIndex; i++){
+            console.log("done")
+            var newLootbox = document.createElement("div");
+            newLootbox.setAttribute("id", "lootboxContainer");
+            newLootbox.classList.add('lootbox-container');
+            lootboxesContainer.appendChild(newLootbox);
+            var newPointer = document.createElement("div");
+            newPointer.classList.add('pointer');
+            newLootbox.appendChild(newPointer);
+            newLootbox.style.animationDelay = `${100*i}ms`
+            startAnimation(newLootbox);
+        }
 
         setTimeout(function(){
             buttonTop.classList.remove("click");
         }, 500);
     } 
-    if (coins <= cost){
+    if (coins < cost){
         document.getElementById('points').innerText = "NOT ENOUGH COINS";
         document.getElementById('points').classList.add('notEnoughtCoins')
     }
@@ -237,8 +241,8 @@ function startAnimation(lootBox) {
     const containerWidth = lootBox.offsetWidth;
     let boxes = [];
     let speed = 18;
-    const deceleration = 0.997;
-    const minSpeed = 0;
+    let deceleration = 0.005;
+    const deceleration2 = 0.0001;
 
     function update() {
         boxes = boxes.filter(box => {
@@ -289,10 +293,13 @@ function startAnimation(lootBox) {
             box.style.left = `${box.offsetLeft - speed}px`;
         });
 
-        speed = Math.max(speed * deceleration, minSpeed);
-        
-        if (speed <= 0.35) {
-            lootBox.remove();
+        speed = Math.max(speed - deceleration, 0);
+        deceleration = deceleration + deceleration2;
+
+        if (speed <= 0.01) {
+            setTimeout(function() {
+                lootBox.remove();
+            }, 1000);
         } else {
             requestAnimationFrame(update);
         }

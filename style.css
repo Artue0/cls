@@ -427,10 +427,21 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background-color: #000000c1;
     padding-top: 35px;
     padding-bottom: 35px;
     z-index: 10;
+    background-color: #000000c1;
+    transform: translateX(100%);
+    animation: showUp 0.8s ease-in-out forwards;
+}
+
+@keyframes showUp {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 
 .box {
@@ -468,6 +479,16 @@ body {
     height: 100%;
     background-color: yellow;
     z-index: 5;
+    animation: pointerShowUp 2s ease-in-out forwards;
+}
+
+@keyframes pointerShowUp {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 #lootboxesContainer {
@@ -475,4 +496,5 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
 }

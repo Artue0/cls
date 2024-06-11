@@ -81,6 +81,7 @@ let rareChance = 15;
 let epicChance = 10;
 let mythicChance = 10;
 let legendaryChance = 5;
+let divineChance = 0;
 
 function updatePrice() {
     switch (true) {
@@ -92,6 +93,7 @@ function updatePrice() {
             epicChance = 4;
             mythicChance = 2;
             legendaryChance = 1;
+            divineChance = 0;
             break;
         case rarityIndex === 2:
             cost = 100 * amountIndex;
@@ -101,6 +103,7 @@ function updatePrice() {
             epicChance = 7;
             mythicChance = 5;
             legendaryChance = 3;
+            divineChance = 0;
             break;
         case rarityIndex === 3:
             cost = 200 * amountIndex;
@@ -110,6 +113,7 @@ function updatePrice() {
             epicChance = 10;
             mythicChance = 7;
             legendaryChance = 3;
+            divineChance = 0;
             break;
         case rarityIndex === 4:
             cost = 500 * amountIndex;
@@ -119,6 +123,7 @@ function updatePrice() {
             epicChance = 12;
             mythicChance = 8;
             legendaryChance = 5;
+            divineChance = 0;
             break;
         case rarityIndex === 5:
             cost = 1000 * amountIndex;
@@ -126,17 +131,19 @@ function updatePrice() {
             uncommonChance = 20;
             rareChance = 20;
             epicChance = 15;
-            mythicChance = 15;
+            mythicChance = 14;
             legendaryChance = 10;
+            divineChance = 1;
             break;
         case rarityIndex === 6:
             cost = 2500 * amountIndex;
-            commonChance = 10;
-            uncommonChance = 15;
+            commonChance = 9;
+            uncommonChance = 14;
             rareChance = 20;
             epicChance = 20;
             mythicChance = 20;
             legendaryChance = 15;
+            divineChance = 2;
             break;
     }       
     document.getElementById('price').querySelector('p').textContent = `${cost}`;
@@ -323,6 +330,10 @@ function startAnimation(lootBox) {
                 case rand > commonChance + uncommonChance + rareChance + epicChance + mythicChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance:
                     textContent = 'Legendary';
                     color = 'gold';
+                    break;
+                case rand > commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance + divineChance:
+                    textContent = 'Divine';
+                    color = 'black';
                     break;
             }
             const newBox = createBox(textContent, color);

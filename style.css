@@ -471,6 +471,12 @@ body {
     background-color: var(--color);
 }
 
+.box img {
+    height: 90%;
+    aspect-ratio: 1/1;
+    transform: translateY(-3%);
+}
+
 .pointer {
     position: absolute;
     left: 50%;

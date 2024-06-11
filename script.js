@@ -277,11 +277,15 @@ document.addEventListener('mouseleave', () => {
     isDragging = false;
 });
 
-function createBox(content, c) {
+function createBox(src, c) {
     const box = document.createElement('div');
     box.classList.add('box');
-    box.innerText = content;
     box.style.setProperty('--color', c);
+
+    const img = document.createElement('img');
+    img.src = src;
+    box.appendChild(img);
+    
     return box;
 }
 
@@ -305,38 +309,38 @@ function startAnimation(lootBox) {
         while (boxes.length < 20) {
             const lastBox = boxes[boxes.length - 1];
             let rand = Math.floor(Math.random() * 100) + 1;
-            let textContent, color;
+            let src, color;
             switch (true) {
                 case rand >= 1 && rand <= commonChance:
-                    textContent = 'Common';
+                    src = 'assets/common-lootbox-pic.png';
                     color = 'gray';
                     break;
                 case rand > commonChance && rand <= commonChance + uncommonChance:
-                    textContent = 'Uncommon';
+                    src = 'assets/uncommon-lootbox-pic.png';
                     color = 'green';
                     break;
                 case rand > commonChance + uncommonChance && rand <= commonChance + uncommonChance + rareChance:
-                    textContent = 'Rare';
+                    src = 'assets/rare-lootbox-pic.png';
                     color = 'blue';
                     break;
                 case rand > commonChance + uncommonChance + rareChance && rand <= commonChance + uncommonChance + rareChance + epicChance:
-                    textContent = 'Epic';
+                    src = 'assets/epic-lootbox-pic.png';
                     color = 'purple';
                     break;
                 case rand > commonChance + uncommonChance + rareChance + epicChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance:
-                    textContent = 'Mythic';
+                    src = 'assets/mythic-lootbox-pic.png';
                     color = 'red';
                     break;
                 case rand > commonChance + uncommonChance + rareChance + epicChance + mythicChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance:
-                    textContent = 'Legendary';
+                    src = 'assets/legendary-lootbox-pic.png';
                     color = 'gold';
                     break;
                 case rand > commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance + divineChance:
-                    textContent = 'Divine';
+                    src = 'assets/divine-lootbox-pic.png';
                     color = 'black';
                     break;
             }
-            const newBox = createBox(textContent, color);
+            const newBox = createBox(src, color);
             lootBox.appendChild(newBox);
             newBox.style.left = lastBox ? `${lastBox.offsetLeft + boxWidth + 15}px` : `${containerWidth}px`;
             boxes.push(newBox);

@@ -356,6 +356,7 @@ function startAnimation(lootBox) {
         if (speed <= 0.01) {
             setTimeout(function() {
                 lootBox.remove();
+                createCats()
             }, 1000);
         } else {
             requestAnimationFrame(update);
@@ -364,3 +365,32 @@ function startAnimation(lootBox) {
 
     update();
 }
+
+function createCats() {
+    const catAnimation = document.createElement('div');
+    catAnimation.classList.add('catAnimation');
+    document.body.appendChild(catAnimation);
+
+
+    const videoElement = document.createElement('video');
+    videoElement.classList.add('video');
+
+    const videoSource = document.createElement('source');
+    videoSource.src = 'assets/0001-0120.webm';
+    videoSource.type = 'video/webm';
+
+    videoElement.appendChild(videoSource);
+
+    videoElement.autoplay = true;
+    videoElement.playbackRate = 1.20;
+
+    catAnimation.appendChild(videoElement);
+
+    
+    const cat = document.getElementById('catContainer').cloneNode(true);
+    for(var i = 0; i < 100; i++) {
+
+    }
+}
+
+// createCats();

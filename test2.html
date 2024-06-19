@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: black;
+        }
+        .circle-corner {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: relative;
+            border-bottom-right-radius: 50%;
+            -webkit-mask: radial-gradient(circle at 0 0, transparent 25%, black 25%);
+            mask: radial-gradient(circle at 0 0, transparent 25%, black 25%);
+        }
+    </style>
+    <title>Circle Corner Div</title>
+</head>
+<body>
+    <div class="circle-corner"></div>
+</body>
+</html>

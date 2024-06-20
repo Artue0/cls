@@ -3,23 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Clones</title>
     <style>
-        body {
-            background-color: black;
-        }
-        .circle-corner {
-            width: 200px;
-            height: 200px;
-            background-color: red;
+        #catContainer {
             position: relative;
-            border-bottom-right-radius: 50%;
-            -webkit-mask: radial-gradient(circle at 0 0, transparent 25%, black 25%);
-            mask: radial-gradient(circle at 0 0, transparent 25%, black 25%);
+            width: 100vw;
+            height: 100vh;
+            /* Add other styles as needed */
+        }
+        .catClone {
+            position: absolute;
         }
     </style>
-    <title>Circle Corner Div</title>
 </head>
 <body>
-    <div class="circle-corner"></div>
+    <div id="catContainer"></div> <!-- Cat container -->
+
+    <script>
+        const catContainer = document.getElementById('catContainer');
+        const containerWidth = catContainer.clientWidth;
+        const containerHeight = catContainer.clientHeight;
+        const clones = [];
+        const updateInterval = 1; // Move every 100 milliseconds
+
+        for (let i = 0; i < 100; i++) {
+            const clone = document.createElement('div');
+            clone.classList.add('catClone');
+            clone.textContent = '🐱';
+            clone.style.bottom = '0px';
+            clone.style.left = '50vw';
+            clone.style.transform = 'translateX(-50%)';
+            catContainer.appendChild(clone);
+
+            const horizontalVelocity = Math.random() * 2 - 1; // Range: -1 to 1
+            const verticalVelocity = Math.random() * 1.5 + 0.5; // Range: 0.5 to 2
+
+            clones.push({
+                element: clone,
+                hVelocity: horizontalVelocity,
+                vVelocity: verticalVelocity
+            });
+        }
+
+        function moveClones() {
+            clones.forEach(clone => {
+                const element = clone.element;
+                let currentBottom = parseFloat(element.style.bottom);
+                let currentLeft = parseFloat(element.style.left);
+
+                currentBottom += clone.vVelocity;
+                currentLeft += clone.hVelocity;
+
+                // Reset position if out of bounds
+                if (currentBottom > containerHeight) {
+                    currentBottom = 0;
+                }
+                if (currentLeft < 0) {
+                    currentLeft = containerWidth;
+                } else if (currentLeft > containerWidth) {
+                    currentLeft = 0;
+                }
+
+                element.style.bottom = currentBottom + 'px';
+                element.style.left = currentLeft + 'px';
+            });
+        }
+
+        setInterval(moveClones, updateInterval);
+    </script>
 </body>
 </html>

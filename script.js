@@ -355,7 +355,6 @@ function startAnimation(lootBox) {
 
         if (speed <= 0.01) {
             setTimeout(function() {
-                lootBox.remove();
                 createCats()
             }, 1000);
         } else {
@@ -367,26 +366,42 @@ function startAnimation(lootBox) {
 }
 
 function createCats() {
-    const catAnimation = document.createElement('div');
-    catAnimation.classList.add('catAnimation');
-    document.body.appendChild(catAnimation);
+    document.querySelectorAll('.lootbox-container').forEach(function(lootbox) {
+        lootbox.classList.add('dissapear');
+    });
+
+    const stripeContainer = document.createElement('div');
+    stripeContainer.id = 'stripe-container';
+    document.body.appendChild(stripeContainer);
+    const stripePattern = document.createElement('div');
+    stripePattern.id = 'stripe-pattern';
+    stripeContainer.appendChild(stripePattern);
+
+    setTimeout(function() {
+        document.querySelectorAll('.lootbox-container').forEach(function(lootbox) {
+            lootbox.remove();
+        })
+
+        const catAnimation = document.createElement('div');
+        catAnimation.classList.add('catAnimation');
+        document.body.appendChild(catAnimation);
 
 
-    const videoElement = document.createElement('video');
-    videoElement.classList.add('video');
+        const videoElement = document.createElement('video');
+        videoElement.classList.add('video');
 
-    const videoSource = document.createElement('source');
-    videoSource.src = 'assets/0001-0120.webm';
-    videoSource.type = 'video/webm';
+        const videoSource = document.createElement('source');
+        videoSource.src = 'assets/0001-0120.webm';
+        videoSource.type = 'video/webm';
 
-    videoElement.appendChild(videoSource);
+        videoElement.appendChild(videoSource);
 
-    videoElement.autoplay = true;
-    videoElement.playbackRate = 1.20;
+        videoElement.autoplay = true;
+        videoElement.playbackRate = 1.25;
+        
+        catAnimation.appendChild(videoElement);
+    }, 1500);
 
-    catAnimation.appendChild(videoElement);
-
-    
     const cat = document.getElementById('catContainer').cloneNode(true);
     for(var i = 0; i < 100; i++) {
 

@@ -99,33 +99,33 @@ body {
 
 #stripe-container {
     position: absolute;
-    z-index: 3;
-    left: -150%;
-    top: -150vh;
-    height: 200dvw;
-    width: 200vw;
-    background-color: rgb(var(--stripe-primary-rgb));
-    transform: rotate(45deg);
-    animation: moveStripes 2s ease-in-out forwards;
+    z-index: 11;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    clip-path: polygon(0 0, 0% 100%, 100% 0);
+    background-color: #3498db;
+    animation: expand 3s forwards ease-out;
 }
 
-@keyframes moveStripes {
-    from {
-        left: -250%;
-        top: -250vh;
+@keyframes expand {
+    0% {
+        width: 0;
+        height: 0;
     }
-    to {
-        left: -50%;
-        top: -50vh;
+    100% {
+        width: 200vmax;
+        height: 200vmax;
     }
 }
 
 #stripe-pattern {
     height: 100%;
     width: 100%;
-    background-size: 18px 18px;
+    background-size: 90px 90px;
     background-image: linear-gradient(
-      -90deg,
+      -45deg,
       rgb(var(--primary-stripe-rgb)) 25%,
       rgb(var(--secondary-stripe-rgb)) 25%,
       rgb(var(--secondary-stripe-rgb)) 50%,
@@ -777,7 +777,7 @@ body {
     height: 50vh;
     width: 50%;
     z-index: 100;
-    border: 2px solid black;
+    /* border: 2px solid black; */
 }
 
 .video {
@@ -787,4 +787,19 @@ body {
     transform: translate(-50%,-50%);
     width: 100%;
     aspect-ratio: 1/1;
+}
+
+.dissapear {
+    animation: dissapear 0.8s ease-in-out forwards;
+    z-index: 15;
+    transform: translateX(0);
+}
+
+@keyframes dissapear {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }

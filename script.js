@@ -396,7 +396,7 @@ function createCats() {
 
         videoElement.appendChild(videoSource);
 
-        videoElement.autoplay = true;
+        videoElement.play();
         videoElement.playbackRate = 1.25;
         
         catAnimation.appendChild(videoElement);

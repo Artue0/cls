@@ -391,12 +391,13 @@ function createCats() {
         videoElement.classList.add('video');
 
         const videoSource = document.createElement('source');
-        videoSource.src = 'assets/0001-0120.webm';
+        videoSource.src = 'assets/mythic-lootbox-anim.webm';
         videoSource.type = 'video/webm';
 
         videoElement.appendChild(videoSource);
 
-        videoElement.play();
+        videoElement.autoplay = true;
+        videoElement.playsInline = true;
         videoElement.playbackRate = 1.25;
         
         catAnimation.appendChild(videoElement);

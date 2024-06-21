@@ -3,33 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autoplay Video</title>
+    <title>Autoplay Transparent Video</title>
+    <style>
+        video {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 <body>
-    <div id="video-container"></div>
-    
+    <div>
+        <video autoplay muted playsinline controls>
+            <source src="assets/test/png.mov">
+            Your browser does not support the video tag.
+        </video>
+        <p>png mov</p>
+    </div>
+    <div>
+        <video autoplay muted playsinline controls>
+            <source src="assets/test/vp9.webm" type='video/webm'>
+            Your browser does not support the video tag.
+        </video>
+        <p>vp9 webm</p>
+    </div>
     <script>
-        // Create a video element
-        const video = document.createElement('video');
-
-        // Set properties directly
-        video.autoplay = true;
-        video.muted = true;
-        video.playsInline = true;
-
-        // Create source element
-        const sourceWebM = document.createElement('source');
-        sourceWebM.setAttribute('src', 'assets/0001-0120.webm');
-        sourceWebM.setAttribute('type', 'video/webm');
-
-        // Append source to the video element
-        video.appendChild(sourceWebM);
-
-        // Append video to the container
-        document.getElementById('video-container').appendChild(video);
-
-        // Optionally, start playback programmatically
-        video.play();
     </script>
 </body>
 </html>

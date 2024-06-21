@@ -6,10 +6,30 @@
     <title>Autoplay Video</title>
 </head>
 <body>
-    <video autoplay muted playsinline>
-        <source src="assets/0001-0120.webm" type="video/webm">
-        Your browser does not support the video tag.
-    </video>
+    <div id="video-container"></div>
     
+    <script>
+        // Create a video element
+        const video = document.createElement('video');
+
+        // Set properties directly
+        video.autoplay = true;
+        video.muted = true;
+        video.playsInline = true;
+
+        // Create source element
+        const sourceWebM = document.createElement('source');
+        sourceWebM.setAttribute('src', 'assets/0001-0120.webm');
+        sourceWebM.setAttribute('type', 'video/webm');
+
+        // Append source to the video element
+        video.appendChild(sourceWebM);
+
+        // Append video to the container
+        document.getElementById('video-container').appendChild(video);
+
+        // Optionally, start playback programmatically
+        video.play();
+    </script>
 </body>
 </html>

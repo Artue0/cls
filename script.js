@@ -282,6 +282,30 @@ function createBox(src, c) {
     box.classList.add('box');
     box.style.setProperty('--color', c);
 
+    switch (true) {
+        case c === 'gray':
+            box.classList.add('common');
+            break;
+        case c === 'green':
+            box.classList.add('uncommon');
+            break;
+        case c === 'blue':
+            box.classList.add('rare');
+            break;
+        case c === 'purple':
+            box.classList.add('epic');
+            break;
+        case c === 'red':
+            box.classList.add('mythic');
+            break;
+        case c === 'gold':
+            box.classList.add('legendary');
+            break;
+        case c === 'black':
+            box.classList.add('divine');
+            break;
+    }
+
     const img = document.createElement('img');
     img.src = src;
     box.appendChild(img);
@@ -353,9 +377,43 @@ function startAnimation(lootBox) {
         speed = Math.max(speed - deceleration, 0);
         deceleration = deceleration + deceleration2;
 
+        let closestLenght = 99999;
+        let closestBox = null;
+        let animSrc;
+
         if (speed <= 0.01) {
             setTimeout(function() {
-                createCats()
+                boxes.forEach(box => {
+                    const dist = Math.abs(box.offsetLeft - (window.innerWidth / 2));
+                    if (dist < closestLenght) {
+                        closestLenght = dist;
+                        closestBox = box;
+                    }
+                });
+                switch (true) {
+                    case closestBox.classList.contains('common'):
+                        animSrc = 'assets/common-lootbox-anim.webm';
+                        break;
+                    case closestBox.classList.contains('uncommon'):
+                        animSrc = 'assets/uncommon-lootbox-anim.webm';
+                        break;
+                    case closestBox.classList.contains('rare'):
+                        animSrc = 'assets/uncommon-lootbox-anim.webm';
+                        break;
+                    case closestBox.classList.contains('epic'):
+                        animSrc = 'assets/uncommon-lootbox-anim.webm';
+                        break;
+                    case closestBox.classList.contains('mythic'):
+                        animSrc = 'assets/mythic-lootbox-anim.webm';
+                        break;
+                    case closestBox.classList.contains('legendary'):
+                        animSrc = 'assets/legendary-lootbox-anim.webm';
+                        break;
+                    case closestBox.classList.contains('divine'):
+                        animSrc = 'assets/divine-lootbox-anim.webm';
+                        break;
+                }
+                createCats(animSrc);
             }, 1000);
         } else {
             requestAnimationFrame(update);
@@ -365,7 +423,7 @@ function startAnimation(lootBox) {
     update();
 }
 
-function createCats() {
+function createCats(animSrc) {
     document.querySelectorAll('.lootbox-container').forEach(function(lootbox) {
         lootbox.classList.add('dissapear');
     });
@@ -391,22 +449,22 @@ function createCats() {
         videoElement.classList.add('video');
 
         const videoSource = document.createElement('source');
-        videoSource.src = 'assets/mythic-lootbox-anim.webm';
+        videoSource.src = animSrc;
         videoSource.type = 'video/webm';
 
         videoElement.appendChild(videoSource);
 
         videoElement.autoplay = true;
         videoElement.playsInline = true;
-        videoElement.playbackRate = 1.35;
+        videoElement.playbackRate = 1.25;
         
         catAnimation.appendChild(videoElement);
     }, 1500);
 
-    const cat = document.getElementById('catContainer').cloneNode(true);
-    for(var i = 0; i < 100; i++) {
+    // const cat = document.getElementById('catContainer').cloneNode(true);
+    // for(var i = 0; i < 100; i++) {
 
-    }
+    // }
 }
 
 // createCats();

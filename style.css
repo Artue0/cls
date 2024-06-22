@@ -777,6 +777,7 @@ body {
     height: 50vh;
     width: 50%;
     z-index: 100;
+    display: flex;
     /* border: 2px solid black; */
 }
 

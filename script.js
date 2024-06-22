@@ -398,7 +398,7 @@ function createCats() {
 
         videoElement.autoplay = true;
         videoElement.playsInline = true;
-        videoElement.playbackRate = 1.25;
+        videoElement.playbackRate = 1.35;
         
         catAnimation.appendChild(videoElement);
     }, 1500);

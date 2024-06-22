@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cat Clones</title>
     <style>
+        body {
+            overflow: hidden;
+        }
+
         #catContainer {
             position: relative;
             width: 100vw;
@@ -13,6 +17,8 @@
         }
         .catClone {
             position: absolute;
+            width: 10px;
+            height: 10px;
         }
     </style>
 </head>
@@ -24,28 +30,32 @@
         const containerWidth = catContainer.clientWidth;
         const containerHeight = catContainer.clientHeight;
         const clones = [];
-        const updateInterval = 1; // Move every 100 milliseconds
 
-        for (let i = 0; i < 100; i++) {
-            const clone = document.createElement('div');
-            clone.classList.add('catClone');
-            clone.textContent = '🐱';
-            clone.style.bottom = '0px';
-            clone.style.left = '50vw';
-            clone.style.transform = 'translateX(-50%)';
-            catContainer.appendChild(clone);
+        function createCats() {
+            for (let i = 0; i < 1; i++) {
+                const clone = document.createElement('div');
+                clone.classList.add('catClone');
+                clone.style.backgroundColor = 'black'
+                clone.style.bottom = '0px';
+                clone.style.left = window.innerWidth/2 + 'px';
+                clone.style.transform = 'translateX(-50%)';
+                catContainer.appendChild(clone);
 
-            const horizontalVelocity = Math.random() * 2 - 1; // Range: -1 to 1
-            const verticalVelocity = Math.random() * 1.5 + 0.5; // Range: 0.5 to 2
+                const horizontalVelocity = Math.random() * (0.4 - (-0.4)) + (-0.4);
+                const verticalVelocity = Math.random() * (1.4 - 0.5) + 0.5;
 
-            clones.push({
-                element: clone,
-                hVelocity: horizontalVelocity,
-                vVelocity: verticalVelocity
-            });
+                clones.push({
+                    element: clone,
+                    hVelocity: horizontalVelocity,
+                    vVelocity: verticalVelocity
+                });
+            }
         }
+        createCats()
+        setInterval(createCats, 200);
 
         function moveClones() {
+            console.log(clones.length)
             clones.forEach(clone => {
                 const element = clone.element;
                 let currentBottom = parseFloat(element.style.bottom);
@@ -54,22 +64,23 @@
                 currentBottom += clone.vVelocity;
                 currentLeft += clone.hVelocity;
 
-                // Reset position if out of bounds
-                if (currentBottom > containerHeight) {
-                    currentBottom = 0;
+                clone.vVelocity -= 0.002;
+
+                if (currentBottom < 0) {
+                    // element.remove();
                 }
                 if (currentLeft < 0) {
-                    currentLeft = containerWidth;
+                    // element.remove();
                 } else if (currentLeft > containerWidth) {
-                    currentLeft = 0;
+                    // element.remove();
                 }
-
                 element.style.bottom = currentBottom + 'px';
                 element.style.left = currentLeft + 'px';
             });
         }
 
-        setInterval(moveClones, updateInterval);
+
+        setInterval(moveClones, 1);
     </script>
 </body>
 </html>

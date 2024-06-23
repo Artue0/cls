@@ -6,6 +6,16 @@
     --stripe-color: 256 256 256;
     --pattern-color: 70 70 70;
     --paws-color: 256 256 256;
+    --first-paw-color: var(--cat-color);
+    --second-paw-color: var(--cat-color);
+    --third-paw-color: var(--cat-color);
+    --forth-paw-color: var(--cat-color);
+    --tail-color: var(--cat-color);
+    --mouth-color: 0 0 0;
+    --eye-color: 0 0 0;
+    --belly-color: var(--cat-color);
+    --tounge-color: 255 35 95;
+    --tounge-line-color: 205 25 70;
 }
 
 * {
@@ -520,8 +530,74 @@ body {
     flex-direction: column;
 }
 
+.black-body {--cat-color: 33 33 33;}
+.white-body {--cat-color: 256 256 256;}
+.gray-body {--cat-color: 128 128 128;}
+.peach-body {--cat-color: 256 240 200;}
+.orange-body {--cat-color: 256 140 10;}
+.orangeYellow-body {--cat-color: 240 200 50;}
+.brown-body {--cat-color: 120 85 70;}
+.grayBlue-body {--cat-color: 145 165 175;}
+.blue-body {--cat-color: 12 90 220;}
+.lightBlue-body {--cat-color: 65 180 225;}
+.red-body {--cat-color: 240 40 30;}
+.purple-body {--cat-color: 100 50 215;}
+.darkBlue-body {--cat-color: 60 80 150;}
+.darkRed-body {--cat-color: 180 50 0;}
+.darkGreen-body {--cat-color: 60 140 40;}
+.cyan-body {--cat-color: 70 160 160;}
+.green-body {--cat-color: 40 210 30;}
+.pink-body {--cat-color: 240 105 165;}
+.pinkRed-body {--cat-color: 230 90 100;}
+.pinkPurple-body {--cat-color: 220 60 200;}
+
+.black-stripe {--stripe-color: 22 22 22;}
+.white-stripe {--stripe-color: 256 256 256;}
+.gray-stripe {--stripe-color: 100 100 100;}
+.orange-stripe {--stripe-color: 236 130 0;}
+.brown-stripe {--stripe-color: 110 75 60;}
+.blue-stripe {--stripe-color: 22 100 230;}
+.red-stripe {--stripe-color: 230 30 20;}
+.green-stripe {--stripe-color: 30 200 20;}
+.pink-stripe {--stripe-color: 230 50 190;}
+
 .catContainer {
-    width: 30vw;
+    --first-paw-color: var(--cat-color);
+    --second-paw-color: var(--cat-color);
+    --third-paw-color: var(--cat-color);
+    --forth-paw-color: var(--cat-color);
+    --tail-color: var(--cat-color);
+    --belly-color: var(--cat-color);
+    --tounge-color: var(--cat-color);
+    --tounge-line-color: var(--cat-color);
+    --pattern-color: var(--cat-color);
+    /* --stripe-color: var(--cat-color); */
+}
+
+.black-pattern {--pattern-color: 33 33 33;}
+.white-pattern {--pattern-color: 256 256 256;}
+.gray-pattern {--pattern-color: 140 140 140;}
+
+.firstPaw {--first-paw-color: var(--paws-color);}
+.secondPaw {--second-paw-color: var(--paws-color);}
+.thirdPaw {--third-paw-color: var(--paws-color);}
+.forthPaw {--forth-paw-color: var(--paws-color);}
+
+.whiteTail {--tail-color: var(--paws-color);}
+
+.whiteMouth {--mouth-color: 256 256 256;}
+/* .blackMouth {--mouth-color: 0 0 0;} */
+
+.whiteBelly {--belly-color: 256 256 256;}
+
+.withTounge {
+    --tounge-color: 255 35 95;
+    --tounge-line-color: 205 25 70;
+}
+
+.catContainer {
+    --width: 30vw;
+    width: var(--width);
     aspect-ratio: 1 / 1;
     display: flex;
     flex-direction: row;
@@ -591,7 +667,8 @@ body {
     top: 65%;
     width: 14%;
     height: 14%;
-    border: 0.15vw solid black;
+    border: solid rgb(var(--mouth-color));
+    /* border-width: calc(30vw*0.004); */
     border-top: none;
     border-radius: 0 0 100px 100px;
     transform: rotate(-10deg) translateX(-50%);
@@ -605,18 +682,18 @@ body {
 }
 
 .mouthRightDot, .mouthLeftDot {
-    width: 0.15vw;
+    /* width: calc(var(--width)*0.04); */
     aspect-ratio: 1/1;
     position: absolute;
-    left: 32.3%;
+    left: 32.5%;
     top: 68.5%;
     transform: translate(-50%,-50%);
-    background-color: black;
+    background-color: rgb(var(--mouth-color));
     border-radius: 50%;
 }
 
 .mouthRightDot {
-    left: 67.7%;
+    left: 67.2%;
 }
 
 .nose, .eyeLeft, .eyeRight {
@@ -626,7 +703,7 @@ body {
     transform: translate(-50%,-50%);
     width: 8%;
     aspect-ratio: 4/3;
-    background-color: black;
+    background-color: rgb(var(--mouth-color));
     border-radius: 50%;
 }
 
@@ -634,6 +711,7 @@ body {
     width: 9%;
     top: 45%;
     aspect-ratio: 6/5;
+    background-color: rgb(var(--mouth-color));
 }
 
 .eyeLeft {
@@ -651,7 +729,7 @@ body {
     transform: translate(-50%,-50%);
     height: 20%;
     width: 9%;
-    background-color: #ff225d;
+    background-color: rgb(var(--tounge-color));
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
     display: flex;
@@ -661,7 +739,7 @@ body {
 .toungeLine {
     width: 20%;
     height: 70%;
-    background-color: #ce1748;
+    background-color: rgb(var(--tounge-line-color));
     border-bottom-left-radius: 1vw;
     border-bottom-right-radius: 1vw;
 }
@@ -670,6 +748,17 @@ body {
     width: 100%;
     height: 46%;
     background: linear-gradient(to bottom, rgb(var(--stripe-color)) 8%, rgb(var(--cat-color)) 0);
+    display: flex;
+    align-items: flex-end;
+}
+
+.belly {
+    margin-left: 18.5%;
+    width: 38.5%;
+    height: 60%;
+    background-color: rgb(var(--belly-color));
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
 }
 
 .catLegs {
@@ -693,6 +782,11 @@ body {
     border-bottom-right-radius: 100px;
     position: relative;
 }
+
+.firstLeg {background: linear-gradient(to top, rgb(var(--first-paw-color)) 35%, rgb(var(--cat-color)) 0);}
+.secondLeg {background: linear-gradient(to top, rgb(var(--second-paw-color)) 35%, rgb(var(--cat-color)) 0);}
+.thirdLeg {background: linear-gradient(to top, rgb(var(--third-paw-color)) 35%, rgb(var(--cat-color)) 0);}
+.forthLeg {background: linear-gradient(to top, rgb(var(--forth-paw-color)) 35%, rgb(var(--cat-color)) 0);}
 
 .backLeg {
     position: absolute;
@@ -759,7 +853,7 @@ body {
 .tail1 {
     height: 70%;
     width: 40%;
-    background: linear-gradient(to bottom, rgb(var(--paws-color)) 15%, rgb(var(--cat-color)) 0);
+    background: linear-gradient(to bottom, rgb(var(--tail-color)) 15%, rgb(var(--cat-color)) 0);
     margin-right: 20%;
     border-top-right-radius: 5vw;
     border-top-left-radius: 5vw;
@@ -817,6 +911,7 @@ body {
 .catClone {
     position: absolute;
     width: 12vmin;
+    --width: 12vmin;
     height: 12vmin;
     transform: translate(-50%,-50%);
     z-index: 100;
@@ -830,6 +925,19 @@ body {
     to {
         transform: translate(-50%, -50%) rotate(calc((var(--angle) + 360deg) * var(--side)));
     }
+}
+
+.catContainer {
+    width: var(--width);
+}
+
+.mouthLeft, .mouthRight {
+    border-width: calc(var(--width)*0.023);
+}
+
+.mouthRightDot, .mouthLeftDot {
+    width: calc(var(--width)*0.025);
+
 }
 
 .clonesContainer {

@@ -14,10 +14,10 @@
 
         #catContainer {
             position: relative;
-            width: 100vw;
-            height: 100vh;
+            width: 10vw;
+            height: 50vh;
             border: 3px solid black;
-            /* Add other styles as needed */
+            /* clip-path: polygon(100% 0, 100% 60%, 50% 100%, 0 60%, 0 0); */
         }
         .catClone {
             position: absolute;
@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-    <div id="catContainer"></div> <!-- Cat container -->
+    <div id="catContainer"></div>
 
     <script>
         const catContainer = document.getElementById('catContainer');
@@ -40,8 +40,8 @@
                 const clone = document.createElement('div');
                 clone.classList.add('catClone');
                 clone.style.backgroundColor = 'black';
-                clone.style.bottom = catContainer.offsetHeight / 2 + 'px';
-                clone.style.left = catContainer.offsetWidth / 2 + 'px';
+                clone.style.bottom = 0;
+                clone.style.left = Math.random() * catContainer.offsetWidth + 'px';
                 clone.style.transform = 'translateX(-50%)';
                 catContainer.appendChild(clone);
 
@@ -57,7 +57,7 @@
         }
 
         createCats();
-        setInterval(createCats, 20);
+        setInterval(createCats, 200);
 
         function moveClones() {
             console.log(clones.length)
@@ -65,15 +65,16 @@
                 const element = clone.element;
                 let currentBottom = parseFloat(element.style.bottom);
                 let currentLeft = parseFloat(element.style.left);
+                const rect = element.getBoundingClientRect();
 
                 currentBottom += clone.vVelocity;
                 currentLeft += clone.hVelocity;
 
                 clone.vVelocity -= 0.002;
 
-                if (currentBottom < 0 || currentLeft < 0 || currentLeft > window.innerWidth) {
+                if (rect.bottom > window.innerHeight * 0.7) {
                     element.remove();
-                    clones.splice(index, 1); // Remove from array as well
+                    clones.splice(index, 1);
                 } else {
                     element.style.bottom = currentBottom + 'px';
                     element.style.left = currentLeft + 'px';

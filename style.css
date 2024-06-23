@@ -526,8 +526,8 @@ body {
     display: flex;
     flex-direction: row;
     position: absolute;
-    left: 50%;
-    top: 50vh;
+    /* left: 50%;
+    top: 50vh; */
     transform: translate(-50%,-50%);
 }
 
@@ -591,7 +591,7 @@ body {
     top: 65%;
     width: 14%;
     height: 14%;
-    border: 0.8vw solid black;
+    border: 0.15vw solid black;
     border-top: none;
     border-radius: 0 0 100px 100px;
     transform: rotate(-10deg) translateX(-50%);
@@ -605,7 +605,7 @@ body {
 }
 
 .mouthRightDot, .mouthLeftDot {
-    width: 0.75vw;
+    width: 0.15vw;
     aspect-ratio: 1/1;
     position: absolute;
     left: 32.3%;
@@ -775,19 +775,28 @@ body {
     top: 50%;
     transform: translate(-50%,-100%);
     height: 50vh;
-    width: 50%;
+    width: 30vmin;
     z-index: 100;
-    display: flex;
     /* border: 2px solid black; */
 }
 
-.video {
+.video, .overlay {
     position: absolute;
     left: 50%;
     top: 50vh;
     transform: translate(-50%,-50%);
     width: 100vmin;
     aspect-ratio: 1/1;
+}
+
+.overlay {
+    z-index: 1000;
+    top: 50vh;
+}
+
+.overlay img {
+    width: 100%;
+    height: 100%;
 }
 
 .dissapear {
@@ -802,5 +811,44 @@ body {
     }
     to {
         transform: translateX(-100%);
+    }
+}
+
+.catClone {
+    position: absolute;
+    width: 12vmin;
+    height: 12vmin;
+    transform: translate(-50%,-50%);
+    z-index: 100;
+    animation: catRotate 3s infinite linear;
+}
+
+@keyframes catRotate {
+    from {
+        transform: translate(-50%, -50%) rotate(calc(var(--angle) * var(--side)));
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(calc((var(--angle) + 360deg) * var(--side)));
+    }
+}
+
+.clonesContainer {
+    position: relative;
+    top: 0;
+    left: 2%;
+    width: 100%;
+    height: 80vh;
+    /* border: 3px solid black; */
+}
+
+@media (max-width: 700px) {
+    .clonesContainer {
+        height: 75vh;
+    }
+}
+
+@media (max-width: 520px) {
+    .clonesContainer {
+        height: 65vh;
     }
 }

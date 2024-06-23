@@ -337,31 +337,31 @@ function startAnimation(lootBox) {
             let src, color;
             switch (true) {
                 case rand >= 1 && rand <= commonChance:
-                    src = 'assets/common-lootbox-pic.png';
+                    src = 'assets/common lootbox/common-lootbox-pic.png';
                     color = 'gray';
                     break;
                 case rand > commonChance && rand <= commonChance + uncommonChance:
-                    src = 'assets/uncommon-lootbox-pic.png';
+                    src = 'assets/uncommon lootbox/uncommon-lootbox-pic.png';
                     color = 'green';
                     break;
                 case rand > commonChance + uncommonChance && rand <= commonChance + uncommonChance + rareChance:
-                    src = 'assets/rare-lootbox-pic.png';
+                    src = 'assets/rare lootbox/rare-lootbox-pic.png';
                     color = 'blue';
                     break;
                 case rand > commonChance + uncommonChance + rareChance && rand <= commonChance + uncommonChance + rareChance + epicChance:
-                    src = 'assets/epic-lootbox-pic.png';
+                    src = 'assets/epic lootbox/epic-lootbox-pic.png';
                     color = 'purple';
                     break;
                 case rand > commonChance + uncommonChance + rareChance + epicChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance:
-                    src = 'assets/mythic-lootbox-pic.png';
+                    src = 'assets/mythic lootbox/mythic-lootbox-pic.png';
                     color = 'red';
                     break;
                 case rand > commonChance + uncommonChance + rareChance + epicChance + mythicChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance:
-                    src = 'assets/legendary-lootbox-pic.png';
+                    src = 'assets/legendary lootbox/legendary-lootbox-pic.png';
                     color = 'gold';
                     break;
                 case rand > commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance + divineChance:
-                    src = 'assets/divine-lootbox-pic.png';
+                    src = 'assets/divine lootbox/divine-lootbox-pic.png';
                     color = 'black';
                     break;
             }
@@ -380,7 +380,7 @@ function startAnimation(lootBox) {
 
         let closestLenght = 99999;
         let closestBox = null;
-        let animSrc;
+        let animSrc, overalySrc;
 
         if (speed <= 0.01) {
             setTimeout(function() {
@@ -394,28 +394,35 @@ function startAnimation(lootBox) {
                 });
                 switch (true) {
                     case closestBox.classList.contains('common'):
-                        animSrc = 'assets/common-lootbox-anim.webm';
+                        animSrc = 'assets/common lootbox/common-lootbox-anim.webm';
+                        overalySrc = 'assets/common lootbox/common-lootbox-overlay.png';
                         break;
                     case closestBox.classList.contains('uncommon'):
-                        animSrc = 'assets/uncommon-lootbox-anim.webm';
+                        animSrc = 'assets/uncommon lootbox/uncommon-lootbox-anim.webm';
+                        overalySrc = 'assets/uncommon lootbox/uncommon-lootbox-overlay.png';
                         break;
                     case closestBox.classList.contains('rare'):
-                        animSrc = 'assets/legendary-lootbox-anim.webm';
+                        animSrc = 'assets/rare lootbox/rare-lootbox-anim.webm';
+                        overalySrc = 'assets/rare lootbox/rare-lootbox-overlay.png';
                         break;
                     case closestBox.classList.contains('epic'):
-                        animSrc = 'assets/divine-lootbox-anim.webm';
+                        animSrc = 'assets/epic lootbox/epic-lootbox-anim.webm';
+                        overalySrc = 'assets/epic lootbox/epic-lootbox-overlay.png';
                         break;
                     case closestBox.classList.contains('mythic'):
-                        animSrc = 'assets/mythic-lootbox-anim.webm';
+                        animSrc = 'assets/mythic lootbox/mythic-lootbox-anim.webm';
+                        overalySrc = 'assets/mythic lootbox/mythic-lootbox-overlay.png';
                         break;
                     case closestBox.classList.contains('legendary'):
-                        animSrc = 'assets/legendary-lootbox-anim.webm';
+                        animSrc = 'assets/legendary lootbox/legendary-lootbox-anim.webm';
+                        overalySrc = 'assets/legendary lootbox/legendary-lootbox-overlay.png';
                         break;
                     case closestBox.classList.contains('divine'):
-                        animSrc = 'assets/divine-lootbox-anim.webm';
+                        animSrc = 'assets/divine lootbox/divine-lootbox-anim.webm';
+                        overalySrc = 'assets/divine lootbox/divine-lootbox-overlay.png';
                         break;
                 }
-                createCats(animSrc);
+                createCats(animSrc, overalySrc);
             }, 1000);
         } else {
             requestAnimationFrame(update);
@@ -425,7 +432,7 @@ function startAnimation(lootBox) {
     update();
 }
 
-function createCats(animSrc) {
+function createCats(animSrc, overalySrc) {
     document.querySelectorAll('.lootbox-container').forEach(function(lootbox) {
         lootbox.classList.add('dissapear');
     });
@@ -446,7 +453,6 @@ function createCats(animSrc) {
         catAnimation.classList.add('catAnimation');
         document.body.appendChild(catAnimation);
 
-
         const videoElement = document.createElement('video');
         videoElement.classList.add('video');
 
@@ -461,12 +467,87 @@ function createCats(animSrc) {
         videoElement.playbackRate = 1.25;
         
         catAnimation.appendChild(videoElement);
+
+
+
+        setTimeout(function() {
+            const overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            catAnimation.appendChild(overlay);
+    
+            const overlayImg = document.createElement('img');
+            overlayImg.src = overalySrc;
+            overlay.appendChild(overlayImg);
+
+            const catContainer = document.createElement('div');
+            catContainer.classList.add('clonesContainer');
+            catAnimation.appendChild(catContainer);
+            const clones = [];
+    
+            function createCats() {
+                for (let i = 0; i < 1; i++) {
+                    const clone = document.getElementById('catContainer').cloneNode(true);
+                    clone.classList.add('catClone');
+                    clone.classList.remove('hidden');
+                    clone.style.bottom = 0;
+                    clone.style.left = Math.random() * catContainer.offsetWidth + 'px';
+                    clone.style.setProperty('--angle', `${(Math.random() * 100)}deg`);
+                    clone.style.setProperty('--side', `${(Math.random() < 0.5 ? -1 : 1)}`);
+                    catContainer.appendChild(clone);
+    
+                    const horizontalVelocity = Math.random() * (1 - (-1)) + (-1);
+                    const verticalVelocity = Math.random() * (4.5 - 4) + 4;
+    
+                    clones.push({
+                        element: clone,
+                        hVelocity: horizontalVelocity,
+                        vVelocity: verticalVelocity,
+                        overlayed: false
+                    });
+                }
+            }
+    
+            createCats();
+            setInterval(createCats, 300);
+    
+            function moveClones() {
+                console.log(clones.length)
+                clones.forEach((clone, index) => {
+                    const element = clone.element;
+                    let currentBottom = parseFloat(element.style.bottom);
+                    let currentLeft = parseFloat(element.style.left);
+                    let overlayed = clone.overlayed;
+                    const rect = element.getBoundingClientRect();
+    
+                    currentBottom += clone.vVelocity;
+                    currentLeft += clone.hVelocity;
+    
+                    clone.vVelocity -= 0.017;
+    
+                    if (rect.bottom > window.innerHeight * 1.1) {
+                        element.remove();
+                        clones.splice(index, 1);
+                    } else {
+                        element.style.bottom = currentBottom + 'px';
+                        element.style.left = currentLeft + 'px';
+                    }
+
+                    if (!overlayed) {
+                        setTimeout(function() {
+                            clone.overlayed = true
+                            element.style.zIndex = 1001;
+                        }, 1000);
+                    }
+                });
+            }
+    
+            setInterval(moveClones, 1);
+        }, 5000);
     }, 1500);
 
-    // const cat = document.getElementById('catContainer').cloneNode(true);
-    // for(var i = 0; i < 100; i++) {
 
-    // }
+
+
 }
 
 // createCats();

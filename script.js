@@ -172,6 +172,7 @@ function button() {
             lootboxesContainer.appendChild(newLootbox);
             var newPointer = document.createElement("div");
             newPointer.classList.add('pointer');
+            newPointer.id = 'pointer';
             newLootbox.appendChild(newPointer);
             newLootbox.style.animationDelay = `${100*i}ms`
             startAnimation(newLootbox);
@@ -384,7 +385,8 @@ function startAnimation(lootBox) {
         if (speed <= 0.01) {
             setTimeout(function() {
                 boxes.forEach(box => {
-                    const dist = Math.abs(box.offsetLeft - (window.innerWidth / 2));
+                    const pointer = document.getElementById('pointer');
+                    const dist = Math.abs(box.offsetLeft - (pointer.offsetLeft));
                     if (dist < closestLenght) {
                         closestLenght = dist;
                         closestBox = box;
@@ -398,10 +400,10 @@ function startAnimation(lootBox) {
                         animSrc = 'assets/uncommon-lootbox-anim.webm';
                         break;
                     case closestBox.classList.contains('rare'):
-                        animSrc = 'assets/uncommon-lootbox-anim.webm';
+                        animSrc = 'assets/legendary-lootbox-anim.webm';
                         break;
                     case closestBox.classList.contains('epic'):
-                        animSrc = 'assets/uncommon-lootbox-anim.webm';
+                        animSrc = 'assets/divine-lootbox-anim.webm';
                         break;
                     case closestBox.classList.contains('mythic'):
                         animSrc = 'assets/mythic-lootbox-anim.webm';

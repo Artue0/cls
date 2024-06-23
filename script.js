@@ -386,7 +386,7 @@ function startAnimation(lootBox) {
             setTimeout(function() {
                 boxes.forEach(box => {
                     const pointer = document.getElementById('pointer');
-                    const dist = Math.abs(box.offsetLeft - (pointer.offsetLeft));
+                    const dist = Math.abs((box.offsetLeft + (box.offsetWidth / 2)) - (pointer.offsetLeft + (pointer.offsetWidth / 2)));
                     if (dist < closestLenght) {
                         closestLenght = dist;
                         closestBox = box;

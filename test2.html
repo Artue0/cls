@@ -7,12 +7,16 @@
     <style>
         body {
             overflow: hidden;
+            margin: 0;
+            display: flex;
+            justify-content: center;
         }
 
         #catContainer {
             position: relative;
             width: 100vw;
             height: 100vh;
+            border: 3px solid black;
             /* Add other styles as needed */
         }
         .catClone {
@@ -35,9 +39,9 @@
             for (let i = 0; i < 1; i++) {
                 const clone = document.createElement('div');
                 clone.classList.add('catClone');
-                clone.style.backgroundColor = 'black'
-                clone.style.bottom = '0px';
-                clone.style.left = window.innerWidth/2 + 'px';
+                clone.style.backgroundColor = 'black';
+                clone.style.bottom = catContainer.offsetHeight / 2 + 'px';
+                clone.style.left = catContainer.offsetWidth / 2 + 'px';
                 clone.style.transform = 'translateX(-50%)';
                 catContainer.appendChild(clone);
 
@@ -51,12 +55,13 @@
                 });
             }
         }
-        createCats()
-        setInterval(createCats, 200);
+
+        createCats();
+        setInterval(createCats, 20);
 
         function moveClones() {
             console.log(clones.length)
-            clones.forEach(clone => {
+            clones.forEach((clone, index) => {
                 const element = clone.element;
                 let currentBottom = parseFloat(element.style.bottom);
                 let currentLeft = parseFloat(element.style.left);
@@ -66,19 +71,15 @@
 
                 clone.vVelocity -= 0.002;
 
-                if (currentBottom < 0) {
-                    // element.remove();
+                if (currentBottom < 0 || currentLeft < 0 || currentLeft > window.innerWidth) {
+                    element.remove();
+                    clones.splice(index, 1); // Remove from array as well
+                } else {
+                    element.style.bottom = currentBottom + 'px';
+                    element.style.left = currentLeft + 'px';
                 }
-                if (currentLeft < 0) {
-                    // element.remove();
-                } else if (currentLeft > containerWidth) {
-                    // element.remove();
-                }
-                element.style.bottom = currentBottom + 'px';
-                element.style.left = currentLeft + 'px';
             });
         }
-
 
         setInterval(moveClones, 1);
     </script>

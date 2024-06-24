@@ -481,9 +481,10 @@ function createCats(animSrc, overalySrc) {
             catContainer.classList.add('clonesContainer');
             catAnimation.appendChild(catContainer);
             const clones = [];
-    
-            function createCats() {
-                if (clones.length <= 15) {
+            let createClones = true;
+
+            setInterval(function() {
+                if (clones.length <= 15 && createClones) {
                     for (let i = 0; i < 1; i++) {
                         const clone = document.getElementById('catContainer').cloneNode(true);
                         clone.classList.add('catClone');
@@ -492,9 +493,6 @@ function createCats(animSrc, overalySrc) {
                         clone.style.left = Math.random() * catContainer.offsetWidth + 'px';
                         clone.style.setProperty('--angle', `${(Math.random() * 100)}deg`);
                         clone.style.setProperty('--side', `${(Math.random() < 0.5 ? -1 : 1)}`);
-
-
-
 
                         const randBody = Math.random() * 100;
                         if (randBody <= 20) {
@@ -561,12 +559,13 @@ function createCats(animSrc, overalySrc) {
                             }
                         }
                         const randStripe = Math.random() * 100;
-                        if (randStripe <= 30) {
-                            clone.classList.add('white-stripe'); // 30%
+                        if (randStripe <= 25) {
                         } else if (randStripe <= 50) {
-                            clone.classList.add('black-stripe'); // 20%
+                            clone.classList.add('black-stripe');
                         } else if (randStripe <= 70) {
-                            clone.classList.add('gray-stripe'); // 20%
+                            clone.classList.add('black-stripe');
+                        } else if (randStripe <= 90) {
+                            clone.classList.add('gray-stripe');
                         } else {
                             const remainingRand = Math.random() * 100;
                             switch (true) {
@@ -591,11 +590,11 @@ function createCats(animSrc, overalySrc) {
                             }
                         }
                         const randPattern = Math.random() * 100;
-                        if (randPattern <= 33.333) {
+                        if (randPattern <= 20) {
                             clone.classList.add('gray-pattern');
-                        } else if (randPattern <= 66.666) {
+                        } else if (randPattern <= 40) {
                             clone.classList.add('white-pattern');
-                        } else if (randPattern <= 100) {
+                        } else if (randPattern <= 60) {
                             clone.classList.add('gray-pattern');
                         }
                         const randPaw = Math.random() * 100;
@@ -636,15 +635,19 @@ function createCats(animSrc, overalySrc) {
                         if (randTounge <= 30) {
                             clone.classList.add('withTounge');
                         }
-
-
-
-
+                        const randBowTie = Math.random() * 100;
+                        if (randBowTie <= 10) {
+                            clone.classList.add('white-bowTie');
+                        } else if (randBowTie <= 20) {
+                            clone.classList.add('black-bowTie');
+                        } else if (randBowTie <= 35) {
+                            clone.classList.add('stripe-bowTie');
+                        }
 
                         catContainer.appendChild(clone);
         
                         const horizontalVelocity = Math.random() * (1 - (-1)) + (-1);
-                        const verticalVelocity = Math.random() * (4.5 - 4) + 4;
+                        const verticalVelocity = Math.random() * (5.5 - 5) + 5;
         
                         clones.push({
                             element: clone,
@@ -654,13 +657,9 @@ function createCats(animSrc, overalySrc) {
                         });
                     }
                 }
-            }
-    
-            // createCats();
-            setInterval(createCats, 180);
+            }, 180);
     
             function moveClones() {
-                console.log(clones.length)
                 clones.forEach((clone, index) => {
                     const element = clone.element;
                     let currentBottom = parseFloat(element.style.bottom);
@@ -671,7 +670,7 @@ function createCats(animSrc, overalySrc) {
                     currentBottom += clone.vVelocity;
                     currentLeft += clone.hVelocity;
     
-                    clone.vVelocity -= 0.017;
+                    clone.vVelocity -= 0.027;
     
                     if (rect.bottom > window.innerHeight * 1.1) {
                         element.remove();
@@ -691,6 +690,222 @@ function createCats(animSrc, overalySrc) {
             }
             
             setInterval(moveClones, 1);
+
+            function updateHeight() {catContainer.style.height = overlay.getBoundingClientRect().top + (overlay.offsetHeight * 0.85) + 'px';}
+            window.addEventListener('resize', updateHeight);
+            updateHeight();
+
+            setTimeout(function() {
+                const hiddenCat = document.getElementById('catContainer').cloneNode(true);
+                hiddenCat.classList.add('hiddenCat');
+                hiddenCat.classList.add('hiddenCatColors');
+                hiddenCat.classList.remove('hidden');
+                hiddenCat.style.bottom = 0;
+                hiddenCat.style.left = catContainer.offsetWidth / 2 + 'px';
+                hiddenCat.style.setProperty('--angle', `${(Math.random() * 100)}deg`);
+                catContainer.appendChild(hiddenCat);
+                const questionMark = document.createElement('div');
+                questionMark.classList.add('questionMark');
+                hiddenCat.querySelector('.cat').querySelector('.catBottom').appendChild(questionMark);
+                questionMark.innerText = '?';
+                let velocity = 3.4;
+                let currentBottom;
+                createClones = false;
+
+                function moveHiddenCat() {
+                    currentBottom = parseFloat(hiddenCat.style.bottom);
+                    currentBottom += velocity;
+                    velocity -= 0.008;
+                    hiddenCat.style.bottom = currentBottom + 'px';
+                }
+
+                setTimeout(function() {
+                    hiddenCat.style.zIndex = 1001;
+                    const checkPos = setInterval(function() {
+                        if (hiddenCat.getBoundingClientRect().top > window.innerHeight / 2) {
+                            clearInterval(checkPos);
+                            hiddenCat.style.setProperty('--top', `${currentBottom}px`);
+                            const matrix = window.getComputedStyle(hiddenCat).transform;
+                            hiddenCat.style.setProperty('--rotation', `${matrix === 'none' ? 0 : Math.round(Math.atan2(matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[1], matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[0]) * (180 / Math.PI))}deg`);
+                            hiddenCat.classList.add('hiddenCatAnim');
+                            clearInterval(moveCat);
+                            const backgroundCircle = document.createElement('div');
+                            backgroundCircle.classList.add('backgroundCircle');
+                            hiddenCat.querySelector('.cat').querySelector('.catBottom').appendChild(backgroundCircle);
+                            setTimeout(function() {
+                                hiddenCat.classList.remove('hiddenCatColors');
+                                questionMark.remove();
+                                setInterval(function() {
+                                    hiddenCat.classList = '';
+                                    hiddenCat.classList.add('catContainer');
+                                    hiddenCat.classList.add('hiddenCat');
+                                    hiddenCat.classList.add('hiddenCatAnim');
+
+                                    const randBody = Math.random() * 100;
+                                    if (randBody <= 20) {
+                                        hiddenCat.classList.add('gray-body');
+                                    } else if (randBody <= 35) {
+                                        hiddenCat.classList.add('white-body');
+                                    } else if (randBody <= 55) {
+                                        hiddenCat.classList.add('black-body');
+                                        hiddenCat.classList.add('whiteMouth');
+                                    } else if (randBody <= 70) {
+                                        hiddenCat.classList.add('orange-body');
+                                    } else if (randBody <= 85) {
+                                        hiddenCat.classList.add('brown-body');
+                                    } else if (randBody <= 95) {
+                                        hiddenCat.classList.add('peach-body');
+                                    } else {
+                                        const remainingRand = Math.random() * 100;
+                                        switch (true) {
+                                            case remainingRand <= 6.667:
+                                                hiddenCat.classList.add('grayBlue-body');
+                                                break;
+                                            case remainingRand <= 13.334:
+                                                hiddenCat.classList.add('blue-body');
+                                                break;
+                                            case remainingRand <= 20.001:
+                                                hiddenCat.classList.add('lightBlue-body');
+                                                break;
+                                            case remainingRand <= 26.668:
+                                                hiddenCat.classList.add('red-body');
+                                                break;
+                                            case remainingRand <= 33.335:
+                                                hiddenCat.classList.add('purple-body');
+                                                break;
+                                            case remainingRand <= 40.002:
+                                                hiddenCat.classList.add('darkBlue-body');
+                                                break;
+                                            case remainingRand <= 46.669:
+                                                hiddenCat.classList.add('darkRed-body');
+                                                break;
+                                            case remainingRand <= 53.336:
+                                                hiddenCat.classList.add('darkGreen-body');
+                                                break;
+                                            case remainingRand <= 60.003:
+                                                hiddenCat.classList.add('cyan-body');
+                                                break;
+                                            case remainingRand <= 66.67:
+                                                hiddenCat.classList.add('green-body');
+                                                break;
+                                            case remainingRand <= 73.337:
+                                                hiddenCat.classList.add('pink-body');
+                                                break;
+                                            case remainingRand <= 80.004:
+                                                hiddenCat.classList.add('pinkRed-body');
+                                                break;
+                                            case remainingRand <= 86.671:
+                                                hiddenCat.classList.add('pinkPurple-body');
+                                                break;
+                                            case remainingRand <= 93.338:
+                                                hiddenCat.classList.add('orangeYellow-body');
+                                                break;
+                                            default:
+                                                hiddenCat.classList.add('peach-body');
+                                                break;
+                                        }
+                                    }
+
+                                    const randStripe = Math.random() * 100;
+                                    if (randStripe <= 25) {
+                                    } else if (randStripe <= 50) {
+                                        hiddenCat.classList.add('black-stripe');
+                                    } else if (randStripe <= 70) {
+                                        hiddenCat.classList.add('black-stripe');
+                                    } else if (randStripe <= 90) {
+                                        hiddenCat.classList.add('gray-stripe');
+                                    } else {
+                                        const remainingRand = Math.random() * 100;
+                                        switch (true) {
+                                            case remainingRand <= 16.667:
+                                                hiddenCat.classList.add('orange-stripe');
+                                                break;
+                                            case remainingRand <= 33.334:
+                                                hiddenCat.classList.add('brown-stripe');
+                                                break;
+                                            case remainingRand <= 50.001:
+                                                hiddenCat.classList.add('blue-stripe');
+                                                break;
+                                            case remainingRand <= 66.668:
+                                                hiddenCat.classList.add('red-stripe');
+                                                break;
+                                            case remainingRand <= 83.335:
+                                                hiddenCat.classList.add('green-stripe');
+                                                break;
+                                            default:
+                                                hiddenCat.classList.add('pink-stripe');
+                                                break;
+                                        }
+                                    }
+
+                                    const randPattern = Math.random() * 100;
+                                    if (randPattern <= 20) {
+                                        hiddenCat.classList.add('gray-pattern');
+                                    } else if (randPattern <= 40) {
+                                        hiddenCat.classList.add('white-pattern');
+                                    } else if (randPattern <= 60) {
+                                        hiddenCat.classList.add('gray-pattern');
+                                    }
+
+                                    const randPaw = Math.random() * 100;
+                                    if (randPaw <= 30) {
+                                        hiddenCat.classList.add('firstPaw');
+                                        hiddenCat.classList.add('secondPaw');
+                                        hiddenCat.classList.add('thirdPaw');
+                                        hiddenCat.classList.add('forthPaw');
+                                    } else if (randPaw <= 60) {
+                                    } else {
+                                        const randomFirstPaw = Math.random() * 100;
+                                        const randomSecondPaw = Math.random() * 100;
+                                        const randomThirdPaw = Math.random() * 100;
+                                        const randomForthPaw = Math.random() * 100;
+
+                                        if (randomFirstPaw <= 25) {
+                                            hiddenCat.classList.add('firstPaw');
+                                        }
+                                        if (randomSecondPaw <= 25) {
+                                            hiddenCat.classList.add('secondPaw');
+                                        }
+                                        if (randomThirdPaw <= 25) {
+                                            hiddenCat.classList.add('thirdPaw');
+                                        }
+                                        if (randomForthPaw <= 25) {
+                                            hiddenCat.classList.add('forthPaw');
+                                        }
+                                    }
+
+                                    const randTail = Math.random() * 100;
+                                    if (randTail <= 50) {
+                                        hiddenCat.classList.add('whiteTail');
+                                    }
+
+                                    const randBelly = Math.random() * 100;
+                                    if (randBelly <= 50) {
+                                        hiddenCat.classList.add('whiteBelly');
+                                    }
+
+                                    const randTounge = Math.random() * 100;
+                                    if (randTounge <= 30) {
+                                        hiddenCat.classList.add('withTounge');
+                                    }
+
+                                    const randBowTie = Math.random() * 100;
+                                    if (randBowTie <= 10) {
+                                        hiddenCat.classList.add('white-bowTie');
+                                    } else if (randBowTie <= 20) {
+                                        hiddenCat.classList.add('black-bowTie');
+                                    } else if (randBowTie <= 35) {
+                                        hiddenCat.classList.add('stripe-bowTie');
+                                    }
+
+                                }, 1000);
+                            }, 2100);
+                        }
+                    }, 5);
+                }, 1000);
+
+                const moveCat = setInterval(moveHiddenCat, 1);
+            }, 8000);
         }, 5000);
     }, 1500);
 }

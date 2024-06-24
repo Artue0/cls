@@ -16,6 +16,7 @@
     --belly-color: var(--cat-color);
     --tounge-color: 255 35 95;
     --tounge-line-color: 205 25 70;
+    --bowTie-color: 256 256 256;
 }
 
 * {
@@ -530,6 +531,21 @@ body {
     flex-direction: column;
 }
 
+.hiddenCatColors {
+    --cat-color: 0 0 0;
+    --first-paw-color: 0 0 0;
+    --second-paw-color: 0 0 0;
+    --third-paw-color: 0 0 0;
+    --forth-paw-color: 0 0 0;
+    --tail-color: 0 0 0;
+    --belly-color: 0 0 0;
+    --tounge-color: 0 0 0;
+    --tounge-line-color: 0 0 0;
+    --pattern-color: 0 0 0;
+    --stripe-color: 0 0 0;
+    --bowTie-color: 0 0 0;
+}
+
 .black-body {--cat-color: 33 33 33;}
 .white-body {--cat-color: 256 256 256;}
 .gray-body {--cat-color: 128 128 128;}
@@ -551,16 +567,6 @@ body {
 .pinkRed-body {--cat-color: 230 90 100;}
 .pinkPurple-body {--cat-color: 220 60 200;}
 
-.black-stripe {--stripe-color: 22 22 22;}
-.white-stripe {--stripe-color: 256 256 256;}
-.gray-stripe {--stripe-color: 100 100 100;}
-.orange-stripe {--stripe-color: 236 130 0;}
-.brown-stripe {--stripe-color: 110 75 60;}
-.blue-stripe {--stripe-color: 22 100 230;}
-.red-stripe {--stripe-color: 230 30 20;}
-.green-stripe {--stripe-color: 30 200 20;}
-.pink-stripe {--stripe-color: 230 50 190;}
-
 .catContainer {
     --first-paw-color: var(--cat-color);
     --second-paw-color: var(--cat-color);
@@ -571,8 +577,19 @@ body {
     --tounge-color: var(--cat-color);
     --tounge-line-color: var(--cat-color);
     --pattern-color: var(--cat-color);
-    /* --stripe-color: var(--cat-color); */
+    --stripe-color: var(--cat-color);
+    --bowTie-color: var(--cat-color);
 }
+
+.black-stripe {--stripe-color: 22 22 22;}
+.white-stripe {--stripe-color: 256 256 256;}
+.gray-stripe {--stripe-color: 100 100 100;}
+.orange-stripe {--stripe-color: 236 130 0;}
+.brown-stripe {--stripe-color: 110 75 60;}
+.blue-stripe {--stripe-color: 22 100 230;}
+.red-stripe {--stripe-color: 230 30 20;}
+.green-stripe {--stripe-color: 30 200 20;}
+.pink-stripe {--stripe-color: 230 50 190;}
 
 .black-pattern {--pattern-color: 33 33 33;}
 .white-pattern {--pattern-color: 256 256 256;}
@@ -590,6 +607,11 @@ body {
 
 .whiteBelly {--belly-color: 256 256 256;}
 
+.black-bowTie {--bowTie-color: 0 0 0;}
+.white-bowTie {--bowTie-color: 240 240 240;}
+.stripe-bowTie {--bowTie-color: var(--stripe-color);}
+.catContainer.black-bowTie .cat .catBottom .bowTie, .catContainer.white-bowTie .cat .catBottom .bowTie {z-index: 99;}
+
 .withTounge {
     --tounge-color: 255 35 95;
     --tounge-line-color: 205 25 70;
@@ -603,7 +625,8 @@ body {
     flex-direction: row;
     position: absolute;
     /* left: 50%;
-    top: 50vh; */
+    top: 50vh;
+    z-index: 99999; */
     transform: translate(-50%,-50%);
 }
 
@@ -747,9 +770,31 @@ body {
 .catBottom {
     width: 100%;
     height: 46%;
-    background: linear-gradient(to bottom, rgb(var(--stripe-color)) 8%, rgb(var(--cat-color)) 0);
+    background: rgb(var(--cat-color));
     display: flex;
     align-items: flex-end;
+    position: relative;
+}
+
+.bowTie {
+    clip-path: polygon(50% 40%, 100% 25%, 100% 75%, 50% 60%, 0% 75%, 0% 25%);
+    position: absolute;
+    left: 50%;
+    top: 4%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(var(--bowTie-color));
+    width: 25%;
+    height: 40%;
+}
+
+.stripe {
+    width: 100%;
+    height: 8%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(var(--stripe-color));
+    z-index: 98;
 }
 
 .belly {
@@ -846,8 +891,8 @@ body {
     width: 50%;
     background-color: rgb(var(--cat-color));
     border-bottom-right-radius: 100%;
-    -webkit-mask: radial-gradient(circle at 0 0, transparent 14%, black 14%);
-    mask: radial-gradient(circle at 0 0, transparent 14%, black 14%);
+    -webkit-mask: radial-gradient(circle at 0 0, transparent 12.5%, black 12.5%);
+    mask: radial-gradient(circle at 0 0, transparent 12.5%, black 12.5%);
 }
 
 .tail1 {
@@ -886,6 +931,7 @@ body {
 .overlay {
     z-index: 1000;
     top: 50vh;
+    pointer-events: none;
 }
 
 .overlay img {
@@ -915,18 +961,17 @@ body {
     height: 12vmin;
     transform: translate(-50%,-50%);
     z-index: 100;
-    animation: catRotate 3s infinite linear;
+    animation: cloneRotate 3s infinite linear;
 }
 
-@keyframes catRotate {
+@keyframes cloneRotate {
     from {
         transform: translate(-50%, -50%) rotate(calc(var(--angle) * var(--side)));
     }
     to {
-        transform: translate(-50%, -50%) rotate(calc((var(--angle) + 360deg) * var(--side)));
+        transform: translate(-50%, -50%) rotate(calc(360deg * var(--side)));
     }
 }
-
 .catContainer {
     width: var(--width);
 }
@@ -949,14 +994,64 @@ body {
     /* border: 3px solid black; */
 }
 
-@media (max-width: 700px) {
-    .clonesContainer {
-        height: 75vh;
+.hiddenCat {
+    animation: catRotate 4s forwards ease-in;
+    width: 12vmin;
+    --width: 12vmin;
+    height: 12vmin;
+    z-index: 100;
+    transform: translate(-13%,-50%);
+}
+
+@keyframes catRotate {
+    from {
+        transform: translate(-13%, -50%) rotate(var(--angle));
+    }
+    to {
+        transform: translate(-13%, -50%) rotate(720deg);
     }
 }
 
-@media (max-width: 520px) {
-    .clonesContainer {
-        height: 65vh;
+.questionMark {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%,-50%);
+    font-size: 7vmin;
+    z-index: 100;
+    font-family: sans-serif;
+    user-select: none;
+}
+
+.hiddenCatAnim {
+    animation: hiddenCatAnim 2s forwards ease-out;
+    z-index: 1002;
+    transform-origin: center;
+}
+
+@keyframes hiddenCatAnim {
+    from {
+        transform: translate(-13%,-50%) rotate(var(--rotation));
+        bottom: var(--top);
     }
+    to {
+        transform: translate(-13%,-50%) rotate(calc(360deg)) scale(5);
+        bottom: 25%;
+    }
+}
+
+.backgroundCircle {
+    width: 250%;
+    aspect-ratio: 1/1;
+    background-color: darkslategray;
+    position: absolute;
+    left: 60%;
+    top: 25%;
+    transform: translate(-50%,-50%);
+    z-index: -111;
+    border-radius: 50%;
 }

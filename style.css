@@ -690,8 +690,7 @@ body {
     top: 65%;
     width: 14%;
     height: 14%;
-    border: solid rgb(var(--mouth-color));
-    /* border-width: calc(30vw*0.004); */
+    border: calc(var(--width)*0.1) solid rgb(var(--mouth-color));
     border-top: none;
     border-radius: 0 0 100px 100px;
     transform: rotate(-10deg) translateX(-50%);
@@ -705,7 +704,7 @@ body {
 }
 
 .mouthRightDot, .mouthLeftDot {
-    /* width: calc(var(--width)*0.04); */
+    width: calc(var(--width)*0.04);
     aspect-ratio: 1/1;
     position: absolute;
     left: 32.5%;
@@ -716,7 +715,7 @@ body {
 }
 
 .mouthRightDot {
-    left: 67.2%;
+    left: 67.1%;
 }
 
 .nose, .eyeLeft, .eyeRight {

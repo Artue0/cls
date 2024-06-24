@@ -494,155 +494,7 @@ function createCats(animSrc, overalySrc) {
                         clone.style.setProperty('--angle', `${(Math.random() * 100)}deg`);
                         clone.style.setProperty('--side', `${(Math.random() < 0.5 ? -1 : 1)}`);
 
-                        const randBody = Math.random() * 100;
-                        if (randBody <= 20) {
-                            clone.classList.add('gray-body'); // 20%
-                        } else if (randBody <= 35) {
-                            clone.classList.add('white-body'); // 15%
-                        } else if (randBody <= 55) {
-                            clone.classList.add('black-body');
-                            clone.classList.add('whiteMouth') // 20%
-                        } else if (randBody <= 70) {
-                            clone.classList.add('orange-body'); // 15%
-                        } else if (randBody <= 85) {
-                            clone.classList.add('brown-body'); // 20%
-                        } else if (randBody <= 95) {
-                            clone.classList.add('peach-body'); // 20%
-                        } else {
-                            const remainingRand = Math.random() * 100;
-                            switch (true) {
-                                case remainingRand <= 6.667:
-                                    clone.classList.add('grayBlue-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 13.334:
-                                    clone.classList.add('blue-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 20.001:
-                                    clone.classList.add('lightBlue-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 26.668:
-                                    clone.classList.add('red-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 33.335:
-                                    clone.classList.add('purple-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 40.002:
-                                    clone.classList.add('darkBlue-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 46.669:
-                                    clone.classList.add('darkRed-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 53.336:
-                                    clone.classList.add('darkGreen-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 60.003:
-                                    clone.classList.add('cyan-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 66.67:
-                                    clone.classList.add('green-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 73.337:
-                                    clone.classList.add('pink-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 80.004:
-                                    clone.classList.add('pinkRed-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 86.671:
-                                    clone.classList.add('pinkPurple-body'); // Approx 6.667% chance
-                                    break;
-                                case remainingRand <= 93.338:
-                                    clone.classList.add('orangeYellow-body'); // Approx 6.667% chance
-                                    break;
-                                default:
-                                    clone.classList.add('peach-body'); // Approx 6.667% chance
-                                    break;
-                            }
-                        }
-                        const randStripe = Math.random() * 100;
-                        if (randStripe <= 25) {
-                        } else if (randStripe <= 50) {
-                            clone.classList.add('black-stripe');
-                        } else if (randStripe <= 70) {
-                            clone.classList.add('black-stripe');
-                        } else if (randStripe <= 90) {
-                            clone.classList.add('gray-stripe');
-                        } else {
-                            const remainingRand = Math.random() * 100;
-                            switch (true) {
-                                case remainingRand <= 16.667:
-                                    clone.classList.add('orange-stripe'); // Approx 5% chance
-                                    break;
-                                case remainingRand <= 33.334:
-                                    clone.classList.add('brown-stripe'); // Approx 5% chance
-                                    break;
-                                case remainingRand <= 50.001:
-                                    clone.classList.add('blue-stripe'); // Approx 5% chance
-                                    break;
-                                case remainingRand <= 66.668:
-                                    clone.classList.add('red-stripe'); // Approx 5% chance
-                                    break;
-                                case remainingRand <= 83.335:
-                                    clone.classList.add('green-stripe'); // Approx 5% chance
-                                    break;
-                                default:
-                                    clone.classList.add('pink-stripe'); // Approx 5% chance
-                                    break;
-                            }
-                        }
-                        const randPattern = Math.random() * 100;
-                        if (randPattern <= 20) {
-                            clone.classList.add('gray-pattern');
-                        } else if (randPattern <= 40) {
-                            clone.classList.add('white-pattern');
-                        } else if (randPattern <= 60) {
-                            clone.classList.add('gray-pattern');
-                        }
-                        const randPaw = Math.random() * 100;
-                        if (randPaw <= 30) {
-                            clone.classList.add('firstPaw');
-                            clone.classList.add('secondPaw');
-                            clone.classList.add('thirdPaw');
-                            clone.classList.add('forthPaw');
-                        } else if (randPaw <= 60) {
-                        } else {
-                            const randomFirstPaw = Math.random() * 100;
-                            const randomSecondPaw = Math.random() * 100;
-                            const randomThirdPaw = Math.random() * 100;
-                            const randomForthPaw = Math.random() * 100;
-
-                            if (randomFirstPaw <= 25) {
-                                clone.classList.add('firstPaw');
-                            }
-                            if (randomSecondPaw <= 25) {
-                                clone.classList.add('secondPaw');
-                            }
-                            if (randomThirdPaw <= 25) {
-                                clone.classList.add('thirdPaw');
-                            }
-                            if (randomForthPaw <= 25) {
-                                clone.classList.add('forthPaw');
-                            }
-                        }
-                        const randTail = Math.random() * 100;
-                        if (randTail <= 50) {
-                            clone.classList.add('whiteTail');
-                        }
-                        const randBelly = Math.random() * 100;
-                        if (randBelly <= 50) {
-                            clone.classList.add('whiteBelly');
-                        }
-                        const randTounge = Math.random() * 100;
-                        if (randTounge <= 30) {
-                            clone.classList.add('withTounge');
-                        }
-                        const randBowTie = Math.random() * 100;
-                        if (randBowTie <= 10) {
-                            clone.classList.add('white-bowTie');
-                        } else if (randBowTie <= 20) {
-                            clone.classList.add('black-bowTie');
-                        } else if (randBowTie <= 35) {
-                            clone.classList.add('stripe-bowTie');
-                        }
+                        randomizeCat(clone);
 
                         catContainer.appendChild(clone);
         
@@ -735,170 +587,20 @@ function createCats(animSrc, overalySrc) {
                             setTimeout(function() {
                                 hiddenCat.classList.remove('hiddenCatColors');
                                 questionMark.remove();
-                                setInterval(function() {
+                                let delay = 30;
+                                function animateRandomCat() {
                                     hiddenCat.classList = '';
                                     hiddenCat.classList.add('catContainer');
                                     hiddenCat.classList.add('hiddenCat');
                                     hiddenCat.classList.add('hiddenCatAnim');
+                                    delay = delay * 1.1;
+                                    console.log(delay);
 
-                                    const randBody = Math.random() * 100;
-                                    if (randBody <= 20) {
-                                        hiddenCat.classList.add('gray-body');
-                                    } else if (randBody <= 35) {
-                                        hiddenCat.classList.add('white-body');
-                                    } else if (randBody <= 55) {
-                                        hiddenCat.classList.add('black-body');
-                                        hiddenCat.classList.add('whiteMouth');
-                                    } else if (randBody <= 70) {
-                                        hiddenCat.classList.add('orange-body');
-                                    } else if (randBody <= 85) {
-                                        hiddenCat.classList.add('brown-body');
-                                    } else if (randBody <= 95) {
-                                        hiddenCat.classList.add('peach-body');
-                                    } else {
-                                        const remainingRand = Math.random() * 100;
-                                        switch (true) {
-                                            case remainingRand <= 6.667:
-                                                hiddenCat.classList.add('grayBlue-body');
-                                                break;
-                                            case remainingRand <= 13.334:
-                                                hiddenCat.classList.add('blue-body');
-                                                break;
-                                            case remainingRand <= 20.001:
-                                                hiddenCat.classList.add('lightBlue-body');
-                                                break;
-                                            case remainingRand <= 26.668:
-                                                hiddenCat.classList.add('red-body');
-                                                break;
-                                            case remainingRand <= 33.335:
-                                                hiddenCat.classList.add('purple-body');
-                                                break;
-                                            case remainingRand <= 40.002:
-                                                hiddenCat.classList.add('darkBlue-body');
-                                                break;
-                                            case remainingRand <= 46.669:
-                                                hiddenCat.classList.add('darkRed-body');
-                                                break;
-                                            case remainingRand <= 53.336:
-                                                hiddenCat.classList.add('darkGreen-body');
-                                                break;
-                                            case remainingRand <= 60.003:
-                                                hiddenCat.classList.add('cyan-body');
-                                                break;
-                                            case remainingRand <= 66.67:
-                                                hiddenCat.classList.add('green-body');
-                                                break;
-                                            case remainingRand <= 73.337:
-                                                hiddenCat.classList.add('pink-body');
-                                                break;
-                                            case remainingRand <= 80.004:
-                                                hiddenCat.classList.add('pinkRed-body');
-                                                break;
-                                            case remainingRand <= 86.671:
-                                                hiddenCat.classList.add('pinkPurple-body');
-                                                break;
-                                            case remainingRand <= 93.338:
-                                                hiddenCat.classList.add('orangeYellow-body');
-                                                break;
-                                            default:
-                                                hiddenCat.classList.add('peach-body');
-                                                break;
-                                        }
-                                    }
+                                    randomizeCat(hiddenCat);
 
-                                    const randStripe = Math.random() * 100;
-                                    if (randStripe <= 25) {
-                                    } else if (randStripe <= 50) {
-                                        hiddenCat.classList.add('black-stripe');
-                                    } else if (randStripe <= 70) {
-                                        hiddenCat.classList.add('black-stripe');
-                                    } else if (randStripe <= 90) {
-                                        hiddenCat.classList.add('gray-stripe');
-                                    } else {
-                                        const remainingRand = Math.random() * 100;
-                                        switch (true) {
-                                            case remainingRand <= 16.667:
-                                                hiddenCat.classList.add('orange-stripe');
-                                                break;
-                                            case remainingRand <= 33.334:
-                                                hiddenCat.classList.add('brown-stripe');
-                                                break;
-                                            case remainingRand <= 50.001:
-                                                hiddenCat.classList.add('blue-stripe');
-                                                break;
-                                            case remainingRand <= 66.668:
-                                                hiddenCat.classList.add('red-stripe');
-                                                break;
-                                            case remainingRand <= 83.335:
-                                                hiddenCat.classList.add('green-stripe');
-                                                break;
-                                            default:
-                                                hiddenCat.classList.add('pink-stripe');
-                                                break;
-                                        }
-                                    }
-
-                                    const randPattern = Math.random() * 100;
-                                    if (randPattern <= 20) {
-                                        hiddenCat.classList.add('gray-pattern');
-                                    } else if (randPattern <= 40) {
-                                        hiddenCat.classList.add('white-pattern');
-                                    } else if (randPattern <= 60) {
-                                        hiddenCat.classList.add('gray-pattern');
-                                    }
-
-                                    const randPaw = Math.random() * 100;
-                                    if (randPaw <= 30) {
-                                        hiddenCat.classList.add('firstPaw');
-                                        hiddenCat.classList.add('secondPaw');
-                                        hiddenCat.classList.add('thirdPaw');
-                                        hiddenCat.classList.add('forthPaw');
-                                    } else if (randPaw <= 60) {
-                                    } else {
-                                        const randomFirstPaw = Math.random() * 100;
-                                        const randomSecondPaw = Math.random() * 100;
-                                        const randomThirdPaw = Math.random() * 100;
-                                        const randomForthPaw = Math.random() * 100;
-
-                                        if (randomFirstPaw <= 25) {
-                                            hiddenCat.classList.add('firstPaw');
-                                        }
-                                        if (randomSecondPaw <= 25) {
-                                            hiddenCat.classList.add('secondPaw');
-                                        }
-                                        if (randomThirdPaw <= 25) {
-                                            hiddenCat.classList.add('thirdPaw');
-                                        }
-                                        if (randomForthPaw <= 25) {
-                                            hiddenCat.classList.add('forthPaw');
-                                        }
-                                    }
-
-                                    const randTail = Math.random() * 100;
-                                    if (randTail <= 50) {
-                                        hiddenCat.classList.add('whiteTail');
-                                    }
-
-                                    const randBelly = Math.random() * 100;
-                                    if (randBelly <= 50) {
-                                        hiddenCat.classList.add('whiteBelly');
-                                    }
-
-                                    const randTounge = Math.random() * 100;
-                                    if (randTounge <= 30) {
-                                        hiddenCat.classList.add('withTounge');
-                                    }
-
-                                    const randBowTie = Math.random() * 100;
-                                    if (randBowTie <= 10) {
-                                        hiddenCat.classList.add('white-bowTie');
-                                    } else if (randBowTie <= 20) {
-                                        hiddenCat.classList.add('black-bowTie');
-                                    } else if (randBowTie <= 35) {
-                                        hiddenCat.classList.add('stripe-bowTie');
-                                    }
-
-                                }, 1000);
+                                    if (delay <= 1500) {setTimeout(animateRandomCat, delay);}
+                                }
+                                animateRandomCat();
                             }, 2100);
                         }
                     }, 5);
@@ -908,4 +610,157 @@ function createCats(animSrc, overalySrc) {
             }, 8000);
         }, 5000);
     }, 1500);
+}
+
+function randomizeCat(element) {
+        const randBody = Math.random() * 100;
+    if (randBody <= 20) {
+        element.classList.add('gray-body');
+    } else if (randBody <= 35) {
+        element.classList.add('white-body');
+    } else if (randBody <= 55) {
+        element.classList.add('black-body');
+        element.classList.add('whiteMouth');
+    } else if (randBody <= 70) {
+        element.classList.add('orange-body');
+    } else if (randBody <= 85) {
+        element.classList.add('brown-body');
+    } else if (randBody <= 95) {
+        element.classList.add('peach-body');
+    } else {
+        const remainingRand = Math.random() * 100;
+        switch (true) {
+            case remainingRand <= 6.667:
+                element.classList.add('grayBlue-body');
+                break;
+            case remainingRand <= 13.334:
+                element.classList.add('blue-body');
+                break;
+            case remainingRand <= 20.001:
+                element.classList.add('lightBlue-body');
+                break;
+            case remainingRand <= 26.668:
+                element.classList.add('red-body');
+                break;
+            case remainingRand <= 33.335:
+                element.classList.add('purple-body');
+                break;
+            case remainingRand <= 40.002:
+                element.classList.add('darkBlue-body');
+                break;
+            case remainingRand <= 46.669:
+                element.classList.add('darkRed-body');
+                break;
+            case remainingRand <= 53.336:
+                element.classList.add('darkGreen-body');
+                break;
+            case remainingRand <= 60.003:
+                element.classList.add('cyan-body');
+                break;
+            case remainingRand <= 66.67:
+                element.classList.add('green-body');
+                break;
+            case remainingRand <= 73.337:
+                element.classList.add('pink-body');
+                break;
+            case remainingRand <= 80.004:
+                element.classList.add('pinkRed-body');
+                break;
+            case remainingRand <= 86.671:
+                element.classList.add('pinkPurple-body');
+                break;
+            case remainingRand <= 93.338:
+                element.classList.add('orangeYellow-body');
+                break;
+            default:
+                element.classList.add('peach-body');
+                break;
+        }
+    }
+    const randStripe = Math.random() * 100;
+    if (randStripe <= 25) {
+    } else if (randStripe <= 50) {
+        element.classList.add('black-stripe');
+    } else if (randStripe <= 70) {
+        element.classList.add('black-stripe');
+    } else if (randStripe <= 90) {
+        element.classList.add('gray-stripe');
+    } else {
+        const remainingRand = Math.random() * 100;
+        switch (true) {
+            case remainingRand <= 16.667:
+                element.classList.add('orange-stripe');
+                break;
+            case remainingRand <= 33.334:
+                element.classList.add('brown-stripe');
+                break;
+            case remainingRand <= 50.001:
+                element.classList.add('blue-stripe');
+                break;
+            case remainingRand <= 66.668:
+                element.classList.add('red-stripe');
+                break;
+            case remainingRand <= 83.335:
+                element.classList.add('green-stripe');
+                break;
+            default:
+                element.classList.add('pink-stripe');
+                break;
+        }
+    }
+    const randPattern = Math.random() * 100;
+    if (randPattern <= 20) {
+        element.classList.add('gray-pattern');
+    } else if (randPattern <= 40) {
+        element.classList.add('white-pattern');
+    } else if (randPattern <= 60) {
+        element.classList.add('gray-pattern');
+    }
+    const randPaw = Math.random() * 100;
+    if (randPaw <= 30) {
+        element.classList.add('firstPaw');
+        element.classList.add('secondPaw');
+        element.classList.add('thirdPaw');
+        element.classList.add('forthPaw');
+    } else if (randPaw <= 60) {
+    } else {
+        const randomFirstPaw = Math.random() * 100;
+        const randomSecondPaw = Math.random() * 100;
+        const randomThirdPaw = Math.random() * 100;
+        const randomForthPaw = Math.random() * 100;
+
+        if (randomFirstPaw <= 25) {
+            element.classList.add('firstPaw');
+        }
+        if (randomSecondPaw <= 25) {
+            element.classList.add('secondPaw');
+        }
+        if (randomThirdPaw <= 25) {
+            element.classList.add('thirdPaw');
+        }
+        if (randomForthPaw <= 25) {
+            element.classList.add('forthPaw');
+        }
+    }
+    const randTail = Math.random() * 100;
+    if (randTail <= 50) {
+        element.classList.add('whiteTail');
+    }
+    const randBelly = Math.random() * 100;
+    if (randBelly <= 50) {
+        element.classList.add('whiteBelly');
+    }
+    const randTounge = Math.random() * 100;
+    if (randTounge <= 30) {
+        element.classList.add('withTounge');
+    }
+    const randBowTie = Math.random() * 100;
+    if (randBowTie <= 10) {
+        element.classList.add('white-bowTie');
+    } else if (randBowTie <= 20) {
+        element.classList.add('black-bowTie');
+    } else if (randBowTie <= 35) {
+        element.classList.add('stripe-bowTie');
+    }
+
 }

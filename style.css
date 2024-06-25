@@ -693,7 +693,7 @@ body {
     width: 14%;
     height: 14%;
     border: solid rgb(var(--mouth-color));
-    border-width: calc(var(--width)*0.025);
+    border-width: calc(var(--width)*0.03);
     border-top: none;
     border-radius: 0 0 100px 100px;
     transform: rotate(-10deg) translateX(-50%);
@@ -713,7 +713,7 @@ body {
 }
 
 .mouthRightDot, .mouthLeftDot {
-    width: 15%;
+    width: calc(var(--width)*0.025);
     aspect-ratio: 1/1;
     position: absolute;
     top: 0;
@@ -723,11 +723,11 @@ body {
 }
 
 .mouthLeftDot {
-    left: -15%;
+    left: -25%;
 }
 
 .mouthRightDot {
-    right: -15%;
+    right: -25%;
 }
 
 .nose, .eyeLeft, .eyeRight {

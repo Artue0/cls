@@ -477,6 +477,10 @@ function createCats(animSrc, overalySrc) {
             overlayImg.src = overalySrc;
             overlay.appendChild(overlayImg);
 
+            const backgroundCircle = document.createElement('div');
+            backgroundCircle.classList.add('backgroundCircle');
+            catAnimation.appendChild(backgroundCircle);
+
             const catContainer = document.createElement('div');
             catContainer.classList.add('clonesContainer');
             catAnimation.appendChild(catContainer);
@@ -560,14 +564,14 @@ function createCats(animSrc, overalySrc) {
                 questionMark.classList.add('questionMark');
                 hiddenCat.querySelector('.cat').querySelector('.catBottom').appendChild(questionMark);
                 questionMark.innerText = '?';
-                let velocity = 3.4;
+                let velocity = 5.5;
                 let currentBottom;
                 createClones = false;
 
                 function moveHiddenCat() {
                     currentBottom = parseFloat(hiddenCat.style.bottom);
                     currentBottom += velocity;
-                    velocity -= 0.008;
+                    velocity -= 0.027;
                     hiddenCat.style.bottom = currentBottom + 'px';
                 }
 
@@ -581,9 +585,7 @@ function createCats(animSrc, overalySrc) {
                             hiddenCat.style.setProperty('--rotation', `${matrix === 'none' ? 0 : Math.round(Math.atan2(matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[1], matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[0]) * (180 / Math.PI))}deg`);
                             hiddenCat.classList.add('hiddenCatAnim');
                             clearInterval(moveCat);
-                            const backgroundCircle = document.createElement('div');
-                            backgroundCircle.classList.add('backgroundCircle');
-                            hiddenCat.querySelector('.cat').querySelector('.catBottom').appendChild(backgroundCircle);
+                            backgroundCircle.classList.add('backgroundCircleAnim');
                             setTimeout(function() {
                                 hiddenCat.classList.remove('hiddenCatColors');
                                 questionMark.remove();
@@ -594,14 +596,37 @@ function createCats(animSrc, overalySrc) {
                                     hiddenCat.classList.add('hiddenCat');
                                     hiddenCat.classList.add('hiddenCatAnim');
                                     delay = delay * 1.1;
-                                    console.log(delay);
 
                                     randomizeCat(hiddenCat);
 
-                                    if (delay <= 1500) {setTimeout(animateRandomCat, delay);}
+                                    const computedStyle = window.getComputedStyle(hiddenCat.querySelector('.cat').querySelector('.catBottom'));
+                                    const catColorString = computedStyle.getPropertyValue('--cat-color').trim();
+                                    const catColor = catColorString.split(' ').map(value => parseInt(value, 10))
+                                    const darkenedColor = [
+                                        Math.max(catColor[0] - 40, 0),
+                                        Math.max(catColor[1] - 40, 0),
+                                        Math.max(catColor[2] - 40, 0)
+                                    ];
+                                    let darkenedColor2 = [
+                                        Math.max(catColor[0] - 50, 0),
+                                        Math.max(catColor[1] - 50, 0),
+                                        Math.max(catColor[2] - 50, 0)
+                                    ];
+                                    if (catColor[0] <= 50 && catColor[1] <= 50 && catColor[2] <= 50) {
+                                        darkenedColor2 = [
+                                            catColor[0] + 50,
+                                            catColor[1] + 50,
+                                            catColor[2] + 50
+                                        ];
+                                        hiddenCat.classList.add('hiddenCatBlack');
+                                    }
+                                    backgroundCircle.style.setProperty('--circle-color', `${darkenedColor}`);
+                                    backgroundCircle.style.setProperty('--border-color', `${darkenedColor2}`);
+
+                                    if (delay <= 1000) {setTimeout(animateRandomCat, delay);}
                                 }
                                 animateRandomCat();
-                            }, 2100);
+                            }, 2800);
                         }
                     }, 5);
                 }, 1000);

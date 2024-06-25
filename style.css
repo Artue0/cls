@@ -17,6 +17,8 @@
     --tounge-color: 255 35 95;
     --tounge-line-color: 205 25 70;
     --bowTie-color: 256 256 256;
+
+    --circle-color: 30 30 30;
 }
 
 * {
@@ -690,12 +692,13 @@ body {
     top: 65%;
     width: 14%;
     height: 14%;
-    border: calc(var(--width)*0.1) solid rgb(var(--mouth-color));
+    border: solid rgb(var(--mouth-color));
+    border-width: calc(var(--width)*0.025);
     border-top: none;
     border-radius: 0 0 100px 100px;
     transform: rotate(-10deg) translateX(-50%);
     transform-origin: top left;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .mouthRight {
@@ -703,19 +706,28 @@ body {
     transform: rotate(10deg) translateX(-50%);
 }
 
+.dotContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
 .mouthRightDot, .mouthLeftDot {
-    width: calc(var(--width)*0.04);
+    width: 15%;
     aspect-ratio: 1/1;
     position: absolute;
-    left: 32.5%;
-    top: 68.5%;
-    transform: translate(-50%,-50%);
+    top: 0;
+    transform: translate(0,-50%);
     background-color: rgb(var(--mouth-color));
     border-radius: 50%;
 }
 
+.mouthLeftDot {
+    left: -15%;
+}
+
 .mouthRightDot {
-    left: 67.1%;
+    right: -15%;
 }
 
 .nose, .eyeLeft, .eyeRight {
@@ -779,11 +791,11 @@ body {
     clip-path: polygon(50% 40%, 100% 25%, 100% 75%, 50% 60%, 0% 75%, 0% 25%);
     position: absolute;
     left: 50%;
-    top: 4%;
+    top: 3.5%;
     transform: translate(-50%,-50%);
     background-color: rgb(var(--bowTie-color));
     width: 25%;
-    height: 40%;
+    height: 45%;
 }
 
 .stripe {
@@ -914,7 +926,7 @@ body {
     transform: translate(-50%,-100%);
     height: 50vh;
     width: 30vmin;
-    z-index: 100;
+    z-index: 98;
     /* border: 2px solid black; */
 }
 
@@ -925,10 +937,11 @@ body {
     transform: translate(-50%,-50%);
     width: 100vmin;
     aspect-ratio: 1/1;
+    z-index: 98;
 }
 
 .overlay {
-    z-index: 1000;
+    z-index: 101;
     top: 50vh;
     pointer-events: none;
 }
@@ -975,15 +988,6 @@ body {
     width: var(--width);
 }
 
-.mouthLeft, .mouthRight {
-    border-width: calc(var(--width)*0.023);
-}
-
-.mouthRightDot, .mouthLeftDot {
-    width: calc(var(--width)*0.025);
-
-}
-
 .clonesContainer {
     position: relative;
     top: 0;
@@ -998,8 +1002,9 @@ body {
     width: 12vmin;
     --width: 12vmin;
     height: 12vmin;
-    z-index: 100;
+    z-index: 1012;
     transform: translate(-13%,-50%);
+    filter: drop-shadow(0 0 10px);
 }
 
 @keyframes catRotate {
@@ -1044,13 +1049,33 @@ body {
 }
 
 .backgroundCircle {
-    width: 250%;
+    height: 100vmin;
     aspect-ratio: 1/1;
-    background-color: darkslategray;
+    background-color: rgb(var(--circle-color));
     position: absolute;
-    left: 60%;
-    top: 25%;
+    left: 50%;
+    top: 100%;
     transform: translate(-50%,-50%);
-    z-index: -111;
+    z-index: 102;
     border-radius: 50%;
+    border: rgb(var(--border-color)) 1vmin solid;
+    display: none;
+}
+
+.backgroundCircleAnim {
+    animation: circleShowUp 2s forwards ease-out;
+    display: block;
+}
+
+@keyframes circleShowUp {
+    from {
+        transform: translate(-50%,-50%) scale(0);
+    }
+    to {
+        transform: translate(-50%,-50%) scale(1);
+    }
+}
+
+.hiddenCatBlack {
+    filter: drop-shadow(0 0 20px gray);
 }

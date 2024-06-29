@@ -942,7 +942,6 @@ body {
 
 .overlay {
     z-index: 3;
-    top: 50vh;
     pointer-events: none;
 }
 

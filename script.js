@@ -503,7 +503,7 @@ function createCats(animSrc, overalySrc) {
                         catContainer.appendChild(clone);
         
                         const horizontalVelocity = Math.random() * (1 - (-1)) + (-1);
-                        const verticalVelocity = Math.random() * (5.5 - 5) + 5;
+                        const verticalVelocity = window.innerHeight * (Math.random() * (0.0055 - 0.005) + 0.005);
         
                         clones.push({
                             element: clone,
@@ -556,31 +556,30 @@ function createCats(animSrc, overalySrc) {
                 hiddenCat.classList.add('hiddenCat');
                 hiddenCat.classList.add('hiddenCatColors');
                 hiddenCat.classList.remove('hidden');
-                hiddenCat.style.bottom = 0;
-                hiddenCat.style.left = catContainer.offsetWidth / 2 + 'px';
+                hiddenCat.style.top = catContainer.offsetHeight + 'px';
                 hiddenCat.style.setProperty('--angle', `${(Math.random() * 100)}deg`);
-                catContainer.appendChild(hiddenCat);
+                catAnimation.appendChild(hiddenCat);
                 const questionMark = document.createElement('div');
                 questionMark.classList.add('questionMark');
                 hiddenCat.querySelector('.cat').querySelector('.catBottom').appendChild(questionMark);
                 questionMark.innerText = '?';
-                let velocity = 5.5;
-                let currentBottom;
+                let velocity = -5.5;
+                let currentTop;
                 createClones = false;
 
                 function moveHiddenCat() {
-                    currentBottom = parseFloat(hiddenCat.style.bottom);
-                    currentBottom += velocity;
-                    velocity -= 0.027;
-                    hiddenCat.style.bottom = currentBottom + 'px';
+                    currentTop = parseFloat(hiddenCat.style.top);
+                    currentTop += velocity;
+                    velocity += 0.027;
+                    hiddenCat.style.top = currentTop + 'px';
                 }
 
                 setTimeout(function() {
-                    hiddenCat.style.zIndex = 1001;
+                    // hiddenCat.style.zIndex = 101;
                     const checkPos = setInterval(function() {
                         if (hiddenCat.getBoundingClientRect().top > window.innerHeight / 2) {
                             clearInterval(checkPos);
-                            hiddenCat.style.setProperty('--top', `${currentBottom}px`);
+                            hiddenCat.style.setProperty('--top', `${currentTop}px`);
                             const matrix = window.getComputedStyle(hiddenCat).transform;
                             hiddenCat.style.setProperty('--rotation', `${matrix === 'none' ? 0 : Math.round(Math.atan2(matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[1], matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[0]) * (180 / Math.PI))}deg`);
                             hiddenCat.classList.add('hiddenCatAnim');

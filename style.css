@@ -924,24 +924,24 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%,-100%);
-    height: 50vh;
+    height: 50svh;
     width: 30vmin;
-    z-index: 98;
+    z-index: 100;
     /* border: 2px solid black; */
 }
 
 .video, .overlay {
     position: absolute;
     left: 50%;
-    top: 50vh;
+    top: 50svh;
     transform: translate(-50%,-50%);
     width: 100vmin;
     aspect-ratio: 1/1;
-    z-index: 98;
+    z-index: 1;
 }
 
 .overlay {
-    z-index: 101;
+    z-index: 3;
     top: 50vh;
     pointer-events: none;
 }
@@ -972,8 +972,8 @@ body {
     --width: 12vmin;
     height: 12vmin;
     transform: translate(-50%,-50%);
-    z-index: 100;
     animation: cloneRotate 3s infinite linear;
+    z-index: 2;
 }
 
 @keyframes cloneRotate {
@@ -998,21 +998,23 @@ body {
 }
 
 .hiddenCat {
+    position: fixed;
+    left: 52%;
     animation: catRotate 4s forwards ease-in;
     width: 12vmin;
     --width: 12vmin;
     height: 12vmin;
-    z-index: 1012;
-    transform: translate(-13%,-50%);
+    z-index: 2;
+    transform: translate(-50%,-50%);
     filter: drop-shadow(0 0 10px);
 }
 
 @keyframes catRotate {
     from {
-        transform: translate(-13%, -50%) rotate(var(--angle));
+        transform: translate(-50%, -50%) rotate(var(--angle));
     }
     to {
-        transform: translate(-13%, -50%) rotate(720deg);
+        transform: translate(-50%, -50%) rotate(720deg);
     }
 }
 
@@ -1033,18 +1035,18 @@ body {
 
 .hiddenCatAnim {
     animation: hiddenCatAnim 2s forwards ease-out;
-    z-index: 1002;
+    z-index: 5;
     transform-origin: center;
 }
 
 @keyframes hiddenCatAnim {
     from {
-        transform: translate(-13%,-50%) rotate(var(--rotation));
-        bottom: var(--top);
+        transform: translate(-50%,-50%) rotate(var(--rotation));
+        top: var(--top);
     }
     to {
-        transform: translate(-13%,-50%) rotate(calc(360deg)) scale(5);
-        bottom: 25%;
+        transform: translate(-50%,-50%) rotate(calc(360deg)) scale(5);
+        top: 50svh;
     }
 }
 
@@ -1054,9 +1056,9 @@ body {
     background-color: rgb(var(--circle-color));
     position: absolute;
     left: 50%;
-    top: 100%;
+    top: 50svh;
     transform: translate(-50%,-50%);
-    z-index: 102;
+    z-index: 4;
     border-radius: 50%;
     border: rgb(var(--border-color)) 1vmin solid;
     display: none;

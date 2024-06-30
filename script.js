@@ -586,6 +586,8 @@ function createCats(animSrc, overalySrc) {
                             setTimeout(function() {
                                 hiddenCat.style.setProperty('--scale-width', `${hiddenCat.getBoundingClientRect().width}px`)
                                 hiddenCat.classList.add('hiddenCatScale');
+                                overlay.remove();
+                                videoElement.remove();
                             }, 2000);
                             clearInterval(moveCat);
                             backgroundCircle.classList.add('backgroundCircleAnim');

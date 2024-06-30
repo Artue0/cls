@@ -583,6 +583,10 @@ function createCats(animSrc, overalySrc) {
                             const matrix = window.getComputedStyle(hiddenCat).transform;
                             hiddenCat.style.setProperty('--rotation', `${matrix === 'none' ? 0 : Math.round(Math.atan2(matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[1], matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[0]) * (180 / Math.PI))}deg`);
                             hiddenCat.classList.add('hiddenCatAnim');
+                            setTimeout(function() {
+                                hiddenCat.style.setProperty('--scale-width', `${hiddenCat.offsetWidth}px`)
+                                hiddenCat.classList.add('hiddenCatScale');
+                            }, 2000)
                             clearInterval(moveCat);
                             backgroundCircle.classList.add('backgroundCircleAnim');
                             setTimeout(function() {
@@ -613,9 +617,9 @@ function createCats(animSrc, overalySrc) {
                                     ];
                                     if (catColor[0] <= 50 && catColor[1] <= 50 && catColor[2] <= 50) {
                                         darkenedColor2 = [
-                                            catColor[0] + 50,
-                                            catColor[1] + 50,
-                                            catColor[2] + 50
+                                            catColor[0] + 10,
+                                            catColor[1] + 10,
+                                            catColor[2] + 10
                                         ];
                                         hiddenCat.classList.add('hiddenCatBlack');
                                     }

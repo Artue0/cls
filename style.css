@@ -1040,6 +1040,13 @@ body {
     transform-origin: center;
 }
 
+.hiddenCatScale {
+    transform: translate(-50%,-50%) scale(1);
+    width: var(--scale-width);
+    height: var(--scale-width);
+    --width: var(--scale-width);
+}
+
 @keyframes hiddenCatAnim {
     from {
         transform: translate(-50%,-50%) rotate(var(--rotation));
@@ -1052,7 +1059,7 @@ body {
 }
 
 .backgroundCircle {
-    height: 90vmin;
+    width: 90vmin;
     aspect-ratio: 1/1;
     background-color: rgb(var(--circle-color));
     position: absolute;

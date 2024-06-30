@@ -1040,13 +1040,6 @@ body {
     transform-origin: center;
 }
 
-.hiddenCatScale {
-    transform: translate(-50%,-50%) scale(1);
-    width: var(--scale-width);
-    height: var(--scale-width);
-    --width: var(--scale-width);
-}
-
 @keyframes hiddenCatAnim {
     from {
         transform: translate(-50%,-50%) rotate(var(--rotation));
@@ -1056,6 +1049,13 @@ body {
         transform: translate(-50%,-50%) rotate(calc(360deg)) scale(5);
         top: 50svh;
     }
+}
+
+.hiddenCatScale {
+    transform: translate(-50%,-50%) scale(1);
+    width: var(--scale-width);
+    height: var(--scale-width);
+    --width: var(--scale-width);
 }
 
 .backgroundCircle {

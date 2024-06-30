@@ -23,6 +23,7 @@
 
 * {
     margin: 0;
+    padding: 0;
 }
 
 body {
@@ -80,7 +81,7 @@ body {
     background-image: none;
     position: absolute;
     top: 0;
-    height: 30vh;
+    height: 34vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -715,7 +716,7 @@ body {
 }
 
 .mouthRightDot, .mouthLeftDot {
-    width: calc(var(--width)*0.025);
+    width: calc(var(--width)*0.028);
     aspect-ratio: 1/1;
     position: absolute;
     top: 0;
@@ -725,11 +726,11 @@ body {
 }
 
 .mouthLeftDot {
-    left: -25%;
+    left: -29%;
 }
 
 .mouthRightDot {
-    right: -25%;
+    right: -29%;
 }
 
 .nose, .eyeLeft, .eyeRight {
@@ -985,6 +986,7 @@ body {
         transform: translate(-50%, -50%) rotate(calc(360deg * var(--side)));
     }
 }
+
 .catContainer {
     width: var(--width);
 }
@@ -1007,7 +1009,7 @@ body {
     height: 12vmin;
     z-index: 2;
     transform: translate(-50%,-50%);
-    filter: drop-shadow(0 0 10px);
+    filter: drop-shadow(0 0 150px);
 }
 
 @keyframes catRotate {
@@ -1052,11 +1054,11 @@ body {
 }
 
 .hiddenCatScale {
-    transform: translate(-50%,-50%) scale(1);
     width: var(--scale-width);
     height: var(--scale-width);
     --width: var(--scale-width);
     top: 50svh !important;
+    transform: translate(-50%,-50%) scale(1);
 }
 
 .backgroundCircle {
@@ -1089,5 +1091,5 @@ body {
 }
 
 .hiddenCatBlack {
-    filter: drop-shadow(0 0 20px gray);
+    filter: drop-shadow(0 0 150px gray);
 }

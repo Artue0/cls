@@ -620,9 +620,9 @@ function createCats(animSrc, overalySrc) {
                                     ];
                                     if (catColor[0] <= 50 && catColor[1] <= 50 && catColor[2] <= 50) {
                                         darkenedColor2 = [
-                                            catColor[0] + 10,
-                                            catColor[1] + 10,
-                                            catColor[2] + 10
+                                            catColor[0] + 5,
+                                            catColor[1] + 5,
+                                            catColor[2] + 5
                                         ];
                                         hiddenCat.classList.add('hiddenCatBlack');
                                     }
@@ -632,13 +632,13 @@ function createCats(animSrc, overalySrc) {
                                     if (delay <= 1000) {setTimeout(animateRandomCat, delay);}
                                 }
                                 animateRandomCat();
-                            }, 2800);
+                            }, 2000);
                         }
                     }, 5);
                 }, 1000);
 
                 const moveCat = setInterval(moveHiddenCat, 1);
-            }, 8000);
+            }, 5000);
         }, 5000);
     }, 1500);
 }

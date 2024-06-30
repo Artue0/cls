@@ -1035,7 +1035,7 @@ body {
 }
 
 .hiddenCatAnim {
-    animation: hiddenCatAnim 2s forwards ease-out;
+    animation: hiddenCatAnim 2s ease-out;
     z-index: 5;
     transform-origin: center;
 }
@@ -1056,6 +1056,7 @@ body {
     width: var(--scale-width);
     height: var(--scale-width);
     --width: var(--scale-width);
+    top: 50svh !important;
 }
 
 .backgroundCircle {

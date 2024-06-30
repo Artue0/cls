@@ -584,7 +584,7 @@ function createCats(animSrc, overalySrc) {
                             hiddenCat.style.setProperty('--rotation', `${matrix === 'none' ? 0 : Math.round(Math.atan2(matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[1], matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[0]) * (180 / Math.PI))}deg`);
                             hiddenCat.classList.add('hiddenCatAnim');
                             setTimeout(function() {
-                                hiddenCat.style.setProperty('--scale-width', `${hiddenCat.offsetWidth}px`)
+                                hiddenCat.style.setProperty('--scale-width', `${hiddenCat.getBoundingClientRect().width}px`)
                                 hiddenCat.classList.add('hiddenCatScale');
                             }, 2000);
                             clearInterval(moveCat);

@@ -619,8 +619,10 @@ body {
     --tounge-line-color: 205 25 70;
 }
 
+.catClone {--width: 12vmin;}
+
 .catContainer {
-    --width: 30vw;
+    /* --width: 30vw; */
     width: var(--width);
     aspect-ratio: 1 / 1;
     display: flex;
@@ -875,13 +877,13 @@ body {
 
 .bottomTail {
     height: 30%;
-    width: 100%;
+    width: calc(var(--width) * 0.3);
     display: flex;
     align-items: flex-end;
 }
 
 .tail2 {
-    height: 80%;
+    height: calc(100% - (var(--width) * 0.3 * 0.09));
     width: 30%;
     background-color: rgb(var(--cat-color));
     position: relative;
@@ -902,13 +904,13 @@ body {
     width: 50%;
     background-color: rgb(var(--cat-color));
     border-bottom-right-radius: 100%;
-    -webkit-mask: radial-gradient(circle at 0 0, transparent 12.5%, black 12.5%);
-    mask: radial-gradient(circle at 0 0, transparent 12.5%, black 12.5%);
+    -webkit-mask: radial-gradient(circle at 0 0, transparent calc(var(--width) * 0.3 * 0.09), black calc(var(--width) * 0.3 * 0.09));
+    mask: radial-gradient(circle at 0 0, transparent calc(var(--width) * 0.3 * 0.09), black calc(var(--width) * 0.3 * 0.09));
 }
 
 .tail1 {
     height: 70%;
-    width: 40%;
+    width: calc(50% - (var(--width) * 0.3 * 0.09));
     background: linear-gradient(to bottom, rgb(var(--tail-color)) 15%, rgb(var(--cat-color)) 0);
     margin-right: 20%;
     border-top-right-radius: 5vw;
@@ -998,7 +1000,7 @@ body {
 
 .hiddenCat {
     position: fixed;
-    left: 52%;
+    left: 65%;
     animation: catRotate 4s forwards ease-in;
     width: 12vmin;
     --width: 12vmin;
@@ -1050,7 +1052,7 @@ body {
 }
 
 .backgroundCircle {
-    height: 100vmin;
+    height: 90vmin;
     aspect-ratio: 1/1;
     background-color: rgb(var(--circle-color));
     position: absolute;
@@ -1059,8 +1061,9 @@ body {
     transform: translate(-50%,-50%);
     z-index: 4;
     border-radius: 50%;
-    border: rgb(var(--border-color)) 1vmin solid;
+    border: rgb(var(--border-color)) 4.5vmin solid;
     display: none;
+    filter: drop-shadow(0 0 10px);
 }
 
 .backgroundCircleAnim {

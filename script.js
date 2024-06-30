@@ -563,7 +563,7 @@ function createCats(animSrc, overalySrc) {
                 questionMark.classList.add('questionMark');
                 hiddenCat.querySelector('.cat').querySelector('.catBottom').appendChild(questionMark);
                 questionMark.innerText = '?';
-                let velocity = -5.5;
+                let velocity = -window.innerHeight * 0.0055;
                 let currentTop;
                 createClones = false;
 

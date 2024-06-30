@@ -586,7 +586,7 @@ function createCats(animSrc, overalySrc) {
                             setTimeout(function() {
                                 hiddenCat.style.setProperty('--scale-width', `${hiddenCat.offsetWidth}px`)
                                 hiddenCat.classList.add('hiddenCatScale');
-                            }, 2000)
+                            }, 2000);
                             clearInterval(moveCat);
                             backgroundCircle.classList.add('backgroundCircleAnim');
                             setTimeout(function() {
@@ -598,6 +598,7 @@ function createCats(animSrc, overalySrc) {
                                     hiddenCat.classList.add('catContainer');
                                     hiddenCat.classList.add('hiddenCat');
                                     hiddenCat.classList.add('hiddenCatAnim');
+                                    hiddenCat.classList.add('hiddenCatScale');
                                     delay = delay * 1.1;
 
                                     randomizeCat(hiddenCat);

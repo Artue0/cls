@@ -1107,7 +1107,7 @@ html {
     top: 0;
     left: 50vw;
     transform: translateX(-50%);
-    width: 130px;
+    width: 120px;
     height: 50px;
     background-color: #2e2e2e;
     z-index: 4;
@@ -1120,23 +1120,46 @@ html {
 
 .option {
     height: 100%;
-    width: 45%;
+    aspect-ratio: 1/1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.option svg {
+    aspect-ratio: 1/1;
+}
+
+.option svg path {
+    fill: #ffffff;
+}
+
+.option:hover svg path {
+    fill: #b4b4b4;
+}
+
 .settingsAnim {
     animation: settings 0.7s ease-in-out forwards;
-    transform-origin: center center;
     justify-content: space-around;
 }
 
 @keyframes settings {
-    from { 
+    from {
         transform: rotate(0deg);
     }
-    to { 
+    to {
         transform: rotate(360deg);
     }
+}
+
+.infoAnim {
+    animation: info 0.7s ease-in-out forwards;
+    transform-origin: center center;
+    justify-content: space-around;
+}
+
+@keyframes info {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.15);}
+    100% {transform: scale(1);}
 }

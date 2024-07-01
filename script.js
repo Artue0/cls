@@ -804,19 +804,16 @@ function setHeight() {
 window.addEventListener("load", setHeight());
 window.addEventListener("resize", setHeight);
 
-let isClicked = false;
+const cooldownMap = new WeakMap();
 
-function rotate(element) {
-    if (isClicked) return;
-    isClicked = true;
+function rotate(element, className) {
+    if (cooldownMap.get(element)) { return; }
+    element.classList.add(className);
 
-    if (element.classList.contains('settingsAnim')) {
-        element.classList.remove('settingsAnim');
-    } else {
-        element.classList.add('settingsAnim');
-    }
+    cooldownMap.set(element, true);
 
-    setTimeout(function() {
-        isClicked = false;
-    }, 500);
+    setTimeout(() => {
+        cooldownMap.set(element, false);
+        element.classList.remove(className);
+    }, 700);
 }

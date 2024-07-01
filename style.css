@@ -1117,9 +1117,9 @@ html {
     border-bottom-right-radius: 20px;
 }
 
-.settings {
+.option {
     height: 100%;
-    width: 40%;
+    width: 45%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1127,15 +1127,15 @@ html {
 
 .settingsAnim {
     animation: settings 0.7s ease-in-out forwards;
-    transform-origin: center;
+    transform-origin: center center;
     justify-content: space-around;
 }
 
 @keyframes settings {
     from { 
-        transform: scale(2) rotate(0deg);
+        transform: rotate(0deg);
     }
     to { 
-        transform: scale(2) rotate(360deg);
+        transform: rotate(360deg);
     }
 }

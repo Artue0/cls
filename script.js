@@ -804,17 +804,16 @@ function setHeight() {
 window.addEventListener("load", setHeight());
 window.addEventListener("resize", setHeight);
 
-const settingsElement = document.getElementById('settings');
 let isClicked = false;
 
-function settings() {
+function rotate(element) {
     if (isClicked) return;
     isClicked = true;
 
-    if (settingsElement.classList.contains('settingsAnim')) {
-        settingsElement.classList.remove('settingsAnim');
+    if (element.classList.contains('settingsAnim')) {
+        element.classList.remove('settingsAnim');
     } else {
-        settingsElement.classList.add('settingsAnim');
+        element.classList.add('settingsAnim');
     }
 
     setTimeout(function() {

@@ -71,7 +71,7 @@ body {
 }
 
 .title {
-    font-size: 12vmin;
+    font-size: 14vmin;
     width: 100%;
     z-index: 3;
     font-family: "Concert One", sans-serif;
@@ -671,12 +671,12 @@ body {
     background-color: rgb(var(--cat-color));
     width: 20%;
     height: 15%;
-    clip-path: polygon(20% 1%, 0% 100%, 100% 100%);
+    clip-path: polygon(21% 1%, 0% 100%, 100% 100%);
 }
 
 .earRight, .innerEarRight{
     left: 60%;
-    clip-path: polygon(80% 1%, 0% 100%, 100% 100%);
+    clip-path: polygon(78% 1%, 0% 100%, 100% 100%);
 }
 
 .innerEarLeft, .innerEarRight {
@@ -1092,4 +1092,28 @@ body {
 
 .hiddenCatBlack {
     filter: drop-shadow(0 0 150px gray);
+}
+
+.settings {
+    position: fixed;
+    right: 5vmin;
+    top: 5vmin;
+    z-index: 4;
+    transform: scale(2);
+    width: 4vmin;
+    height: 4vmin;
+}
+
+.settingsAnim {
+    animation: settings 0.7s ease-in-out forwards;
+    transform-origin: center;
+}
+
+@keyframes settings {
+    from { 
+        transform: scale(2) rotate(0deg);
+    }
+    to { 
+        transform: scale(2) rotate(360deg);
+    }
 }

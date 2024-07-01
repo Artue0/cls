@@ -795,3 +795,29 @@ function randomizeCat(element) {
     }
 
 }
+
+function setHeight() {
+    document.getElementById('title').style.height = document.getElementById('button-top').getBoundingClientRect().top + 'px';
+    console.log(document.getElementById('title'))
+}
+
+window.addEventListener("load", setHeight());
+window.addEventListener("resize", setHeight);
+
+const settingsElement = document.getElementById('settings');
+let isClicked = false;
+
+function settings() {
+    if (isClicked) return;
+    isClicked = true;
+
+    if (settingsElement.classList.contains('settingsAnim')) {
+        settingsElement.classList.remove('settingsAnim');
+    } else {
+        settingsElement.classList.add('settingsAnim');
+    }
+
+    setTimeout(function() {
+        isClicked = false;
+    }, 500);
+}

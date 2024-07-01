@@ -1095,19 +1095,34 @@ body {
     filter: drop-shadow(0 0 150px gray);
 }
 
-.settings {
-    position: absolute;
-    right: 5vmin;
-    top: 5vmin;
+.nav {
+    position: fixed;
+    top: 0;
+    left: 50vw;
+    transform: translateX(-50%);
+    width: 20vmin;
+    height: 8vmin;
+    background-color: #2e2e2e;
     z-index: 4;
-    transform: scale(2);
-    width: 4vmin;
-    height: 4vmin;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom-left-radius: 2vmin;
+    border-bottom-right-radius: 2vmin;
+}
+
+.settings {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .settingsAnim {
     animation: settings 0.7s ease-in-out forwards;
     transform-origin: center;
+    justify-content: space-around;
 }
 
 @keyframes settings {
@@ -1117,4 +1132,10 @@ body {
     to { 
         transform: scale(2) rotate(360deg);
     }
+}
+
+.all {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }

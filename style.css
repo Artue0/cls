@@ -1106,15 +1106,15 @@ html {
     top: 0;
     left: 50vw;
     transform: translateX(-50%);
-    width: 20vmin;
-    height: 8vmin;
+    width: 130px;
+    height: 50px;
     background-color: #2e2e2e;
     z-index: 4;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom-left-radius: 2vmin;
-    border-bottom-right-radius: 2vmin;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .settings {
@@ -1138,10 +1138,4 @@ html {
     to { 
         transform: scale(2) rotate(360deg);
     }
-}
-
-.all {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
 }

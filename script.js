@@ -798,13 +798,15 @@ function randomizeCat(element) {
 
 function setHeight() {
     document.getElementById('title').style.height = document.getElementById('button-top').getBoundingClientRect().top - 50 + 'px';
-    document.getElementById('catsAmount').style.width = document.getElementById('coins').getBoundingClientRect().width + 'px';
+    document.getElementById('catsAmount').style.setProperty('--catsAmount-scale', document.getElementById('coins').getBoundingClientRect().width + 'px');
 }
 
 window.addEventListener("load", setHeight());
 window.addEventListener("resize", setHeight);
 
 const cooldownMap = new WeakMap();
+let infoDeleted = true;
+let settingsDeleted = true;
 
 function animateNav(element, className) {
     function rotate() {
@@ -819,18 +821,18 @@ function animateNav(element, className) {
         }, 700);
     }
 
-    if (className === 'infoAnim' && !document.querySelector('.settingsElement')) {
+    if (className === 'infoAnim' && !document.querySelector('.settingsElement') && infoDeleted) {
         rotate();
         info(); 
-    } else if (className === 'infoAnim' && document.querySelector('.settingsElement')) {
+    } else if (className === 'infoAnim' && document.querySelector('.settingsElement') && infoDeleted && infoDeleted) {
         rotate();
         info();
         settings(); 
     }
-    if (className === 'settingsAnim' && !document.querySelector('.infoElement')) {
+    if (className === 'settingsAnim' && !document.querySelector('.infoElement') && settingsDeleted) {
         rotate();
         settings(); 
-    } else if (className === 'settingsAnim' && document.querySelector('.infoElement')) {
+    } else if (className === 'settingsAnim' && document.querySelector('.infoElement') && settingsDeleted && infoDeleted) {
         rotate();
         settings(); 
         info();
@@ -840,25 +842,33 @@ function animateNav(element, className) {
 function info() {
     if (!document.querySelector('.infoElement')) {
         const infoElement = document.createElement('div');
+        // infoElement.style.setProperty('--option-top', infoElement.offsetTop + 'px');
         infoElement.classList.add('infoElement');
         document.body.appendChild(infoElement);
     } else {
+        document.querySelector('.infoElement').style.setProperty('--option-top', document.querySelector('.infoElement').offsetTop + 'px');
         document.querySelector('.infoElement').classList.add('slideBack');
+        infoDeleted = false;
         setTimeout(() => {
             document.querySelector('.infoElement').remove();
+            infoDeleted = true;
         }, 1000);
     }
 }
 
 function settings() {
     if (!document.querySelector('.settingsElement')) {
-        const infoElement = document.createElement('div');
-        infoElement.classList.add('settingsElement');
-        document.body.appendChild(infoElement);
+        const settingsElement = document.createElement('div');
+        // settingsElement.style.setProperty('--option-top', settingsElement.offsetTop + 'px');
+        settingsElement.classList.add('settingsElement');
+        document.body.appendChild(settingsElement);
     } else {
+        document.querySelector('.settingsElement').style.setProperty('--option-top', document.querySelector('.settingsElement').offsetTop + 'px');
         document.querySelector('.settingsElement').classList.add('slideBack');
+        settingsDeleted = false;
         setTimeout(() => {
             document.querySelector('.settingsElement').remove();
+            settingsDeleted = true;
         }, 1000);
     }
 }

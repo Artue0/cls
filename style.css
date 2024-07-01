@@ -78,7 +78,8 @@ html {
 }
 
 .title {
-    font-size: 14vmin;
+    margin-top: 50px;
+    font-size: 11vmin;
     width: 100%;
     z-index: 3;
     font-family: "Concert One", sans-serif;

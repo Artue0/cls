@@ -797,7 +797,7 @@ function randomizeCat(element) {
 }
 
 function setHeight() {
-    document.getElementById('title').style.height = document.getElementById('button-top').getBoundingClientRect().top + 'px';
+    document.getElementById('title').style.height = document.getElementById('button-top').getBoundingClientRect().top - 50 + 'px';
     console.log(document.getElementById('title'))
 }
 

@@ -798,7 +798,7 @@ function randomizeCat(element) {
 
 function setHeight() {
     document.getElementById('title').style.height = document.getElementById('button-top').getBoundingClientRect().top - 50 + 'px';
-    console.log(document.getElementById('title'))
+    document.getElementById('catsAmount').style.width = document.getElementById('coins').getBoundingClientRect().width + 'px';
 }
 
 window.addEventListener("load", setHeight());
@@ -806,14 +806,67 @@ window.addEventListener("resize", setHeight);
 
 const cooldownMap = new WeakMap();
 
-function rotate(element, className) {
-    if (cooldownMap.get(element)) { return; }
-    element.classList.add(className);
+function animateNav(element, className) {
+    function rotate() {
+        if (cooldownMap.get(element)) { return; }
+        element.classList.add(className);
 
-    cooldownMap.set(element, true);
+        cooldownMap.set(element, true);
 
-    setTimeout(() => {
-        cooldownMap.set(element, false);
-        element.classList.remove(className);
-    }, 700);
+        setTimeout(() => {
+            cooldownMap.set(element, false);
+            element.classList.remove(className);
+        }, 700);
+    }
+
+    if (className === 'infoAnim' && !document.querySelector('.settingsElement')) {
+        rotate();
+        info(); 
+    } else if (className === 'infoAnim' && document.querySelector('.settingsElement')) {
+        rotate();
+        info();
+        settings(); 
+    }
+    if (className === 'settingsAnim' && !document.querySelector('.infoElement')) {
+        rotate();
+        settings(); 
+    } else if (className === 'settingsAnim' && document.querySelector('.infoElement')) {
+        rotate();
+        settings(); 
+        info();
+    }
 }
+
+function info() {
+    if (!document.querySelector('.infoElement')) {
+        const infoElement = document.createElement('div');
+        infoElement.classList.add('infoElement');
+        document.body.appendChild(infoElement);
+    } else {
+        document.querySelector('.infoElement').classList.add('slideBack');
+        setTimeout(() => {
+            document.querySelector('.infoElement').remove();
+        }, 1000);
+    }
+}
+
+function settings() {
+    if (!document.querySelector('.settingsElement')) {
+        const infoElement = document.createElement('div');
+        infoElement.classList.add('settingsElement');
+        document.body.appendChild(infoElement);
+    } else {
+        document.querySelector('.settingsElement').classList.add('slideBack');
+        setTimeout(() => {
+            document.querySelector('.settingsElement').remove();
+        }, 1000);
+    }
+}
+
+document.getElementById('info').addEventListener('click', function() {
+    animateNav(document.getElementById('info'), 'infoAnim');
+});
+
+document.getElementById('settings').addEventListener('click', function() {
+    animateNav(document.getElementById('settings'), 'settingsAnim');
+});

@@ -1163,3 +1163,43 @@ html {
     50% {transform: scale(1.15);}
     100% {transform: scale(1);}
 }
+
+.infoElement, .settingsElement {
+    width: 88vw;
+    height: 88svh;
+    background-color: #c5c5c5;
+    z-index: 99999;
+    position: fixed;
+    left: 50%;
+    top: 100vh;
+    transform: translate(-50%, -50%);
+    animation: slideUp 1s forwards ease-out;
+    border-radius: 5vw;
+    box-shadow: 0 0 3rem rgb(93, 93, 93);
+}
+
+.settingsElement {
+    background-color: #640000;
+}
+
+@keyframes slideUp {
+    from {
+        top: 150vh;
+    }
+    to {
+        top: 50vh;
+    }
+}
+
+.slideBack {
+    animation: slideBack 1s forwards ease-out;
+}
+
+@keyframes slideBack {
+    from {
+        top: 50vh;
+    }
+    to {
+        top: 150vh;
+    }
+}

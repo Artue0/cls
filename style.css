@@ -1096,7 +1096,7 @@ body {
 }
 
 .settings {
-    position: fixed;
+    position: absolute;
     right: 5vmin;
     top: 5vmin;
     z-index: 4;

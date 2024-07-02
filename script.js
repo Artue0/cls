@@ -569,14 +569,43 @@ function createCats(animSrc, overalySrc) {
                                     backgroundCircle.style.setProperty('--circle-color', `${darkenedColor}`);
                                     backgroundCircle.style.setProperty('--border-color', `${darkenedColor2}`);
 
-                                    if (delay <= 1000) {setTimeout(animateRandomCat, delay);}
+                                    if (delay <= 1000) {setTimeout(
+                                        animateRandomCat, delay);
+                                    } else {
+                                        setTimeout(function() {
+                                            backgroundCircle.classList.add('hideCircle');
+                                            hiddenCat.classList.add('hideHiddenCat');
+                                            setTimeout(function() {
+                                                let classArray = [];
+                                                classArray = Array.from(hiddenCat.classList);
+                                                classArray.splice(0, 4);
+                                                classArray.pop();
+                                                console.log(classArray)
+                                                
+                                                const catDisplayContainer = document.getElementById('catDisplayContainer');
+                                                const catDisplayClone = catDisplayContainer.cloneNode(true);
+                                                catDisplayClone.id = '';
+                                                catDisplayClone.classList.remove('hidden');
+                                                document.getElementById('catCollection').appendChild(catDisplayClone);
+                                                classArray.forEach(className => catDisplayClone.querySelector('.displayedCatContainer').querySelector('.displayedCat').classList.add(className));
+                                                console.log(catDisplayClone.querySelector('.displayedCatContainer').querySelector('.displayedCat'));
+
+                                                hiddenCat.remove();
+                                                backgroundCircle.remove();
+                                                stripeContainer.remove();
+                                                while (lootboxesContainer.firstChild) {
+                                                    lootboxesContainer.removeChild(lootboxesContainer.firstChild);
+                                                }
+                                                catAnimation.remove();
+                                            }, 2000);
+                                        }, 500);
+                                    }
                                 }
                                 animateRandomCat();
                             }, 2000);
                         }
                     }, 5);
                 }, 1000);
-
                 const moveCat = setInterval(moveHiddenCat, 1);
             }, 5000);
         }, 5000);
@@ -822,19 +851,6 @@ document.getElementById('info').addEventListener('click', function() {
 document.getElementById('settings').addEventListener('click', function() {
     animateNav(document.getElementById('settings'), 'settingsAnim');
 });
-
-
-function createDisplayCats() {
-    const catDisplayContainer = document.getElementById('catDisplayContainer');
-    for (var i = 0; i < 20; i++) {
-        console.log('gato');
-        const clone = catDisplayContainer.cloneNode(true);
-        clone.classList.remove('hidden');
-        document.getElementById('catCollection').appendChild(clone);
-    }
-}
-
-createDisplayCats()
 
 function showCat(element) {
     const clone = element.cloneNode(true);

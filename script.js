@@ -682,7 +682,7 @@ function randomizeCat(element) {
     } else if (randStripe <= 50) {
         element.classList.add('black-stripe');
     } else if (randStripe <= 70) {
-        element.classList.add('black-stripe');
+        element.classList.add('white-stripe');
     } else if (randStripe <= 90) {
         element.classList.add('gray-stripe');
     } else {

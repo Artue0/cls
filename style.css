@@ -31,15 +31,16 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    width: 100vw;
     height: 100vh;
+    width: 100vw;
+    overflow: hidden;
     touch-action: none;
 }
 
 html {
-    overflow: hidden;
     height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
 
 .grad1 {
@@ -1235,4 +1236,9 @@ html {
     to {
         top: 150vh;
     }
+}
+.all {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }

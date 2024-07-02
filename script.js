@@ -197,7 +197,11 @@ const inventory = document.getElementById('inventory');
 let goUp = true;
 
 inventory.addEventListener('mousedown', (event) => {
-    switch (event.target !== document.getElementById('catCollection')) {
+    const catCollection = document.getElementById('catCollectionContainer');
+    if (event.target === catCollection || catCollection.contains(event.target)) {
+        return;
+    }
+    switch (true) {
         case goUp:
             inventory.style.setProperty('--top', `${(inventory.getBoundingClientRect().top)}px`);
             inventory.style.setProperty('--precent', `1s`);
@@ -818,3 +822,29 @@ document.getElementById('info').addEventListener('click', function() {
 document.getElementById('settings').addEventListener('click', function() {
     animateNav(document.getElementById('settings'), 'settingsAnim');
 });
+
+
+function createDisplayCats() {
+    const catDisplayContainer = document.getElementById('catDisplayContainer');
+    for (var i = 0; i < 20; i++) {
+        console.log('gato');
+        const clone = catDisplayContainer.cloneNode(true);
+        clone.classList.remove('hidden');
+        document.getElementById('catCollection').appendChild(clone);
+    }
+}
+
+createDisplayCats()
+
+function showCat(element) {
+    const clone = element.cloneNode(true);
+    console.log(clone)
+    clone.style.setProperty('--width', element.getBoundingClientRect().width + 'px');
+    clone.style.setProperty('--left', element.getBoundingClientRect().left + 'px');
+    clone.style.setProperty('--top', element.getBoundingClientRect().top + 'px');
+    clone.classList.add('showCat');
+    document.body.appendChild(clone);
+    const displayCatOverlay = document.createElement('div');
+    displayCatOverlay.classList.add('displayCatOverlay');
+    element.appendChild(displayCatOverlay);
+}

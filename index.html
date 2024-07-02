@@ -15,88 +15,6 @@
 </head>
 <body>
     <div class="all">
-        <div class="grad1"></div>
-        <div class="catPattern"></div>
-        <div class="grad2"></div>
-        <div class="title" id="title">
-            <div class="pContainer">
-                <p>CAT LOOTBOX SIMULATOR</p>
-            </div>
-        </div>
-        <!-- <div id="stripe-container">
-            <div id="stripe-pattern"></div>
-        </div> -->
-        <div id="inventory">
-            <div class="container">
-                <div class="bump"></div>
-                <i class="fa-regular fa-chevrons-up fa-2xl"></i>
-                <div class="collection">
-                    <div id="coins">
-                        <p>500</p>
-                        <img src="assets/cat-coin.png">
-                    </div>
-                    <div class="pContainer" id="pCollection">
-                        <p>COLLECTION</p>
-                    </div>
-                    <div id="catsAmount">
-                        <p>0</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="50" width="54" viewBox="0 0 576 512">
-                            <path d="M320 192h17.1c22.1 38.3 63.5 64 110.9 64c11 0 21.8-1.4 32-4v4 32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V339.2L280 448h56c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-53 0-96-43-96-96V192.5c0-16.1-12-29.8-28-31.8l-7.9-1c-17.5-2.2-30-18.2-27.8-35.7s18.2-30 35.7-27.8l7.9 1c48 6 84.1 46.8 84.1 95.3v85.3c34.4-51.7 93.2-85.8 160-85.8zm160 26.5v0c-10 3.5-20.8 5.5-32 5.5c-28.4 0-54-12.4-71.6-32h0c-3.7-4.1-7-8.5-9.9-13.2C357.3 164 352 146.6 352 128v0V32 12 10.7C352 4.8 356.7 .1 362.6 0h.2c3.3 0 6.4 1.6 8.4 4.2l0 .1L384 21.3l27.2 36.3L416 64h64l4.8-6.4L512 21.3 524.8 4.3l0-.1c2-2.6 5.1-4.2 8.4-4.2h.2C539.3 .1 544 4.8 544 10.7V12 32v96c0 17.3-4.6 33.6-12.6 47.6c-11.3 19.8-29.6 35.2-51.4 42.9zM432 128a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zm48 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32z"/>
-                        </svg>
-                    </div>
-                </div>
-                <div class="catCollection" id="catCollection">
-                    <div class="test"></div>
-                </div>
-            </div>
-        </div>
-        <div id="button" onclick="button()">
-            <div id="button-top"><span id="points">BUY BOXES</span></div>
-        </div>
-        <div id="button-bottom"></div>
-        <div id="amount">
-            <div class="stripes"></div>
-            <div class="amountContainer">
-                <div id="amountText">
-                    <p>1x</p>
-                    <p>2x</p>
-                    <p>3x</p>
-                    <p>4x</p>
-                    <p>5x</p>
-                </div>
-            </div>
-        </div>
-        <div id="arrowLeft" onclick="arrowLeft()">
-            <i class="fa-solid fa-caret-right fa-flip-horizontal fa-2xl"></i>
-        </div>
-        <div id="arrowRight" onclick="arrowRight()">
-            <i class="fa-solid fa-caret-right fa-2xl"></i>
-        </div>
-        <div id="rarity">
-            <div class="stripes"></div>
-            <div class="rarityContainer">
-                <div id="rarityText">
-                    <p style="color: darkslategray;">BASIC</p>
-                    <p style="color: green;">UPGRADED</p>
-                    <p style="color: blue;">PREMIUM</p>
-                    <p style="color: purple;">DELUXE</p>
-                    <p style="color: orangered;">SUPREME</p>
-                    <p style="color: darkred;">ELITE</p>
-                </div>
-            </div>
-        </div>
-        <div id="arrowLeft2" onclick="arrowLeft2()">
-            <i class="fa-solid fa-caret-right fa-flip-horizontal fa-2xl"></i>
-        </div>
-        <div id="arrowRight2" onclick="arrowRight2()">
-            <i class="fa-solid fa-caret-right fa-2xl"></i>
-        </div>
-        <div id="price">
-            <p>50</p>
-            <img src="assets/cat-coin.png">
-        </div>
-        <div id="lootboxesContainer"></div>
-
         <div class="catContainer hidden" id="catContainer">
             <div class="cat">
                 <div class="earLeft"></div>
@@ -160,6 +78,155 @@
             </div>
         </div>
 
+        <div class="grad1"></div>
+        <div class="catPattern"></div>
+        <div class="grad2"></div>
+        <div class="title" id="title">
+            <div class="pContainer">
+                <p>CAT LOOTBOX SIMULATOR</p>
+            </div>
+        </div>
+        <!-- <div id="stripe-container">
+            <div id="stripe-pattern"></div>
+        </div> -->
+        <div id="inventory">
+            <div class="container">
+                <div class="bump"></div>
+                <i class="fa-regular fa-chevrons-up fa-2xl"></i>
+                <div class="collection">
+                    <div id="coins">
+                        <p>500</p>
+                        <img src="assets/cat-coin.png">
+                    </div>
+                    <div class="pContainer" id="pCollection">
+                        <p>COLLECTION</p>
+                    </div>
+                    <div id="catsAmount">
+                        <p>0</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="50" width="54" viewBox="0 0 576 512">
+                            <path d="M320 192h17.1c22.1 38.3 63.5 64 110.9 64c11 0 21.8-1.4 32-4v4 32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V339.2L280 448h56c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-53 0-96-43-96-96V192.5c0-16.1-12-29.8-28-31.8l-7.9-1c-17.5-2.2-30-18.2-27.8-35.7s18.2-30 35.7-27.8l7.9 1c48 6 84.1 46.8 84.1 95.3v85.3c34.4-51.7 93.2-85.8 160-85.8zm160 26.5v0c-10 3.5-20.8 5.5-32 5.5c-28.4 0-54-12.4-71.6-32h0c-3.7-4.1-7-8.5-9.9-13.2C357.3 164 352 146.6 352 128v0V32 12 10.7C352 4.8 356.7 .1 362.6 0h.2c3.3 0 6.4 1.6 8.4 4.2l0 .1L384 21.3l27.2 36.3L416 64h64l4.8-6.4L512 21.3 524.8 4.3l0-.1c2-2.6 5.1-4.2 8.4-4.2h.2C539.3 .1 544 4.8 544 10.7V12 32v96c0 17.3-4.6 33.6-12.6 47.6c-11.3 19.8-29.6 35.2-51.4 42.9zM432 128a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zm48 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="catCollectionBackground"></div>
+                <div class="catCollectionContainer" id="catCollectionContainer">
+                    <div class="catCollection" id="catCollection">
+                        <!-- <div class="catDisplayContainer">
+                            <div class="catContainer displayedCat" id="catContainer">
+                                <div class="cat">
+                                    <div class="earLeft"></div>
+                                    <div class="earRight"></div>
+                                    <div class="innerEarLeft"></div>
+                                    <div class="innerEarRight"></div>
+                    
+                                    <div class="catTop">
+                                        <div class="tounge">
+                                            <div class="toungeLine"></div>
+                                        </div>
+                                        <div class="headSpot"></div>
+                                        <div class="mouthLeft">
+                                            <div class="dotContainer">
+                                                <div class="mouthLeftDot"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mouthRight">
+                                            <div class="dotContainer">
+                                                <div class="mouthRightDot"></div>
+                                            </div>
+                                        </div>
+                                        <div class="nose"></div>
+                                        <div class="eyeLeft"></div>
+                                        <div class="eyeRight"></div>
+                                    </div>
+                    
+                                    <div class="catBottom">
+                                        <div class="belly"></div>
+                                        <div class="stripe"></div>
+                                        <div class="bowTie"></div>
+                                    </div>
+                                    <div class="catLegs">
+                                        <div class="leftLegs">
+                                            <div class="leg firstLeg">
+                                                <div class="frontLeg"></div>
+                                            </div>
+                                            <div class="leg secondLeg">
+                                                <div class="backLeg"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rightLegs">
+                                            <div class="leg thirdLeg">
+                                                <div class="frontLeg"></div>
+                                            </div>
+                                            <div class="leg forthLeg">
+                                                <div class="frontLeg"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="tail">
+                                    <div class="tail1"></div>
+                                    <div class="bottomTail">
+                                        <div class="tail2">
+                                            <div class="tailDark"></div>
+                                        </div>
+                                        <div class="tail3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="catDisplayName">Gato</div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="button" onclick="button()">
+            <div id="button-top"><span id="points">BUY BOXES</span></div>
+        </div>
+        <div id="button-bottom"></div>
+        <div id="amount">
+            <div class="stripes"></div>
+            <div class="amountContainer">
+                <div id="amountText">
+                    <p>1x</p>
+                    <p>2x</p>
+                    <p>3x</p>
+                    <p>4x</p>
+                    <p>5x</p>
+                </div>
+            </div>
+        </div>
+        <div id="arrowLeft" onclick="arrowLeft()">
+            <i class="fa-solid fa-caret-right fa-flip-horizontal fa-2xl"></i>
+        </div>
+        <div id="arrowRight" onclick="arrowRight()">
+            <i class="fa-solid fa-caret-right fa-2xl"></i>
+        </div>
+        <div id="rarity">
+            <div class="stripes"></div>
+            <div class="rarityContainer">
+                <div id="rarityText">
+                    <p style="color: darkslategray;">BASIC</p>
+                    <p style="color: green;">UPGRADED</p>
+                    <p style="color: blue;">PREMIUM</p>
+                    <p style="color: purple;">DELUXE</p>
+                    <p style="color: orangered;">SUPREME</p>
+                    <p style="color: darkred;">ELITE</p>
+                </div>
+            </div>
+        </div>
+        <div id="arrowLeft2" onclick="arrowLeft2()">
+            <i class="fa-solid fa-caret-right fa-flip-horizontal fa-2xl"></i>
+        </div>
+        <div id="arrowRight2" onclick="arrowRight2()">
+            <i class="fa-solid fa-caret-right fa-2xl"></i>
+        </div>
+        <div id="price">
+            <p>50</p>
+            <img src="assets/cat-coin.png">
+        </div>
+        <div id="lootboxesContainer"></div>
+
         <div class="nav">
             <div class="option" id="info">
                 <svg xmlns="http://www.w3.org/2000/svg" height="80%" width="80%" viewBox="0 0 320 512">
@@ -172,6 +239,71 @@
                 </svg>
             </div>
         </div>
+    </div>
+    <div class="catDisplayContainer hidden" id="catDisplayContainer" onclick="showCat(this)">
+        <div class="catContainer displayedCat" id="catContainer">
+            <div class="cat">
+                <div class="earLeft"></div>
+                <div class="earRight"></div>
+                <div class="innerEarLeft"></div>
+                <div class="innerEarRight"></div>
+
+                <div class="catTop">
+                    <div class="tounge">
+                        <div class="toungeLine"></div>
+                    </div>
+                    <div class="headSpot"></div>
+                    <div class="mouthLeft">
+                        <div class="dotContainer">
+                            <div class="mouthLeftDot"></div>
+                        </div>
+                    </div>
+                    <div class="mouthRight">
+                        <div class="dotContainer">
+                            <div class="mouthRightDot"></div>
+                        </div>
+                    </div>
+                    <div class="nose"></div>
+                    <div class="eyeLeft"></div>
+                    <div class="eyeRight"></div>
+                </div>
+
+                <div class="catBottom">
+                    <div class="belly"></div>
+                    <div class="stripe"></div>
+                    <div class="bowTie"></div>
+                </div>
+                <div class="catLegs">
+                    <div class="leftLegs">
+                        <div class="leg firstLeg">
+                            <div class="frontLeg"></div>
+                        </div>
+                        <div class="leg secondLeg">
+                            <div class="backLeg"></div>
+                        </div>
+                    </div>
+                    <div class="rightLegs">
+                        <div class="leg thirdLeg">
+                            <div class="frontLeg"></div>
+                        </div>
+                        <div class="leg forthLeg">
+                            <div class="frontLeg"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tail">
+                <div class="tail1"></div>
+                <div class="bottomTail">
+                    <div class="tail2">
+                        <div class="tailDark"></div>
+                    </div>
+                    <div class="tail3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="catDisplayName">Gato</div>
     </div>
 </body>
 </html>  

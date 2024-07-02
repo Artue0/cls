@@ -735,6 +735,8 @@ function randomizeCat(element) {
 function setHeight() {
     document.getElementById('title').style.height = document.getElementById('button-top').getBoundingClientRect().top - 50 + 'px';
     document.getElementById('catsAmount').style.setProperty('--catsAmount-scale', document.getElementById('coins').getBoundingClientRect().width + 'px');
+    document.getElementById('coins').style.setProperty('--width', document.getElementById('pCollection').getBoundingClientRect().width + 'px');
+    document.getElementById('catsAmount').style.setProperty('--width', document.getElementById('pCollection').getBoundingClientRect().width + 'px');
 }
 
 window.addEventListener("load", setHeight());

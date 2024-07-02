@@ -231,38 +231,72 @@ html {
     margin-top: 20px;
 }
 
+#price, #coins, #catsAmount {
+    position: absolute;
+    left: 50%;
+    top: calc(50% + 210px);
+    transform: translate(-50%,-50%);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-family: "Concert One", sans-serif;
+    font-style: normal;
+    text-align: center;
+    height: 50px;
+    background-color: #DC981A;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+#price img, #coins img {
+    width: 50px;
+    height: 50px;
+}
+
+#coins, #catsAmount {
+    position: static;
+    transform: translate(0,0);
+    background-color: #2e2e2e;
+    margin-top: 20px;
+    color: white;
+    font-weight: normal;
+}
+
+#coins p, #catsAmount p {
+    margin: 0;
+}
+
+#catsAmount svg {
+    fill: white;
+}
+
 #catsAmount {
-    width: var(--catsAmount-scale) !important;
+    width: var(--catsAmount-scale);
 }
 
 @media screen and (max-width: 770px) {
     .collection {
-        font-size: 4vh;
         flex-direction: column;
-        align-items: center;
         gap: 1vmin;
+        font-size: 4vh;
     }
 
-    .pCollection {
-        order: -1;
+    #pCollection {
+        order: 1;
     }
 
-    .collection > #coins, .collection > #catsAmount {
-        width: 100%;
-        display: flex;
-        justify-content: center;
+    #coins {
+        order: 2;
         margin: 0;
+        width: var(--width) !important;
     }
 
-    .collection > #coins, .collection > #catsAmount {
-        width: 50%;
-        box-sizing: border-box;
-    }
-
-    .row {
-        display: flex;
-        width: 100%;
-        justify-content: space-around;
+    #catsAmount {
+        order: 3;
+        margin: 0;
+        width: var(--width) !important;
     }
 }
 
@@ -445,47 +479,6 @@ html {
     to {
         background-position: 100% 100%;
     }
-}
-
-#price, #coins, #catsAmount {
-    position: absolute;
-    left: 50%;
-    top: calc(50% + 210px);
-    transform: translate(-50%,-50%);
-    z-index: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-family: "Concert One", sans-serif;
-    font-style: normal;
-    text-align: center;
-    height: 50px;
-    background-color: #DC981A;
-    border-radius: 15px;
-    padding: 5px;
-}
-
-#price img, #coins img {
-    width: 50px;
-    height: 50px;
-}
-
-#coins, #catsAmount {
-    position: static;
-    transform: translate(0,0);
-    background-color: #2e2e2e;
-    margin-top: 20px;
-    color: white;
-    font-weight: normal;
-}
-
-#coins p, #catsAmount p {
-    margin: 0;
-}
-
-#catsAmount svg {
-    fill: white;
 }
 
 #points.notEnoughtCoins {

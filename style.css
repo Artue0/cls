@@ -167,7 +167,7 @@ html {
     height: 100vh;
     position: absolute;
     left: 0;
-    top: 85vh;
+    top: 83svh;
     background-color: rgb(60, 60, 60);
     z-index: 10;
     transition: transform 1s;
@@ -184,7 +184,7 @@ html {
         top: var(--top);
     }
     to {
-        top: 5vh;
+        top: 5svh;
     }
 }
 
@@ -197,7 +197,7 @@ html {
         top: var(--top);
     }
     to {
-        top: 85vh;
+        top: 83svh;
     }
 }
 
@@ -210,8 +210,8 @@ html {
 }
 
 .collection {
-    font-size: 6vmin;
-    width: 100vmin;
+    font-size: 6vh;
+    width: 100vw;
     z-index: 3;
     font-family: "Concert One", sans-serif;
     font-weight: bold;
@@ -231,13 +231,41 @@ html {
     margin-top: 20px;
 }
 
-.pCollection {
-
-}
-
 #catsAmount {
     width: var(--catsAmount-scale) !important;
 }
+
+@media screen and (max-width: 770px) {
+    .collection {
+        font-size: 4vh;
+        flex-direction: column;
+        align-items: center;
+        gap: 1vmin;
+    }
+
+    .pCollection {
+        order: -1;
+    }
+
+    .collection > #coins, .collection > #catsAmount {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .collection > #coins, .collection > #catsAmount {
+        width: 50%;
+        box-sizing: border-box;
+    }
+
+    .row {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+}
+
 
 #inventory i {
     position: absolute;

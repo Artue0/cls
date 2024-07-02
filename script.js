@@ -194,88 +194,24 @@ document.getElementById('arrowLeft').addEventListener('click', updatePrice);
 document.getElementById('arrowRight').addEventListener('click', updatePrice);
 
 const inventory = document.getElementById('inventory');
-
-let isDragging = false;
-let offsetY, startY, endY, diffY;
 let goUp = true;
-let reset = true;
 
 inventory.addEventListener('mousedown', (event) => {
-    if(window.innerWidth > 600){
-        offsetY = event.clientY - inventory.getBoundingClientRect().top;
-        startY = event.clientY;
-        inventory.classList.remove('jump');
-        isDragging = true;
-    } else {
-        console.log(goUp);
-        switch (true) {
-            case goUp:
-                console.log("goUp");
-                inventory.style.setProperty('--top', `${(inventory.getBoundingClientRect().top)}px`);
-                inventory.style.setProperty('--precent', `1s`);
-                inventory.classList.add('jumpUp');
-                inventory.classList.remove('jumpDown');
-                break;
-            case !goUp:
-                console.log("!goUp");
-                inventory.style.setProperty('--top', `${(inventory.getBoundingClientRect().top)}px`);
-                inventory.style.setProperty('--precent', `1s`);
-                inventory.classList.add('jumpDown');
-                inventory.classList.remove('jumpUp');
-                break;
-        }
-        goUp = !goUp;
-    }
-});
-
-document.addEventListener('mousemove', (event) => {
-    if (inventory.getBoundingClientRect().top < window.innerHeight * 0.05) {
-        isDragging = false;
-        inventory.style.top = `${window.innerHeight * 0.05}px`;
-    }
-    if (inventory.getBoundingClientRect().top > window.innerHeight * 0.85) {
-        isDragging = false;
-        inventory.style.top = `${window.innerHeight * 0.85}px`;
-    }
-    if (isDragging) {
-        if (reset) {
-            reset = false;
-            inventory.classList.remove('jumpUp');
-            inventory.classList.remove('jumpDown');
-        }
-        inventory.style.top = `${event.clientY - offsetY}px`;
-        endY = event.clientY;
-        diffY = Math.abs(endY - startY);
-        if (diffY > 300) {
-            inventory.classList.remove('jumpUp');
-            inventory.classList.remove('jumpDown');
+    switch (true) {
+        case goUp:
             inventory.style.setProperty('--top', `${(inventory.getBoundingClientRect().top)}px`);
-            inventory.style.setProperty('--precent', `${(inventory.getBoundingClientRect().top / window.innerHeight)}s`);
-            switch (true) {
-                case goUp:
-                    inventory.classList.add('jumpUp');
-                    break;
-                case !goUp:
-                    inventory.classList.add('jumpDown');
-                    break;
-            }
-            goUp = !goUp;
-            isDragging = false;
-            console.log(inventory.getBoundingClientRect().top / window.innerHeight)
-        }
+            inventory.style.setProperty('--precent', `1s`);
+            inventory.classList.add('jumpUp');
+            inventory.classList.remove('jumpDown');
+            break;
+        case !goUp:
+            inventory.style.setProperty('--top', `${(inventory.getBoundingClientRect().top)}px`);
+            inventory.style.setProperty('--precent', `1s`);
+            inventory.classList.add('jumpDown');
+            inventory.classList.remove('jumpUp');
+            break;
     }
-});
-
-document.addEventListener('mouseup', () => {
-    isDragging = false;
-    reset = true;
-    diffY = 0;
-    endY = 0;
-    startY = 0;
-});
-
-document.addEventListener('mouseleave', () => {
-    isDragging = false;
+    goUp = !goUp;
 });
 
 function createBox(src, c) {

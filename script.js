@@ -197,7 +197,7 @@ const inventory = document.getElementById('inventory');
 let goUp = true;
 
 inventory.addEventListener('mousedown', (event) => {
-    switch (true) {
+    switch (event.target !== document.getElementById('catCollection')) {
         case goUp:
             inventory.style.setProperty('--top', `${(inventory.getBoundingClientRect().top)}px`);
             inventory.style.setProperty('--precent', `1s`);

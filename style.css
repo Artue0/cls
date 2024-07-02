@@ -277,6 +277,25 @@ html {
     width: var(--catsAmount-scale);
 }
 
+.catCollection {
+    position: absolute;
+    left: 50%;
+    top: 51%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 75%;
+    background-color: #2e2e2e;
+    border-radius: 4vmin;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.test {
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(#ff0000, #00ff00);
+}
+
 @media screen and (max-width: 770px) {
     .collection {
         flex-direction: column;
@@ -298,6 +317,11 @@ html {
         order: 3;
         margin: 0;
         width: var(--width) !important;
+    }
+
+    .catCollection {
+        height: 65%;
+        top: 58%;
     }
 }
 
@@ -1237,6 +1261,7 @@ html {
         top: 150vh;
     }
 }
+
 .all {
     height: 100vh;
     width: 100vw;

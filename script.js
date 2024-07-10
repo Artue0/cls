@@ -597,6 +597,7 @@ function createCats(animSrc, overalySrc) {
                                                     lootboxesContainer.removeChild(lootboxesContainer.firstChild);
                                                 }
                                                 catAnimation.remove();
+                                                save();
                                             }, 2000);
                                         }, 500);
                                     }
@@ -865,3 +866,25 @@ function showCat(element) {
     displayCatOverlay.classList.add('displayCatOverlay');
     element.appendChild(displayCatOverlay);
 }
+
+
+
+function load() {
+    let savedElementString = localStorage.getItem('savedCatCollection');
+    if (savedElementString !== null) {
+        let container = document.createElement('div');
+        container.innerHTML = savedElementString;
+        let savedElement = container;
+        let currentElement = document.getElementById('catCollection');
+        currentElement.replaceWith(savedElement);
+        savedElement.id = 'catCollection';
+    }
+}
+
+function save() {
+    let element = document.getElementById('catCollection');
+    let elementString = element.outerHTML;
+    localStorage.setItem('savedCatCollection', elementString);
+}
+
+window.addEventListener('load', load);

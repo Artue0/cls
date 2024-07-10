@@ -3,42 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save Element with Local Storage</title>
+    <title>Save and Load Number</title>
 </head>
 <body>
-    <div id="myElement">
-        <h1>Hello, World!</h1>
-        <p>This is a paragraph.</p>
-    </div>
-    <button id="saveButton">Save Element</button>
-    <button id="loadButton">Load Element</button>
+    <label for="numberInput">Enter a number:</label>
+    <input type="number" id="numberInput" />
+    <button id="saveButton">Save Number</button>
+    <p class="numberShowcase">---</p>
 
     <script>
-        document.getElementById('saveButton').addEventListener('click', function() {
-            // Get the element you want to save
-            let element = document.getElementById('myElement');
-
-            // Serialize the element to a string
-            let elementString = element.outerHTML;
-
-            // Save the string to localStorage
-            localStorage.setItem('savedElement', elementString);
-        });
-
-        document.getElementById('loadButton').addEventListener('click', function() {
-            // Retrieve the string from localStorage
-            let savedElementString = localStorage.getItem('savedElement');
-
-            // Check if there's anything saved
-            if (savedElementString) {
-                // Create a container to parse the string back to HTML
-                let container = document.createElement('div');
-                container.innerHTML = savedElementString;
-
-                // Append the parsed element to the desired location in the DOM
-                document.body.appendChild(container.firstChild);
+        // Function to load the number from localStorage when the page loads
+        function loadNumber() {
+            let savedNumber = localStorage.getItem('savedNumber');
+            if (savedNumber !== null) {
+                document.querySelector('.numberShowcase').textContent = savedNumber;
             }
-        });
+        }
+
+        // Function to save the number to localStorage
+        function saveNumber() {
+            let number = document.getElementById('numberInput').value;
+            localStorage.setItem('savedNumber', number);
+            // Update the displayed number immediately after saving
+            document.querySelector('.numberShowcase').textContent = number;
+        }
+
+        // Add event listener to the save button
+        document.getElementById('saveButton').addEventListener('click', saveNumber);
+
+        // Load the number when the page is loaded
+        window.addEventListener('load', loadNumber);
     </script>
 </body>
 </html>

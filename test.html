@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    .rounded-border {
-        margin-left: 20%;
-        width: 140px;
-        height: 140px;
-        position: relative; /* Ensure the container behaves properly */
-        /* overflow: hidden; Hide overflow to contain rotated content */
-        }
-
-        .rounded-border::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 10px; /* Adjust the height as needed */
-        background-color: black; /* Border color */
-        border-radius: 50%; /* Make it circular */
-        transform: rotate(-10deg); /* Adjust rotation to match your design */
-        }
-
-  </style>
-  <title>Rounded Border Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Element with Local Storage</title>
 </head>
 <body>
-  <div class="rounded-border">
-    <!-- Content here -->
-  </div>
+    <div id="myElement">
+        <h1>Hello, World!</h1>
+        <p>This is a paragraph.</p>
+    </div>
+    <button id="saveButton">Save Element</button>
+    <button id="loadButton">Load Element</button>
+
+    <script>
+        document.getElementById('saveButton').addEventListener('click', function() {
+            // Get the element you want to save
+            let element = document.getElementById('myElement');
+
+            // Serialize the element to a string
+            let elementString = element.outerHTML;
+
+            // Save the string to localStorage
+            localStorage.setItem('savedElement', elementString);
+        });
+
+        document.getElementById('loadButton').addEventListener('click', function() {
+            // Retrieve the string from localStorage
+            let savedElementString = localStorage.getItem('savedElement');
+
+            // Check if there's anything saved
+            if (savedElementString) {
+                // Create a container to parse the string back to HTML
+                let container = document.createElement('div');
+                container.innerHTML = savedElementString;
+
+                // Append the parsed element to the desired location in the DOM
+                document.body.appendChild(container.firstChild);
+            }
+        });
+    </script>
 </body>
 </html>

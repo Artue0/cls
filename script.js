@@ -853,6 +853,7 @@ document.getElementById('settings').addEventListener('click', function() {
 });
 
 function showCat(element) {
+    element = element.parentElement;
     const clone = element.cloneNode(true);
     console.log(clone)
     clone.style.setProperty('--width', element.getBoundingClientRect().width + 'px');

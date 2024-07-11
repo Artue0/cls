@@ -75,75 +75,68 @@ let catsAmount = 0;
 document.getElementById('coins').querySelector('p').textContent = coins;
 document.getElementById('catsAmount').querySelector('p').textContent = catsAmount;
 const buttonTop = document.getElementById("button-top");
-let commonChance = 35;
-let uncommonChance = 25;
-let rareChance = 15;
-let epicChance = 10;
-let mythicChance = 10;
-let legendaryChance = 5;
-let divineChance = 0;
-
+let commonChance, uncommonChance, rareChance, epicChance, mythicChance, legendaryChance, divineChance;
 function updatePrice() {
     switch (true) {
         case rarityIndex === 1:
             cost = 50 * amountIndex;
-            commonChance = 60;
-            uncommonChance = 25;
-            rareChance = 8;
-            epicChance = 4;
-            mythicChance = 2;
-            legendaryChance = 1;
+            commonChance = 75;
+            uncommonChance = 20;
+            rareChance = 5;
+            epicChance = 0;
+            mythicChance = 0;
+            legendaryChance = 0;
             divineChance = 0;
             break;
         case rarityIndex === 2:
             cost = 100 * amountIndex;
             commonChance = 50;
-            uncommonChance = 25;
-            rareChance = 10;
-            epicChance = 7;
-            mythicChance = 5;
-            legendaryChance = 3;
+            uncommonChance = 35;
+            rareChance = 12;
+            epicChance = 3;
+            mythicChance = 0;
+            legendaryChance = 0;
             divineChance = 0;
             break;
         case rarityIndex === 3:
             cost = 200 * amountIndex;
-            commonChance = 40;
-            uncommonChance = 25;
-            rareChance = 15;
-            epicChance = 10;
-            mythicChance = 7;
-            legendaryChance = 3;
+            commonChance = 20;
+            uncommonChance = 40;
+            rareChance = 25;
+            epicChance = 15;
+            mythicChance = 0;
+            legendaryChance = 0;
             divineChance = 0;
             break;
         case rarityIndex === 4:
             cost = 500 * amountIndex;
-            commonChance = 30;
-            uncommonChance = 25;
-            rareChance = 20;
-            epicChance = 12;
-            mythicChance = 8;
-            legendaryChance = 5;
+            commonChance = 0;
+            uncommonChance = 35;
+            rareChance = 35;
+            epicChance = 25;
+            mythicChance = 5;
+            legendaryChance = 0;
             divineChance = 0;
             break;
         case rarityIndex === 5:
             cost = 1000 * amountIndex;
-            commonChance = 20;
-            uncommonChance = 20;
-            rareChance = 20;
-            epicChance = 15;
-            mythicChance = 14;
-            legendaryChance = 10;
-            divineChance = 1;
+            commonChance = 0;
+            uncommonChance = 0;
+            rareChance = 35;
+            epicChance = 45;
+            mythicChance = 15;
+            legendaryChance = 5;
+            divineChance = 0;
             break;
         case rarityIndex === 6:
             cost = 2500 * amountIndex;
-            commonChance = 9;
-            uncommonChance = 14;
-            rareChance = 20;
-            epicChance = 20;
-            mythicChance = 20;
+            commonChance = 0;
+            uncommonChance = 0;
+            rareChance = 0;
+            epicChance = 45;
+            mythicChance = 35;
             legendaryChance = 15;
-            divineChance = 2;
+            divineChance = 5;
             break;
     }       
     document.getElementById('price').querySelector('p').textContent = `${cost}`;
@@ -155,6 +148,7 @@ function updatePrice() {
         document.getElementById('points').innerText = "BUY BOXES";
     }
 }
+updatePrice();
 const lootboxesContainer = document.getElementById('lootboxesContainer');
 function button() {
     if (coins - cost >= 0 && !lootboxesContainer.hasChildNodes()){

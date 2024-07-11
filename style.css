@@ -17,6 +17,7 @@
     --tounge-color: 255 35 95;
     --tounge-line-color: 205 25 70;
     --bowTie-color: 256 256 256;
+    --shine-color: 0 0 0;
 
     --circle-color: 30 30 30;
 
@@ -686,6 +687,59 @@ html {
 .pink-body {--cat-color: 240 105 165;}
 .pinkRed-body {--cat-color: 230 90 100;}
 .pinkPurple-body {--cat-color: 220 60 200;}
+.turquoise-body {--cat-color: 32 247 161;}
+.violet-body {--cat-color: 170 51 234;}
+.denim-body {--cat-color: 37 67 158;}
+.aqua-body {--cat-color: 34 247 240;}
+.teal-body {--cat-color: 33 149 178;}
+.amethyst-body {--cat-color: 207 29 247;}
+.mustard-body {--cat-color: 216 192 52;}
+.indigo-body {--cat-color: 78 78 186;}
+.lime-body {--cat-color: 127 219 65;}
+.ochre-body {--cat-color: 209 176 31;}
+.royalBlue-body {--cat-color: 24 11 165;}
+.jungleGreen-body {--cat-color: 49 175 40;}
+.mint-body {--cat-color: 114 255 222;}
+.peach-body {--cat-color: 247 168 98;}
+.chartreuse-body {--cat-color: 156 255 86;}
+.gold-body {--cat-color: 198 153 17;}
+.forestGreen-body {--cat-color: 12 181 3;}
+.emerald-body {--cat-color: 3 112 55;}
+.plum-body {--cat-color: 105 11 163;}
+.magenta-body {--cat-color: 196 66 214;}
+.brightYellow-body {--cat-color: 221 181 2;}
+.cobalt-body {--cat-color: 41 72 244;}
+.fuchsia-body {--cat-color: 226 27 200;}
+.lemon-body {--cat-color: 249 243 64;}
+.malachite-body {--cat-color: 34 191 102;}
+.crimson-body {--cat-color: 160 28 42;}
+.hotPink-body {--cat-color: 209 64 185;}
+.ultraviolet-body {--cat-color: 205 9 226;}
+.seafoam-body {--cat-color: 94 229 168;}
+.cerise-body {--cat-color: 224 62 135;}
+.mintGreen-body {--cat-color: 59 221 76;}
+.orchid-body {--cat-color: 159 41 206;}
+.rose-body {--cat-color: 237 21 201;}
+.tangerine-body {--cat-color: 252 96 0;}
+.spearmint-body {--cat-color: 102 226 160;}
+.electricPurple-body {--cat-color: 221 62 249;}
+.bronze-body {--cat-color: 221 137 19;}
+.iris-body {--cat-color: 38 16 147;}
+.lavender-body {--cat-color: 230 109 255;}
+.seaGreen-body {--cat-color: 8 147 92;}
+.mulberry-body {--cat-color: 175 59 110;}
+.springGreen-body {--cat-color: 33 250 144;}
+.mediumTurquoise-body {--cat-color: 67 197 158;}
+.bubblegum-body {--cat-color: 255 71 218;}
+.midnightBlue-body {--cat-color: 27 6 94;}
+.electricBlue-body {--cat-color: 94 43 255;}
+.electricPink-body {--cat-color: 192 76 253;}
+.salmon-body {--cat-color: 238 118 116;}
+.darkOlive-body {--cat-color: 16 57 0;}
+.roseRed-body {--cat-color: 239 48 84;}
+.ruby-body {--cat-color: 196 30 61;}
+.bordeaux-body {--cat-color: 77 45 82;}
+.maize-body {--cat-color: 206 186 38;}
 
 .catContainer {
     --first-paw-color: var(--cat-color);
@@ -694,10 +748,18 @@ html {
     --forth-paw-color: var(--cat-color);
     --tail-color: var(--cat-color);
     --belly-color: var(--cat-color);
-    --tounge-color: var(--cat-color);
-    --tounge-line-color: var(--cat-color);
+    --tounge-color: var(--head-color);
+    --tounge-line-color: var(--head-color);
     --pattern-color: var(--cat-color);
     --stripe-color: var(--cat-color);
+    --bowTie-color: var(--head-color);
+    --bowTie-color2: var(--cat-color);
+    --head-color: var(--cat-color);
+}
+
+.noStripe {
+    --tounge-color: var(--cat-color);
+    --tounge-line-color: var(--cat-color);
     --bowTie-color: var(--cat-color);
 }
 
@@ -727,15 +789,26 @@ html {
 
 .whiteBelly {--belly-color: 256 256 256;}
 
-.black-bowTie {--bowTie-color: 0 0 0;}
-.white-bowTie {--bowTie-color: 240 240 240;}
-.stripe-bowTie {--bowTie-color: var(--stripe-color);}
+.black-bowTie {
+    --bowTie-color: 0 0 0;
+    --bowTie-color2: var(--bowTie-color);
+}
+.white-bowTie {
+    --bowTie-color: 240 240 240;
+    --bowTie-color2: var(--bowTie-color);
+}
+.stripe-bowTie {
+    --bowTie-color: var(--stripe-color);
+    --bowTie-color2: var(--bowTie-color);
+}
 .catContainer.black-bowTie .cat .catBottom .bowTie, .catContainer.white-bowTie .cat .catBottom .bowTie {z-index: 99;}
 
 .withTounge {
     --tounge-color: 255 35 95;
     --tounge-line-color: 205 25 70;
 }
+
+.shine {filter: drop-shadow(0 0 1rem rgb(var(--shine-color))) !important; }
 
 .catClone {--width: 12vmin;}
 
@@ -769,6 +842,8 @@ html {
     position: relative;
     overflow: hidden;
 }
+
+.head-color .catTop {background-color: rgb(var(--head-color));}
 
 .headSpot {
     position: absolute;
@@ -913,7 +988,8 @@ html {
     left: 50%;
     top: 3.5%;
     transform: translate(-50%,-50%);
-    background-color: rgb(var(--bowTie-color));
+    /* background-color: rgb(var(--bowTie-color)); */
+    background: linear-gradient(to top, rgb(var(--bowTie-color2)) 50%, rgb(var(--bowTie-color)) 0);
     width: 25%;
     height: 45%;
 }
@@ -1345,6 +1421,7 @@ html {
     font-size: 2rem;
     font-family: "Concert One", sans-serif;
     color: white;
+    max-width: 100%;
 }
 
 @media screen and (max-width: 770px) {

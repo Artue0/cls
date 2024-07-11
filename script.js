@@ -320,7 +320,7 @@ function startAnimation(lootBox) {
 
         let closestLenght = 99999;
         let closestBox = null;
-        let animSrc, overalySrc;
+        let animSrc, overalySrc, shineColor;
 
         if (speed <= 0.01) {
             setTimeout(function() {
@@ -336,33 +336,40 @@ function startAnimation(lootBox) {
                     case closestBox.classList.contains('common'):
                         animSrc = 'assets/common lootbox/common-lootbox-anim.webm';
                         overalySrc = 'assets/common lootbox/common-lootbox-overlay.png';
+                        shineColor = '100 100 100';
                         break;
                     case closestBox.classList.contains('uncommon'):
                         animSrc = 'assets/uncommon lootbox/uncommon-lootbox-anim.webm';
                         overalySrc = 'assets/uncommon lootbox/uncommon-lootbox-overlay.png';
+                        shineColor = '144 238 144';
                         break;
                     case closestBox.classList.contains('rare'):
                         animSrc = 'assets/rare lootbox/rare-lootbox-anim.webm';
                         overalySrc = 'assets/rare lootbox/rare-lootbox-overlay.png';
+                        shineColor = '30 144 255';
                         break;
                     case closestBox.classList.contains('epic'):
                         animSrc = 'assets/epic lootbox/epic-lootbox-anim.webm';
                         overalySrc = 'assets/epic lootbox/epic-lootbox-overlay.png';
+                        shineColor = '147 112 219';
                         break;
                     case closestBox.classList.contains('mythic'):
                         animSrc = 'assets/mythic lootbox/mythic-lootbox-anim.webm';
                         overalySrc = 'assets/mythic lootbox/mythic-lootbox-overlay.png';
+                        shineColor = '139 0 0';
                         break;
                     case closestBox.classList.contains('legendary'):
                         animSrc = 'assets/legendary lootbox/legendary-lootbox-anim.webm';
                         overalySrc = 'assets/legendary lootbox/legendary-lootbox-overlay.png';
+                        shineColor = '255 215 0';
                         break;
                     case closestBox.classList.contains('divine'):
                         animSrc = 'assets/divine lootbox/divine-lootbox-anim.webm';
                         overalySrc = 'assets/divine lootbox/divine-lootbox-overlay.png';
+                        shineColor = '255 255 255';
                         break;
                 }
-                createCats(animSrc, overalySrc);
+                createCats(animSrc, overalySrc, shineColor);
             }, 1000);
         } else {
             requestAnimationFrame(update);
@@ -372,7 +379,8 @@ function startAnimation(lootBox) {
     update();
 }
 
-function createCats(animSrc, overalySrc) {
+function createCats(animSrc, overalySrc, shineColor) {
+    console.log('shineColor: ', shineColor)
     document.querySelectorAll('.lootbox-container').forEach(function(lootbox) {
         lootbox.classList.add('dissapear');
     });
@@ -438,9 +446,8 @@ function createCats(animSrc, overalySrc) {
                         clone.style.setProperty('--angle', `${(Math.random() * 100)}deg`);
                         clone.style.setProperty('--side', `${(Math.random() < 0.5 ? -1 : 1)}`);
 
-                        randomizeCat(clone);
-
                         catContainer.appendChild(clone);
+                        randomizeCat(clone, shineColor);
         
                         const horizontalVelocity = Math.random() * (1 - (-1)) + (-1);
                         const verticalVelocity = window.innerHeight * (Math.random() * (0.0055 - 0.005) + 0.005);
@@ -543,7 +550,7 @@ function createCats(animSrc, overalySrc) {
                                     hiddenCat.classList.add('hiddenCatScale');
                                     delay = delay * 1.1;
 
-                                    randomizeCat(hiddenCat);
+                                    randomizeCat(hiddenCat, shineColor);
 
                                     const computedStyle = window.getComputedStyle(hiddenCat.querySelector('.cat').querySelector('.catBottom'));
                                     const catColorString = computedStyle.getPropertyValue('--cat-color').trim();
@@ -586,9 +593,14 @@ function createCats(animSrc, overalySrc) {
                                                 const catDisplayClone = catDisplayContainer.cloneNode(true);
                                                 catDisplayClone.id = '';
                                                 catDisplayClone.classList.remove('hidden');
+                                                catDisplayClone.style.setProperty('--shine-color', shineColor);
                                                 document.getElementById('catCollection').appendChild(catDisplayClone);
+                                                
                                                 classArray.forEach(className => catDisplayClone.querySelector('.displayedCatContainer').querySelector('.displayedCat').classList.add(className));
-                                                console.log(catDisplayClone.querySelector('.displayedCatContainer').querySelector('.displayedCat'));
+                                                
+                                                let headColor = window.getComputedStyle(hiddenCat).getPropertyValue('--head-color');
+                                                catDisplayClone.querySelector('.displayedCatContainer').querySelector('.displayedCat').style.setProperty('--head-color', headColor);
+
 
                                                 hiddenCat.remove();
                                                 backgroundCircle.remove();
@@ -613,8 +625,8 @@ function createCats(animSrc, overalySrc) {
     }, 1500);
 }
 
-function randomizeCat(element) {
-        const randBody = Math.random() * 100;
+function randomizeCat(element, shineColor) {
+    const randBody = Math.random() * 100;
     if (randBody <= 20) {
         element.classList.add('gray-body');
     } else if (randBody <= 35) {
@@ -629,57 +641,233 @@ function randomizeCat(element) {
     } else if (randBody <= 95) {
         element.classList.add('peach-body');
     } else {
-        const remainingRand = Math.random() * 100;
+        const remainingRand = Math.random() * 67;
         switch (true) {
-            case remainingRand <= 6.667:
+            case remainingRand <= 1:
                 element.classList.add('grayBlue-body');
                 break;
-            case remainingRand <= 13.334:
+            case remainingRand <= 2:
                 element.classList.add('blue-body');
                 break;
-            case remainingRand <= 20.001:
+            case remainingRand <= 3:
                 element.classList.add('lightBlue-body');
                 break;
-            case remainingRand <= 26.668:
+            case remainingRand <= 4:
                 element.classList.add('red-body');
                 break;
-            case remainingRand <= 33.335:
+            case remainingRand <= 5:
                 element.classList.add('purple-body');
                 break;
-            case remainingRand <= 40.002:
+            case remainingRand <= 6:
                 element.classList.add('darkBlue-body');
                 break;
-            case remainingRand <= 46.669:
+            case remainingRand <= 7:
                 element.classList.add('darkRed-body');
                 break;
-            case remainingRand <= 53.336:
+            case remainingRand <= 8:
                 element.classList.add('darkGreen-body');
                 break;
-            case remainingRand <= 60.003:
+            case remainingRand <= 9:
                 element.classList.add('cyan-body');
                 break;
-            case remainingRand <= 66.67:
+            case remainingRand <= 10:
                 element.classList.add('green-body');
                 break;
-            case remainingRand <= 73.337:
+            case remainingRand <= 11:
                 element.classList.add('pink-body');
                 break;
-            case remainingRand <= 80.004:
+            case remainingRand <= 12:
                 element.classList.add('pinkRed-body');
                 break;
-            case remainingRand <= 86.671:
+            case remainingRand <= 13:
                 element.classList.add('pinkPurple-body');
                 break;
-            case remainingRand <= 93.338:
+            case remainingRand <= 14:
                 element.classList.add('orangeYellow-body');
                 break;
-            default:
+            case remainingRand <= 15:
+                element.classList.add('turquoise-body');
+                break;
+            case remainingRand <= 16:
+                element.classList.add('violet-body');
+                break;
+            case remainingRand <= 17:
+                element.classList.add('denim-body');
+                break;
+            case remainingRand <= 18:
+                element.classList.add('aqua-body');
+                break;
+            case remainingRand <= 19:
+                element.classList.add('teal-body');
+                break;
+            case remainingRand <= 20:
+                element.classList.add('amethyst-body');
+                break;
+            case remainingRand <= 21:
+                element.classList.add('mustard-body');
+                break;
+            case remainingRand <= 22:
+                element.classList.add('indigo-body');
+                break;
+            case remainingRand <= 23:
+                element.classList.add('lime-body');
+                break;
+            case remainingRand <= 24:
+                element.classList.add('ochre-body');
+                break;
+            case remainingRand <= 25:
+                element.classList.add('royalBlue-body');
+                break;
+            case remainingRand <= 26:
+                element.classList.add('jungleGreen-body');
+                break;
+            case remainingRand <= 27:
+                element.classList.add('mint-body');
+                break;
+            case remainingRand <= 28:
                 element.classList.add('peach-body');
+                break;
+            case remainingRand <= 29:
+                element.classList.add('chartreuse-body');
+                break;
+            case remainingRand <= 30:
+                element.classList.add('gold-body');
+                break;
+            case remainingRand <= 31:
+                element.classList.add('forestGreen-body');
+                break;
+            case remainingRand <= 32:
+                element.classList.add('emerald-body');
+                break;
+            case remainingRand <= 33:
+                element.classList.add('plum-body');
+                break;
+            case remainingRand <= 34:
+                element.classList.add('magenta-body');
+                break;
+            case remainingRand <= 35:
+                element.classList.add('brightYellow-body');
+                break;
+            case remainingRand <= 36:
+                element.classList.add('cobalt-body');
+                break;
+            case remainingRand <= 37:
+                element.classList.add('fuchsia-body');
+                break;
+            case remainingRand <= 38:
+                element.classList.add('lemon-body');
+                break;
+            case remainingRand <= 39:
+                element.classList.add('malachite-body');
+                break;
+            case remainingRand <= 40:
+                element.classList.add('crimson-body');
+                break;
+            case remainingRand <= 41:
+                element.classList.add('hotPink-body');
+                break;
+            case remainingRand <= 42:
+                element.classList.add('ultraviolet-body');
+                break;
+            case remainingRand <= 43:
+                element.classList.add('seafoam-body');
+                break;
+            case remainingRand <= 44:
+                element.classList.add('cerise-body');
+                break;
+            case remainingRand <= 45:
+                element.classList.add('mintGreen-body');
+                break;
+            case remainingRand <= 46:
+                element.classList.add('orchid-body');
+                break;
+            case remainingRand <= 47:
+                element.classList.add('rose-body');
+                break;
+            case remainingRand <= 48:
+                element.classList.add('tangerine-body');
+                break;
+            case remainingRand <= 49:
+                element.classList.add('spearmint-body');
+                break;
+            case remainingRand <= 50:
+                element.classList.add('electricPurple-body');
+                break;
+            case remainingRand <= 51:
+                element.classList.add('bronze-body');
+                break;
+            case remainingRand <= 52:
+                element.classList.add('iris-body');
+                break;
+            case remainingRand <= 53:
+                element.classList.add('lavender-body');
+                break;
+            case remainingRand <= 54:
+                element.classList.add('seaGreen-body');
+                break;
+            case remainingRand <= 55:
+                element.classList.add('mulberry-body');
+                break;
+            case remainingRand <= 56:
+                element.classList.add('springGreen-body');
+                break;
+            case remainingRand <= 57:
+                element.classList.add('mediumTurquoise-body');
+                break;
+            case remainingRand <= 58:
+                element.classList.add('bubblegum-body');
+                break;
+            case remainingRand <= 59:
+                element.classList.add('midnightBlue-body');
+                break;
+            case remainingRand <= 60:
+                element.classList.add('electricBlue-body');
+                break;
+            case remainingRand <= 61:
+                element.classList.add('electricPink-body');
+                break;
+            case remainingRand <= 62:
+                element.classList.add('salmon-body');
+                break;
+            case remainingRand <= 63:
+                element.classList.add('darkOlive-body');
+                break;
+            case remainingRand <= 64:
+                element.classList.add('roseRed-body');
+                break;
+            case remainingRand <= 65:
+                element.classList.add('ruby-body');
+                break;
+            case remainingRand <= 66:
+                element.classList.add('bordeaux-body');
+                break;
+            case remainingRand <= 67:
+                element.classList.add('maize-body');
+                break;
+            default:
+                element.classList.add('gray-body');
                 break;
         }
     }
     const randStripe = Math.random() * 100;
+    if (randStripe > 25) {
+        const diffrentHead = Math.random() * 5;
+        if (diffrentHead <= 5) {
+            const computedStyle = window.getComputedStyle(element);
+            const catColorString = computedStyle.getPropertyValue('--cat-color').trim();
+            const catColor = catColorString.split(' ').map(value => parseInt(value, 10))
+            const randColor = Math.random() * 40 - 20;
+            const changedColor = [
+                Math.max(catColor[0] + randColor, 0),
+                Math.max(catColor[1] + randColor, 0),
+                Math.max(catColor[2] + randColor, 0)
+            ];
+            element.style.setProperty('--head-color', `${changedColor}`);
+            element.classList.add('head-color');
+        }
+    }
     if (randStripe <= 25) {
+        element.classList.add('noStripe');
     } else if (randStripe <= 50) {
         element.classList.add('black-stripe');
     } else if (randStripe <= 70) {
@@ -763,7 +951,11 @@ function randomizeCat(element) {
     } else if (randBowTie <= 35) {
         element.classList.add('stripe-bowTie');
     }
-
+    const randShine = Math.random() * 20;
+    if (randShine <= 1) {
+        element.style.setProperty('--shine-color', shineColor);
+        element.classList.add('shine');
+    }
 }
 
 function setHeight() {
@@ -834,6 +1026,7 @@ function settings() {
         // settingsElement.style.setProperty('--option-top', settingsElement.offsetTop + 'px');
         settingsElement.classList.add('settingsElement');
         document.body.appendChild(settingsElement);
+        document.querySelector('.settingsElement').addEventListener('click', reset);
     } else {
         document.querySelector('.settingsElement').style.setProperty('--option-top', document.querySelector('.settingsElement').offsetTop + 'px');
         document.querySelector('.settingsElement').classList.add('slideBack');
@@ -874,17 +1067,34 @@ function load() {
     if (savedElementString !== null) {
         let container = document.createElement('div');
         container.innerHTML = savedElementString;
-        let savedElement = container;
-        let currentElement = document.getElementById('catCollection');
-        currentElement.replaceWith(savedElement);
+        console.log("container: ", container);
+        let savedElement = container.firstChild;
+        console.log("savedElement: ", savedElement);
+        savedElement.classList.remove('startcatCollection');
+        document.getElementById('catCollectionContainer').firstChild.replaceWith(savedElement);
         savedElement.id = 'catCollection';
+        savedElement.classList.add('catCollection');
     }
+    document.querySelectorAll('.startcatCollection').forEach(function(e) {e.remove();});
+    // coins = localStorage.getItem('coinsAmount');
+    // catsAmount = localStorage.getItem('catsAmount');
 }
 
 function save() {
     let element = document.getElementById('catCollection');
     let elementString = element.outerHTML;
     localStorage.setItem('savedCatCollection', elementString);
+    localStorage.setItem('coinsAmount', coins);
+    localStorage.setItem('catsAmount', catsAmount);
+    localStorage.setItem('setCoins', true);
 }
 
 window.addEventListener('load', load);
+
+function reset() {
+    localStorage.setItem('savedCatCollection', '');
+    localStorage.setItem('coinsAmount', '');
+    localStorage.setItem('catsAmount', '');
+    localStorage.setItem('setCoins', '');
+    console.log('reset');
+}

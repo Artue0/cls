@@ -12,77 +12,33 @@
             justify-content: center;
         }
 
-        #catContainer {
-            position: relative;
-            width: 10vw;
-            height: 50vh;
-            border: 3px solid black;
-            /* clip-path: polygon(100% 0, 100% 60%, 50% 100%, 0 60%, 0 0); */
-        }
-        .catClone {
+        #stripe-container {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            z-index: 11;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+            background-color: #3498db;
+            animation: expand 3s forwards ease-out;
+        }
+
+        @keyframes expand {
+            0% {
+                width: 200vmax;
+                height: 200vmax;
+            }
+            100% {
+                width: 0;
+                height: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="catContainer"></div>
-
-    <script>
-        const catContainer = document.getElementById('catContainer');
-        const containerWidth = catContainer.clientWidth;
-        const containerHeight = catContainer.clientHeight;
-        const clones = [];
-
-        function createCats() {
-            for (let i = 0; i < 1; i++) {
-                const clone = document.createElement('div');
-                clone.classList.add('catClone');
-                clone.style.backgroundColor = 'black';
-                clone.style.bottom = 0;
-                clone.style.left = Math.random() * catContainer.offsetWidth + 'px';
-                clone.style.transform = 'translateX(-50%)';
-                catContainer.appendChild(clone);
-
-                const horizontalVelocity = Math.random() * (0.4 - (-0.4)) + (-0.4);
-                const verticalVelocity = Math.random() * (1.4 - 0.5) + 0.5;
-
-                clones.push({
-                    element: clone,
-                    hVelocity: horizontalVelocity,
-                    vVelocity: verticalVelocity
-                });
-            }
-        }
-
-        createCats();
-        setInterval(createCats, 200);
-
-        function moveClones() {
-            console.log(clones.length)
-            clones.forEach((clone, index) => {
-                const element = clone.element;
-                let currentBottom = parseFloat(element.style.bottom);
-                let currentLeft = parseFloat(element.style.left);
-                const rect = element.getBoundingClientRect();
-
-                currentBottom += clone.vVelocity;
-                currentLeft += clone.hVelocity;
-
-                clone.vVelocity -= 0.002;
-
-                if (rect.bottom > window.innerHeight * 0.7) {
-                    element.remove();
-                    clones.splice(index, 1);
-                } else {
-                    element.style.bottom = currentBottom + 'px';
-                    element.style.left = currentLeft + 'px';
-                }
-            });
-        }
-
-        setInterval(moveClones, 1);
-    </script>
+    <div id="stripe-container">
+        <div id="stripe-pattern"></div>
+    </div>
 </body>
 </html>

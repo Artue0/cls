@@ -1515,7 +1515,7 @@ html {
 }
 
 .hideCircle {
-    animation: hideCircle 2s forwards ease-out;
+    animation: hideCircle 2.5s forwards ease-out;
 }
 
 @keyframes hideCircle {
@@ -1696,3 +1696,28 @@ html {
     from{background-color: #067200;}
     to{background-color: #980000;}
 }
+
+.hideStripes {
+    position: absolute;
+    z-index: 11;
+    bottom: 0;
+    right: 0;
+    width: 200vmax;
+    height: 200vmax;
+    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+    background-color: #3498db;
+    animation: hideStripes 4.5s forwards ease-out;
+}
+
+@keyframes hideStripes {
+    0% {
+        width: 200vmax;
+        height: 200vmax;
+    }
+    100% {
+        width: 0;
+        height: 0;
+    }
+}
+
+.stripe2 {animation: none !important;}

@@ -1263,13 +1263,25 @@ function createCats(animSrc, overalySrc, shineColor) {
 
                                                 hiddenCat.remove();
                                                 backgroundCircle.remove();
-                                                stripeContainer.remove();
                                                 while (lootboxesContainer.firstChild) {
                                                     lootboxesContainer.removeChild(lootboxesContainer.firstChild);
                                                 }
                                                 catAnimation.remove();
+
+                                                const stripeContainer2 = document.createElement('div');
+                                                stripeContainer2.classList.add('hideStripes');
+                                                document.body.appendChild(stripeContainer2);
+                                                const stripePattern2 = document.createElement('div');
+                                                stripePattern2.id = 'stripe-pattern';
+                                                stripePattern2.style.setProperty('--backPos', window.getComputedStyle(stripePattern).getPropertyValue('background-position').split(' ')[0]);
+                                                stripeContainer2.appendChild(stripePattern2);
+                                                setTimeout(function() {
+                                                    stripeContainer2.remove();
+                                                }, 4500);
+                                                stripeContainer.remove();
+
                                                 save();
-                                            }, 2000);
+                                            }, 2500);
                                         }, 500);
                                     }
                                 }

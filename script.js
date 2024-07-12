@@ -961,6 +961,7 @@ function setHeight() {
 
 window.addEventListener("load", setHeight());
 window.addEventListener("resize", setHeight);
+setHeight();
 
 const cooldownMap = new WeakMap();
 let infoDeleted = true;

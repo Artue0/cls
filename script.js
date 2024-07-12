@@ -1089,7 +1089,7 @@ function createCats(animSrc, overalySrc, shineColor) {
                 let clonesLenght = 15;
                 if (phoneMode) {clonesLenght = 7;}
                 let clonesSpawnDelay = 180;
-                if (phoneMode) {clonesSpawnDelay = 300;}
+                if (phoneMode) {clonesSpawnDelay = 350;}
 
                 const createClonesInterval = setInterval(function() {
                     if (clones.length <= clonesLenght && createClones) {

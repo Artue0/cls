@@ -600,6 +600,7 @@ html {
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
+    letter-spacing: 1px;
     font-family: "Concert One", sans-serif;
     color: #fff;
     box-shadow: inset 0px -100px 100px -90px var(--color);
@@ -1368,7 +1369,7 @@ html {
 }
 
 .settingsElement {
-    background-color: #F4B02E;
+    background-color: #de9f2a;
     gap: 5%;
 }
 
@@ -1592,7 +1593,7 @@ html {
 
 .title2 {
     position: static;
-    font-size: 110px;
+    font-size: calc(5vw + 5vh);
     margin-top: 0;
     height: 10%;
 }
@@ -1633,19 +1634,19 @@ html {
 }
 
 .green-top {
-    background-color: #079400 !important;
+    background-color: #079400;
 }
 
 .green-bottom {
-    background-color: #067200 !important;
+    background-color: #067200;
 }
 
 .red-top {
-    background-color: #cb0401 !important;
+    background-color: #cb0401;
 }
 
 .red-bottom {
-    background-color: #980000 !important;
+    background-color: #980000;
 }
 
 .on {
@@ -1656,16 +1657,42 @@ html {
     transform: translateY(20px);
 }
 
-.turnOn {animation: turnOn 0.25s;}
+.turnOnTop {animation: turnOnTop 0.25s;}
 
-@keyframes turnOn {
-    0%{transform: translateY(20px);}
-    100%{transform: translateY(0);}
+@keyframes turnOnTop {
+    from{
+        transform: translateY(20px);
+        background-color: #cb0401;
+    }
+    to{
+        transform: translateY(0);
+        background-color: #079400;
+    }
 }
 
-.turnOff {animation: turnOff 0.25s;}
+.turnOffTop {animation: turnOffTop 0.25s;}
 
-@keyframes turnOff {
-    0%{transform: translateY(0);}
-    100%{transform: translateY(20px);}
+@keyframes turnOffTop {
+    from{
+        transform: translateY(0);
+        background-color: #079400;
+    }
+    to{
+        transform: translateY(20px);
+        background-color: #cb0401;
+    }
+}
+
+.turnOnBottom {animation: turnOnBottom 0.25s;}
+
+@keyframes turnOnBottom {
+    from{background-color: #980000;}
+    to{background-color: #067200;}
+}
+
+.turnOffBottom {animation: turnOffBottom 0.25s;}
+
+@keyframes turnOffBottom {
+    from{background-color: #067200;}
+    to{background-color: #980000;}
 }

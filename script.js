@@ -212,7 +212,7 @@ inventory.addEventListener('mousedown', (event) => {
     goUp = !goUp;
 });
 
-function createBox(src, c) {
+function createBox(src, c, name) {
     const box = document.createElement('div');
     box.classList.add('box');
     box.style.setProperty('--color', c);
@@ -241,9 +241,15 @@ function createBox(src, c) {
             break;
     }
 
-    const img = document.createElement('img');
-    img.src = src;
-    box.appendChild(img);
+    if (!phoneMode) {
+        const img = document.createElement('img');
+        img.src = src;
+        box.appendChild(img);
+    } else {
+        const text = document.createElement('p');
+        text.innerHTML = name;
+        box.appendChild(text);
+    }
     
     return box;
 }
@@ -268,38 +274,45 @@ function startAnimation(lootBox) {
         while (boxes.length < 20) {
             const lastBox = boxes[boxes.length - 1];
             let rand = Math.floor(Math.random() * 100) + 1;
-            let src, color;
+            let src, color, name;
             switch (true) {
                 case rand >= 1 && rand <= commonChance:
                     src = 'assets/common lootbox/common-lootbox-pic.png';
                     color = 'gray';
+                    name = 'COMMON';
                     break;
                 case rand > commonChance && rand <= commonChance + uncommonChance:
                     src = 'assets/uncommon lootbox/uncommon-lootbox-pic.png';
                     color = 'green';
+                    name = 'UNCOMMON';
                     break;
                 case rand > commonChance + uncommonChance && rand <= commonChance + uncommonChance + rareChance:
                     src = 'assets/rare lootbox/rare-lootbox-pic.png';
                     color = 'blue';
+                    name = 'RARE';
                     break;
                 case rand > commonChance + uncommonChance + rareChance && rand <= commonChance + uncommonChance + rareChance + epicChance:
                     src = 'assets/epic lootbox/epic-lootbox-pic.png';
                     color = 'purple';
+                    name = 'EPIC';
                     break;
                 case rand > commonChance + uncommonChance + rareChance + epicChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance:
                     src = 'assets/mythic lootbox/mythic-lootbox-pic.png';
                     color = 'red';
+                    name = 'MYTHIC';
                     break;
                 case rand > commonChance + uncommonChance + rareChance + epicChance + mythicChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance:
                     src = 'assets/legendary lootbox/legendary-lootbox-pic.png';
                     color = 'gold';
+                    name = 'LEGENDARY';
                     break;
                 case rand > commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance && rand <= commonChance + uncommonChance + rareChance + epicChance + mythicChance + legendaryChance + divineChance:
                     src = 'assets/divine lootbox/divine-lootbox-pic.png';
                     color = 'black';
+                    name = 'DIVINE';
                     break;
             }
-            const newBox = createBox(src, color);
+            const newBox = createBox(src, color, name);
             lootBox.appendChild(newBox);
             newBox.style.left = lastBox ? `${lastBox.offsetLeft + boxWidth + 15}px` : `${containerWidth}px`;
             boxes.push(newBox);
@@ -371,252 +384,6 @@ function startAnimation(lootBox) {
     }
 
     update();
-}
-
-function createCats(animSrc, overalySrc, shineColor) {
-    console.log('shineColor: ', shineColor)
-    document.querySelectorAll('.lootbox-container').forEach(function(lootbox) {
-        lootbox.classList.add('dissapear');
-    });
-
-    const stripeContainer = document.createElement('div');
-    stripeContainer.id = 'stripe-container';
-    document.body.appendChild(stripeContainer);
-    const stripePattern = document.createElement('div');
-    stripePattern.id = 'stripe-pattern';
-    stripeContainer.appendChild(stripePattern);
-
-    setTimeout(function() {
-        document.querySelectorAll('.lootbox-container').forEach(function(lootbox) {
-            lootbox.remove();
-        })
-
-        const catAnimation = document.createElement('div');
-        catAnimation.classList.add('catAnimation');
-        document.body.appendChild(catAnimation);
-
-        const videoElement = document.createElement('video');
-        videoElement.classList.add('video');
-
-        const videoSource = document.createElement('source');
-        videoSource.src = animSrc;
-        videoSource.type = 'video/webm';
-
-        videoElement.appendChild(videoSource);
-
-        videoElement.autoplay = true;
-        videoElement.playsInline = true;
-        videoElement.playbackRate = 1.25;
-        
-        catAnimation.appendChild(videoElement);
-
-        setTimeout(function() {
-            const overlay = document.createElement('div');
-            overlay.classList.add('overlay');
-            catAnimation.appendChild(overlay);
-    
-            const overlayImg = document.createElement('img');
-            overlayImg.src = overalySrc;
-            overlay.appendChild(overlayImg);
-
-            const backgroundCircle = document.createElement('div');
-            backgroundCircle.classList.add('backgroundCircle');
-            catAnimation.appendChild(backgroundCircle);
-
-            const catContainer = document.createElement('div');
-            catContainer.classList.add('clonesContainer');
-            catAnimation.appendChild(catContainer);
-            const clones = [];
-            let createClones = true;
-
-            setInterval(function() {
-                if (clones.length <= 15 && createClones) {
-                    for (let i = 0; i < 1; i++) {
-                        const clone = document.getElementById('catContainer').cloneNode(true);
-                        clone.classList.add('catClone');
-                        clone.classList.remove('hidden');
-                        clone.style.bottom = 0;
-                        clone.style.left = Math.random() * catContainer.offsetWidth + 'px';
-                        clone.style.setProperty('--angle', `${(Math.random() * 100)}deg`);
-                        clone.style.setProperty('--side', `${(Math.random() < 0.5 ? -1 : 1)}`);
-
-                        catContainer.appendChild(clone);
-                        randomizeCat(clone, shineColor);
-        
-                        const horizontalVelocity = Math.random() * (1 - (-1)) + (-1);
-                        const verticalVelocity = window.innerHeight * (Math.random() * (0.0055 - 0.005) + 0.005);
-        
-                        clones.push({
-                            element: clone,
-                            hVelocity: horizontalVelocity,
-                            vVelocity: verticalVelocity,
-                            overlayed: false
-                        });
-                    }
-                }
-            }, 180);
-    
-            function moveClones() {
-                clones.forEach((clone, index) => {
-                    const element = clone.element;
-                    let currentBottom = parseFloat(element.style.bottom);
-                    let currentLeft = parseFloat(element.style.left);
-                    let overlayed = clone.overlayed;
-                    const rect = element.getBoundingClientRect();
-    
-                    currentBottom += clone.vVelocity;
-                    currentLeft += clone.hVelocity;
-    
-                    clone.vVelocity -= 0.027;
-    
-                    if (rect.bottom > window.innerHeight * 1.1) {
-                        element.remove();
-                        clones.splice(index, 1);
-                    } else {
-                        element.style.bottom = currentBottom + 'px';
-                        element.style.left = currentLeft + 'px';
-                    }
-
-                    if (!overlayed) {
-                        setTimeout(function() {
-                            clone.overlayed = true
-                            element.style.zIndex = 1001;
-                        }, 1000);
-                    }
-                });
-            }
-            
-            setInterval(moveClones, 1);
-
-            function updateHeight() {catContainer.style.height = overlay.getBoundingClientRect().top + (overlay.offsetHeight * 0.85) + 'px';}
-            window.addEventListener('resize', updateHeight);
-            updateHeight();
-
-            setTimeout(function() {
-                const hiddenCat = document.getElementById('catContainer').cloneNode(true);
-                hiddenCat.classList.add('hiddenCat');
-                hiddenCat.classList.add('hiddenCatColors');
-                hiddenCat.classList.remove('hidden');
-                hiddenCat.style.top = catContainer.offsetHeight + 'px';
-                hiddenCat.style.setProperty('--angle', `${(Math.random() * 100)}deg`);
-                catAnimation.appendChild(hiddenCat);
-                const questionMark = document.createElement('div');
-                questionMark.classList.add('questionMark');
-                hiddenCat.querySelector('.cat').querySelector('.catBottom').appendChild(questionMark);
-                questionMark.innerText = '?';
-                let velocity = -window.innerHeight * 0.0055;
-                let currentTop;
-                createClones = false;
-
-                function moveHiddenCat() {
-                    currentTop = parseFloat(hiddenCat.style.top);
-                    currentTop += velocity;
-                    velocity += 0.027;
-                    hiddenCat.style.top = currentTop + 'px';
-                }
-
-                setTimeout(function() {
-                    // hiddenCat.style.zIndex = 101;
-                    const checkPos = setInterval(function() {
-                        if (hiddenCat.getBoundingClientRect().top > window.innerHeight / 2) {
-                            clearInterval(checkPos);
-                            hiddenCat.style.setProperty('--top', `${currentTop}px`);
-                            const matrix = window.getComputedStyle(hiddenCat).transform;
-                            hiddenCat.style.setProperty('--rotation', `${matrix === 'none' ? 0 : Math.round(Math.atan2(matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[1], matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[0]) * (180 / Math.PI))}deg`);
-                            hiddenCat.classList.add('hiddenCatAnim');
-                            setTimeout(function() {
-                                hiddenCat.style.setProperty('--scale-width', `${hiddenCat.getBoundingClientRect().width}px`)
-                                hiddenCat.classList.add('hiddenCatScale');
-                                overlay.remove();
-                                videoElement.remove();
-                            }, 2000);
-                            clearInterval(moveCat);
-                            backgroundCircle.classList.add('backgroundCircleAnim');
-                            setTimeout(function() {
-                                hiddenCat.classList.remove('hiddenCatColors');
-                                questionMark.remove();
-                                let delay = 30;
-                                function animateRandomCat() {
-                                    hiddenCat.classList = '';
-                                    hiddenCat.classList.add('catContainer');
-                                    hiddenCat.classList.add('hiddenCat');
-                                    hiddenCat.classList.add('hiddenCatAnim');
-                                    hiddenCat.classList.add('hiddenCatScale');
-                                    delay = delay * 1.1;
-
-                                    randomizeCat(hiddenCat, shineColor);
-
-                                    const computedStyle = window.getComputedStyle(hiddenCat.querySelector('.cat').querySelector('.catBottom'));
-                                    const catColorString = computedStyle.getPropertyValue('--cat-color').trim();
-                                    const catColor = catColorString.split(' ').map(value => parseInt(value, 10))
-                                    const darkenedColor = [
-                                        Math.max(catColor[0] - 40, 0),
-                                        Math.max(catColor[1] - 40, 0),
-                                        Math.max(catColor[2] - 40, 0)
-                                    ];
-                                    let darkenedColor2 = [
-                                        Math.max(catColor[0] - 50, 0),
-                                        Math.max(catColor[1] - 50, 0),
-                                        Math.max(catColor[2] - 50, 0)
-                                    ];
-                                    if (catColor[0] <= 50 && catColor[1] <= 50 && catColor[2] <= 50) {
-                                        darkenedColor2 = [
-                                            catColor[0] + 5,
-                                            catColor[1] + 5,
-                                            catColor[2] + 5
-                                        ];
-                                        hiddenCat.classList.add('hiddenCatBlack');
-                                    }
-                                    backgroundCircle.style.setProperty('--circle-color', `${darkenedColor}`);
-                                    backgroundCircle.style.setProperty('--border-color', `${darkenedColor2}`);
-
-                                    if (delay <= 1000) {setTimeout(
-                                        animateRandomCat, delay);
-                                    } else {
-                                        setTimeout(function() {
-                                            backgroundCircle.classList.add('hideCircle');
-                                            hiddenCat.classList.add('hideHiddenCat');
-                                            setTimeout(function() {
-                                                let classArray = [];
-                                                classArray = Array.from(hiddenCat.classList);
-                                                classArray.splice(0, 4);
-                                                classArray.pop();
-                                                console.log(classArray)
-                                                
-                                                const catDisplayContainer = document.getElementById('catDisplayContainer');
-                                                const catDisplayClone = catDisplayContainer.cloneNode(true);
-                                                catDisplayClone.id = '';
-                                                catDisplayClone.classList.remove('hidden');
-                                                catDisplayClone.style.setProperty('--shine-color', shineColor);
-                                                document.getElementById('catCollection').appendChild(catDisplayClone);
-                                                
-                                                classArray.forEach(className => catDisplayClone.querySelector('.displayedCatContainer').querySelector('.displayedCat').classList.add(className));
-                                                
-                                                let headColor = window.getComputedStyle(hiddenCat).getPropertyValue('--head-color');
-                                                catDisplayClone.querySelector('.displayedCatContainer').querySelector('.displayedCat').style.setProperty('--head-color', headColor);
-
-
-                                                hiddenCat.remove();
-                                                backgroundCircle.remove();
-                                                stripeContainer.remove();
-                                                while (lootboxesContainer.firstChild) {
-                                                    lootboxesContainer.removeChild(lootboxesContainer.firstChild);
-                                                }
-                                                catAnimation.remove();
-                                                save();
-                                            }, 2000);
-                                        }, 500);
-                                    }
-                                }
-                                animateRandomCat();
-                            }, 2000);
-                        }
-                    }, 5);
-                }, 1000);
-                const moveCat = setInterval(moveHiddenCat, 1);
-            }, 5000);
-        }, 5000);
-    }, 1500);
 }
 
 function randomizeCat(element, shineColor) {
@@ -869,21 +636,21 @@ function randomizeCat(element, shineColor) {
     } else if (randStripe <= 90) {
         element.classList.add('gray-stripe');
     } else {
-        const remainingRand = Math.random() * 100;
+        const remainingRand = Math.random() * 5;
         switch (true) {
-            case remainingRand <= 16.667:
+            case remainingRand <= 1:
                 element.classList.add('orange-stripe');
                 break;
-            case remainingRand <= 33.334:
+            case remainingRand <= 2:
                 element.classList.add('brown-stripe');
                 break;
-            case remainingRand <= 50.001:
+            case remainingRand <= 3:
                 element.classList.add('blue-stripe');
                 break;
-            case remainingRand <= 66.668:
+            case remainingRand <= 4:
                 element.classList.add('red-stripe');
                 break;
-            case remainingRand <= 83.335:
+            case remainingRand <= 5:
                 element.classList.add('green-stripe');
                 break;
             default:
@@ -967,6 +734,7 @@ let infoDeleted = true;
 let settingsDeleted = true;
 
 function animateNav(element, className) {
+    load();
     function rotate() {
         if (cooldownMap.get(element)) { return; }
         element.classList.add(className);
@@ -1058,41 +826,186 @@ function showCat(element) {
     element.appendChild(displayCatOverlay);
 }
 
-function load() {
-    let savedElementString = localStorage.getItem('savedCatCollection');
-    if (savedElementString !== null) {
-        let container = document.createElement('div');
-        container.innerHTML = savedElementString;
-        console.log("container: ", container);
-        let savedElement = container.firstChild;
-        console.log("savedElement: ", savedElement);
-        savedElement.classList.remove('startcatCollection');
-        document.getElementById('catCollectionContainer').firstChild.replaceWith(savedElement);
-        savedElement.id = 'catCollection';
-        savedElement.classList.add('catCollection');
+if (!localStorage.getItem('firstVisit')) {
+    localStorage.setItem('firstVisit', 'true');
+    localStorage.setItem('settingsData', [0,1,1]);
+}
+
+function reset() {
+    localStorage.removeItem('savedCatCollection');
+    localStorage.removeItem('coinsAmount');
+    localStorage.removeItem('catsAmount');
+    localStorage.removeItem('setCoins');
+
+    // Remove the existing catCollection element if it exists
+    let existingCatCollection = document.getElementById('catCollection');
+    if (existingCatCollection) {
+        existingCatCollection.remove();
     }
-    document.querySelectorAll('.startcatCollection').forEach(function(e) {e.remove();});
-    // coins = localStorage.getItem('coinsAmount');
-    // catsAmount = localStorage.getItem('catsAmount');
+    console.log('reset');
+}
+
+
+let phoneMode, animations, saveProgress;
+if (localStorage.getItem('settingsData').split(',').map(Number)[0] === 1) {phoneMode = true;}
+if (localStorage.getItem('settingsData').split(',').map(Number)[1] === 1) {animations = true;}
+if (localStorage.getItem('settingsData').split(',').map(Number)[2] === 1) {
+    saveProgress = true;
+} else {
+    reset();
+}
+
+function load() {
+    if (saveProgress) {
+        let savedElementString = localStorage.getItem('savedCatCollection');
+        if (savedElementString !== null) {
+            let container = document.createElement('div');
+            container.innerHTML = savedElementString;
+
+            let newCatCollection = container.firstChild;
+            if (newCatCollection) {
+                let existingCatCollection = document.getElementById('catCollection');
+                if (existingCatCollection) {
+                    existingCatCollection.remove();
+                }
+                newCatCollection.id = 'catCollection';
+                newCatCollection.classList.add('catCollection');
+                document.getElementById('catCollectionContainer').appendChild(newCatCollection);
+            } else {
+                console.error("No valid catCollection found in the saved data.");
+            }
+        } else {
+            console.warn("No saved catCollection data found.");
+        }
+        document.querySelectorAll('.startcatCollection').forEach(function(e) {
+            e.remove();
+        });
+
+        // coins = parseInt(localStorage.getItem('coinsAmount'), 10);
+        // catsAmount = parseInt(localStorage.getItem('catsAmount'), 10);
+    }
+
+    const phoneModeButton = document.getElementById('phoneModeButton');
+    const animationsButton = document.getElementById('animationsButton');
+    const saveProgressButton = document.getElementById('saveProgressButton');
+
+    phoneModeButton.children[0].classList.remove('red-top', 'green-top', 'off', 'on');
+    phoneModeButton.children[1].classList.remove('red-bottom', 'green-bottom');
+    animationsButton.children[0].classList.remove('red-top', 'green-top', 'off', 'on');
+    animationsButton.children[1].classList.remove('red-bottom', 'green-bottom');
+    saveProgressButton.children[0].classList.remove('red-top', 'green-top', 'off', 'on');
+    saveProgressButton.children[1].classList.remove('red-bottom', 'green-bottom');
+
+    let settingsDataArray = localStorage.getItem('settingsData').split(',').map(Number);
+    console.log(settingsDataArray)
+    if (settingsDataArray[0] === 0) {
+        phoneModeButton.children[0].classList.add('red-top', 'off');
+        phoneModeButton.children[1].classList.add('red-bottom');
+    } else {
+        phoneModeButton.children[0].classList.add('green-top', 'on');
+        phoneModeButton.children[1].classList.add('green-bottom');
+    }
+    if (settingsDataArray[1] === 0) {
+        animationsButton.children[0].classList.add('red-top', 'off');
+        animationsButton.children[1].classList.add('red-bottom');
+    } else {
+        animationsButton.children[0].classList.add('green-top', 'on');
+        animationsButton.children[1].classList.add('green-bottom');
+    }
+    if (settingsDataArray[2] === 0) {
+        saveProgressButton.children[0].classList.add('red-top', 'off');
+        saveProgressButton.children[1].classList.add('red-bottom');
+    } else {
+        saveProgressButton.children[0].classList.add('green-top', 'on');
+        saveProgressButton.children[1].classList.add('green-bottom');
+    }
 }
 
 function save() {
-    let element = document.getElementById('catCollection');
-    let elementString = element.outerHTML;
-    localStorage.setItem('savedCatCollection', elementString);
-    localStorage.setItem('coinsAmount', coins);
-    localStorage.setItem('catsAmount', catsAmount);
-    localStorage.setItem('setCoins', true);
+    if (saveProgress) {
+        let element = document.getElementById('catCollection');
+        let elementString = element.outerHTML;
+        localStorage.setItem('savedCatCollection', elementString);
+        localStorage.setItem('coinsAmount', coins);
+        localStorage.setItem('catsAmount', catsAmount);
+        localStorage.setItem('setCoins', true);
+    } else {
+        reset();
+    }
 }
 
 window.addEventListener('load', load);
 
-function reset() {
-    localStorage.setItem('savedCatCollection', '');
-    localStorage.setItem('coinsAmount', '');
-    localStorage.setItem('catsAmount', '');
-    localStorage.setItem('setCoins', '');
-    console.log('reset');
+function saveButtonsData(index, state) {
+    let settingsDataArray = localStorage.getItem('settingsData').split(',').map(Number);
+    console.log(settingsDataArray)
+    console.log("state: ", state, "index: ", index);
+    if (index === 0) {
+        if (state === 0) {
+            settingsDataArray[0] = 0;
+            phoneMode = false;
+        } else {
+            settingsDataArray[0] = 1;
+            phoneMode = true;
+        }
+    }
+    if (index === 1) {
+        if (state === 0) {
+            settingsDataArray[1] = 0;
+            animations = false;
+        } else {
+            settingsDataArray[1] = 1;
+            animations = true;
+        }
+    }
+    if (index === 2) {
+        if (state === 0) {
+            settingsDataArray[2] = 0;
+            saveProgress = false;
+        } else {
+            settingsDataArray[2] = 1;
+            saveProgress = true;
+        }
+    }
+    console.log(settingsDataArray)
+    localStorage.setItem('settingsData', settingsDataArray);
+}
+
+function clickHandler(element, index) {
+    if (index === 0) {}
+    if (element.classList.contains('on')) {
+        element.classList.add('turnOffTop');
+        element.parentNode.children[1].classList.add('turnOffBottom');
+        element.classList.remove('on');
+
+        element.parentNode.children[1].classList.remove('green-bottom');
+        element.classList.remove('green-top');
+        element.parentNode.children[1].classList.add('red-bottom');
+        element.classList.add('red-top');
+
+        setTimeout(function() {
+            element.classList.remove('turnOffTop');
+            element.parentNode.children[1].classList.remove('turnOffBottom');
+            element.classList.add('off');
+            saveButtonsData(index, 0);
+        }, 250);
+    } else {
+        element.classList.add('turnOnTop');
+        element.parentNode.children[1].classList.add('turnOnBottom');
+        element.classList.remove('off');
+
+        element.parentNode.children[1].classList.remove('red-bottom');
+        element.classList.remove('red-top');
+        element.parentNode.children[1].classList.add('green-bottom');
+        element.classList.add('green-top');
+        
+        setTimeout(function() {
+            element.classList.remove('turnOnTop');
+            element.parentNode.children[1].classList.remove('turnOnBottom');
+            element.classList.add('on');
+            saveButtonsData(index, 1);
+        }, 250);
+    }
 }
 
 function clickHandler2(element) {
@@ -1104,21 +1017,269 @@ function clickHandler2(element) {
     }
 }
 
-function clickHandler(element) {
-    if (element.classList.contains('on')) {
-        element.classList.add('turnOff');
-        element.classList.remove('on');
+function resetButton(element) {
+    clickHandler2(element);
+    save();
+    reset();
+    load();
+}
+
+function createCats(animSrc, overalySrc, shineColor) {
+    console.log('shineColor: ', shineColor)
+    document.querySelectorAll('.lootbox-container').forEach(function(lootbox) {
+        lootbox.classList.add('dissapear');
+    });
+
+    const stripeContainer = document.createElement('div');
+    stripeContainer.id = 'stripe-container';
+    document.body.appendChild(stripeContainer);
+    const stripePattern = document.createElement('div');
+    stripePattern.id = 'stripe-pattern';
+    stripeContainer.appendChild(stripePattern);
+
+    setTimeout(function() {
+        document.querySelectorAll('.lootbox-container').forEach(function(lootbox) {
+            lootbox.remove();
+        })
+
+        const catAnimation = document.createElement('div');
+        catAnimation.classList.add('catAnimation');
+        document.body.appendChild(catAnimation);
+
+        const videoElement = document.createElement('video');
+        videoElement.classList.add('video');
+
+        const videoSource = document.createElement('source');
+        videoSource.src = animSrc;
+        videoSource.type = 'video/webm';
+
+        videoElement.appendChild(videoSource);
+
+        videoElement.autoplay = true;
+        videoElement.playsInline = true;
+        videoElement.playbackRate = 1.25;
+        
+        catAnimation.appendChild(videoElement);
+
         setTimeout(function() {
-            element.classList.remove('turnOff');
-            element.classList.add('off');
+            const overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            catAnimation.appendChild(overlay);
+    
+            const overlayImg = document.createElement('img');
+            overlayImg.src = overalySrc;
+            overlay.appendChild(overlayImg);
+
+            const backgroundCircle = document.createElement('div');
+            backgroundCircle.classList.add('backgroundCircle');
+            catAnimation.appendChild(backgroundCircle);
+
+            const catContainer = document.createElement('div');
+            catContainer.classList.add('clonesContainer');
+            catAnimation.appendChild(catContainer);
+
+            let createClones = true;
+            let timeoutDelay = 100;
+            console.log(animations)
+            if (animations) {
+                timeoutDelay = 5000;
+
+                const clones = [];
+
+                let clonesLenght = 15;
+                if (phoneMode) {clonesLenght = 7;}
+                let clonesSpawnDelay = 180;
+                if (phoneMode) {clonesSpawnDelay = 300;}
+
+                const createClonesInterval = setInterval(function() {
+                    if (clones.length <= clonesLenght && createClones) {
+                        for (let i = 0; i < 1; i++) {
+                            const clone = document.getElementById('catContainer').cloneNode(true);
+                            clone.classList.add('catClone');
+                            clone.classList.remove('hidden');
+                            clone.style.bottom = 0;
+                            clone.style.left = Math.random() * catContainer.offsetWidth + 'px';
+                            clone.style.setProperty('--angle', `${(Math.random() * 100)}deg`);
+                            clone.style.setProperty('--side', `${(Math.random() < 0.5 ? -1 : 1)}`);
+
+                            catContainer.appendChild(clone);
+                            randomizeCat(clone, shineColor);
             
-        }, 250);
-    } else {
-        element.classList.add('turnOn');
-        element.classList.remove('off');
-        setTimeout(function() {
-            element.classList.remove('turnOn');
-            element.classList.add('on');
-        }, 250);
-    }
+                            const horizontalVelocity = Math.random() * (1 - (-1)) + (-1);
+                            const verticalVelocity = window.innerHeight * (Math.random() * (0.0055 - 0.005) + 0.005);
+            
+                            clones.push({
+                                element: clone,
+                                hVelocity: horizontalVelocity,
+                                vVelocity: verticalVelocity,
+                                overlayed: false
+                            });
+                        }
+                    } else {
+                        clearInterval(createClonesInterval);
+                    }
+                }, clonesSpawnDelay);
+        
+                function moveClones() {
+                    clones.forEach((clone, index) => {
+                        const element = clone.element;
+                        let currentBottom = parseFloat(element.style.bottom);
+                        let currentLeft = parseFloat(element.style.left);
+                        let overlayed = clone.overlayed;
+                        const rect = element.getBoundingClientRect();
+        
+                        currentBottom += clone.vVelocity;
+                        currentLeft += clone.hVelocity;
+        
+                        clone.vVelocity -= 0.027;
+        
+                        if (rect.bottom > window.innerHeight * 1.1) {
+                            element.remove();
+                            clones.splice(index, 1);
+                        } else {
+                            element.style.bottom = currentBottom + 'px';
+                            element.style.left = currentLeft + 'px';
+                        }
+
+                        if (!overlayed) {
+                            setTimeout(function() {
+                                clone.overlayed = true
+                                element.style.zIndex = 1001;
+                            }, 1000);
+                        }
+                    });
+                }
+                
+                setInterval(moveClones, 1);
+            }
+            function updateHeight() {catContainer.style.height = overlay.getBoundingClientRect().top + (overlay.offsetHeight * 0.85) + 'px';}
+            window.addEventListener('resize', updateHeight);
+            updateHeight();
+
+            setTimeout(function() {
+                const hiddenCat = document.getElementById('catContainer').cloneNode(true);
+                hiddenCat.classList.add('hiddenCat');
+                hiddenCat.classList.add('hiddenCatColors');
+                hiddenCat.classList.remove('hidden');
+                hiddenCat.style.top = catContainer.offsetHeight + 'px';
+                hiddenCat.style.setProperty('--angle', `${(Math.random() * 100)}deg`);
+                catAnimation.appendChild(hiddenCat);
+                const questionMark = document.createElement('div');
+                questionMark.classList.add('questionMark');
+                hiddenCat.querySelector('.cat').querySelector('.catBottom').appendChild(questionMark);
+                questionMark.innerText = '?';
+                let velocity = -window.innerHeight * 0.0055;
+                let currentTop;
+                createClones = false;
+                console.log('setted')
+
+                function moveHiddenCat() {
+                    currentTop = parseFloat(hiddenCat.style.top);
+                    currentTop += velocity;
+                    velocity += 0.027;
+                    hiddenCat.style.top = currentTop + 'px';
+                }
+
+                setTimeout(function() {
+                    // hiddenCat.style.zIndex = 101;
+                    const checkPos = setInterval(function() {
+                        if (hiddenCat.getBoundingClientRect().top > window.innerHeight / 2) {
+                            clearInterval(checkPos);
+                            hiddenCat.style.setProperty('--top', `${currentTop}px`);
+                            const matrix = window.getComputedStyle(hiddenCat).transform;
+                            hiddenCat.style.setProperty('--rotation', `${matrix === 'none' ? 0 : Math.round(Math.atan2(matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[1], matrix.match(/matrix\((.+)\)/)[1].split(', ').map(parseFloat)[0]) * (180 / Math.PI))}deg`);
+                            hiddenCat.classList.add('hiddenCatAnim');
+                            setTimeout(function() {
+                                hiddenCat.style.setProperty('--scale-width', `${hiddenCat.getBoundingClientRect().width}px`)
+                                hiddenCat.classList.add('hiddenCatScale');
+                                overlay.remove();
+                                videoElement.remove();
+                            }, 2000);
+                            clearInterval(moveCat);
+                            backgroundCircle.classList.add('backgroundCircleAnim');
+                            setTimeout(function() {
+                                hiddenCat.classList.remove('hiddenCatColors');
+                                questionMark.remove();
+                                let delay = 30;
+                                function animateRandomCat() {
+                                    hiddenCat.classList = '';
+                                    hiddenCat.classList.add('catContainer');
+                                    hiddenCat.classList.add('hiddenCat');
+                                    hiddenCat.classList.add('hiddenCatAnim');
+                                    hiddenCat.classList.add('hiddenCatScale');
+                                    delay = delay * 1.1;
+
+                                    randomizeCat(hiddenCat, shineColor);
+
+                                    const computedStyle = window.getComputedStyle(hiddenCat.querySelector('.cat').querySelector('.catBottom'));
+                                    const catColorString = computedStyle.getPropertyValue('--cat-color').trim();
+                                    const catColor = catColorString.split(' ').map(value => parseInt(value, 10))
+                                    const darkenedColor = [
+                                        Math.max(catColor[0] - 40, 0),
+                                        Math.max(catColor[1] - 40, 0),
+                                        Math.max(catColor[2] - 40, 0)
+                                    ];
+                                    let darkenedColor2 = [
+                                        Math.max(catColor[0] - 50, 0),
+                                        Math.max(catColor[1] - 50, 0),
+                                        Math.max(catColor[2] - 50, 0)
+                                    ];
+                                    if (catColor[0] <= 50 && catColor[1] <= 50 && catColor[2] <= 50) {
+                                        darkenedColor2 = [
+                                            catColor[0] + 5,
+                                            catColor[1] + 5,
+                                            catColor[2] + 5
+                                        ];
+                                        hiddenCat.classList.add('hiddenCatBlack');
+                                    }
+                                    backgroundCircle.style.setProperty('--circle-color', `${darkenedColor}`);
+                                    backgroundCircle.style.setProperty('--border-color', `${darkenedColor2}`);
+
+                                    if (delay <= 1000) {setTimeout(
+                                        animateRandomCat, delay);
+                                    } else {
+                                        setTimeout(function() {
+                                            backgroundCircle.classList.add('hideCircle');
+                                            hiddenCat.classList.add('hideHiddenCat');
+                                            setTimeout(function() {
+                                                let classArray = [];
+                                                classArray = Array.from(hiddenCat.classList);
+                                                classArray.splice(0, 4);
+                                                classArray.pop();
+                                                console.log(classArray)
+                                                
+                                                const catDisplayContainer = document.getElementById('catDisplayContainer');
+                                                const catDisplayClone = catDisplayContainer.cloneNode(true);
+                                                catDisplayClone.id = '';
+                                                catDisplayClone.classList.remove('hidden');
+                                                catDisplayClone.style.setProperty('--shine-color', shineColor);
+                                                document.getElementById('catCollection').appendChild(catDisplayClone);
+                                                
+                                                classArray.forEach(className => catDisplayClone.querySelector('.displayedCatContainer').querySelector('.displayedCat').classList.add(className));
+                                                
+                                                let headColor = window.getComputedStyle(hiddenCat).getPropertyValue('--head-color');
+                                                catDisplayClone.querySelector('.displayedCatContainer').querySelector('.displayedCat').style.setProperty('--head-color', headColor);
+
+
+                                                hiddenCat.remove();
+                                                backgroundCircle.remove();
+                                                stripeContainer.remove();
+                                                while (lootboxesContainer.firstChild) {
+                                                    lootboxesContainer.removeChild(lootboxesContainer.firstChild);
+                                                }
+                                                catAnimation.remove();
+                                                save();
+                                            }, 2000);
+                                        }, 500);
+                                    }
+                                }
+                                animateRandomCat();
+                            }, 2000);
+                        }
+                    }, 5);
+                }, 1000);
+                const moveCat = setInterval(moveHiddenCat, 1);
+            }, timeoutDelay);
+        }, 5000);
+    }, 1500);
 }

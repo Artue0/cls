@@ -110,73 +110,7 @@
                 </div>
                 <div class="catCollectionBackground"></div>
                 <div class="catCollectionContainer" id="catCollectionContainer">
-                    <div class="catCollection startcatCollection" id="catCollection">
-                        <!-- <div class="catDisplayContainer">
-                            <div class="catContainer displayedCat" id="catContainer">
-                                <div class="cat">
-                                    <div class="earLeft"></div>
-                                    <div class="earRight"></div>
-                                    <div class="innerEarLeft"></div>
-                                    <div class="innerEarRight"></div>
-                    
-                                    <div class="catTop">
-                                        <div class="tounge">
-                                            <div class="toungeLine"></div>
-                                        </div>
-                                        <div class="headSpot"></div>
-                                        <div class="mouthLeft">
-                                            <div class="dotContainer">
-                                                <div class="mouthLeftDot"></div>
-                                            </div>
-                                        </div>
-                                        <div class="mouthRight">
-                                            <div class="dotContainer">
-                                                <div class="mouthRightDot"></div>
-                                            </div>
-                                        </div>
-                                        <div class="nose"></div>
-                                        <div class="eyeLeft"></div>
-                                        <div class="eyeRight"></div>
-                                    </div>
-                    
-                                    <div class="catBottom">
-                                        <div class="belly"></div>
-                                        <div class="stripe"></div>
-                                        <div class="bowTie"></div>
-                                    </div>
-                                    <div class="catLegs">
-                                        <div class="leftLegs">
-                                            <div class="leg firstLeg">
-                                                <div class="frontLeg"></div>
-                                            </div>
-                                            <div class="leg secondLeg">
-                                                <div class="backLeg"></div>
-                                            </div>
-                                        </div>
-                                        <div class="rightLegs">
-                                            <div class="leg thirdLeg">
-                                                <div class="frontLeg"></div>
-                                            </div>
-                                            <div class="leg forthLeg">
-                                                <div class="frontLeg"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                    
-                                <div class="tail">
-                                    <div class="tail1"></div>
-                                    <div class="bottomTail">
-                                        <div class="tail2">
-                                            <div class="tailDark"></div>
-                                        </div>
-                                        <div class="tail3"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="catDisplayName">Gato</div>
-                        </div> -->
-                    </div>
+                    <div class="catCollection" id="catCollection"></div>
                 </div>
             </div>
         </div>
@@ -313,29 +247,21 @@
                 <p>OPTIONS</p>
             </div>
         </div>
-        <div class="settingsButtonsContainer">
-            <div class="buttonContainer">
-                <div class="button-top2 red-top off" id="phoneMode-top" onclick="clickHandler(this)"><span id="points2">PHONE MODE</span></div>
-                <div class="button-bottom2 red-bottom"></div>
-            </div>
+        <div class="buttonContainer" id="phoneModeButton">
+            <div class="button-top2 green-top on" onclick="clickHandler(this, 0)"><span id="points2">PHONE MODE</span></div>
+            <div class="button-bottom2 green-bottom"></div>
         </div>
-        <div class="settingsButtonsContainer">
-            <div class="buttonContainer">
-                <div class="button-top2 red-top off" id="animations-top" onclick="clickHandler(this)"><span id="points2">ANIMATIONS</span></div>
-                <div class="button-bottom2 red-bottom"></div>
-            </div>
+        <div class="buttonContainer" id="animationsButton">
+            <div class="button-top2 green-top on" onclick="clickHandler(this, 1)"><span id="points2">ANIMATIONS</span></div>
+            <div class="button-bottom2 green-bottom"></div>
         </div>
-        <div class="settingsButtonsContainer">
-            <div class="buttonContainer">
-                <div class="button-top2 green-top on" id="saveProgress-top" onclick="clickHandler(this)"><span id="points2">SAVE PROGRESS</span></div>
-                <div class="button-bottom2 green-bottom"></div>
-            </div>
+        <div class="buttonContainer" id="saveProgressButton">
+            <div class="button-top2 green-top on" onclick="clickHandler(this, 2)"><span id="points2">SAVE PROGRESS</span></div>
+            <div class="button-bottom2 green-bottom"></div>
         </div>
-        <div class="settingsButtonsContainer">
-            <div class="buttonContainer">
-                <div class="button-top2 resetButtonTop" onclick="clickHandler2(this)"><span id="points2">RESET</span></div>
-                <div class="button-bottom2 resetButtonBottom"></div>
-            </div>
+        <div class="buttonContainer">
+            <div class="button-top2 resetButtonTop" id="resetButton" onclick="resetButton(this)"><span id="points2">RESET</span></div>
+            <div class="button-bottom2 resetButtonBottom"></div>
         </div>
     </div>
 </body>

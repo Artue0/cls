@@ -1361,10 +1361,15 @@ html {
     animation: slideUp 1s forwards ease-out;
     border-radius: 5vw;
     box-shadow: 0 0 3rem rgb(93, 93, 93);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .settingsElement {
-    background-color: #640000;
+    background-color: #F4B02E;
+    gap: 5%;
 }
 
 @keyframes slideUp {
@@ -1387,12 +1392,6 @@ html {
     to {
         top: 150vh;
     }
-}
-
-.all {
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
 }
 
 .displayedCatContainer {
@@ -1539,4 +1538,134 @@ html {
     to {
         transform: translate(-50%,-50%) scale(0) rotate(360deg);
     }
+}
+
+.buttonContainer {
+    position: relative;
+    width: 30vh;
+    aspect-ratio: 17/7;
+}
+
+
+.button-top2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    aspect-ratio: 17/6;
+    background-color: #de9f2a;
+    border-radius: 3.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-bottom2 {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 17/6;
+    background-color: #cb8c18;
+    border-radius: 3.5vh;
+}
+
+#points2{
+    user-select: none;
+    font-size: 4vh;
+    font-family: "Concert One", sans-serif;
+    color: white;
+    perspective: 100px;
+    transform: rotateX(30deg);
+    white-space: nowrap;
+}
+
+.click2 {animation: clicked2 0.5s;}
+
+@keyframes clicked2 {
+    0%{transform: translateY(0);}
+    50%{transform: translateY(20px);}
+    100%{transform: translateY(0);}
+}
+
+.title2 {
+    position: static;
+    font-size: 110px;
+    margin-top: 0;
+    height: 10%;
+}
+
+.resetButtonTop {
+    background-color: #a60000;
+}
+
+.resetButtonBottom {
+    background-color: #8e0000;
+}
+
+#button-top {
+    z-index: 5;
+    position: absolute;
+    left: 50%;
+    top: calc(50vh - 150px);
+    transform: translate(-50%,-50%);
+    width: 340px;
+    height: 120px;
+    background-color: #de9f2a;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#button-bottom {
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: calc(50vh - 130px);
+    transform: translate(-50%,-50%);
+    width: 340px;
+    height: 120px;
+    background-color: #cb8c18;
+    border-radius: 35px;
+}
+
+.green-top {
+    background-color: #079400 !important;
+}
+
+.green-bottom {
+    background-color: #067200 !important;
+}
+
+.red-top {
+    background-color: #cb0401 !important;
+}
+
+.red-bottom {
+    background-color: #980000 !important;
+}
+
+.on {
+    transform: translateY(0);
+}
+
+.off {
+    transform: translateY(20px);
+}
+
+.turnOn {animation: turnOn 0.25s;}
+
+@keyframes turnOn {
+    0%{transform: translateY(20px);}
+    100%{transform: translateY(0);}
+}
+
+.turnOff {animation: turnOff 0.25s;}
+
+@keyframes turnOff {
+    0%{transform: translateY(0);}
+    100%{transform: translateY(20px);}
 }

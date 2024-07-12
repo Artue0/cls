@@ -1016,11 +1016,15 @@ function info() {
 
 function settings() {
     if (!document.querySelector('.settingsElement')) {
-        const settingsElement = document.createElement('div');
+        console.log(document.querySelector('.startSettingsElement'))
+        const settingsElement = document.querySelector('.startSettingsElement').cloneNode(true);
+        settingsElement.classList.remove('hidden');
+        settingsElement.classList.remove('startSettingsElement');
+        settingsElement.classList.add('settingsElement');
         // settingsElement.style.setProperty('--option-top', settingsElement.offsetTop + 'px');
         settingsElement.classList.add('settingsElement');
         document.body.appendChild(settingsElement);
-        document.querySelector('.settingsElement').addEventListener('click', reset);
+        // document.querySelector('.settingsElement').addEventListener('click', reset);
     } else {
         document.querySelector('.settingsElement').style.setProperty('--option-top', document.querySelector('.settingsElement').offsetTop + 'px');
         document.querySelector('.settingsElement').classList.add('slideBack');
@@ -1053,8 +1057,6 @@ function showCat(element) {
     displayCatOverlay.classList.add('displayCatOverlay');
     element.appendChild(displayCatOverlay);
 }
-
-
 
 function load() {
     let savedElementString = localStorage.getItem('savedCatCollection');
@@ -1091,4 +1093,32 @@ function reset() {
     localStorage.setItem('catsAmount', '');
     localStorage.setItem('setCoins', '');
     console.log('reset');
+}
+
+function clickHandler2(element) {
+    if (!element.classList.contains('click2')) {
+        element.classList.add('click2');
+        setTimeout(function() {
+            element.classList.remove('click2');
+        }, 500);
+    }
+}
+
+function clickHandler(element) {
+    if (element.classList.contains('on')) {
+        element.classList.add('turnOff');
+        element.classList.remove('on');
+        setTimeout(function() {
+            element.classList.remove('turnOff');
+            element.classList.add('off');
+            
+        }, 250);
+    } else {
+        element.classList.add('turnOn');
+        element.classList.remove('off');
+        setTimeout(function() {
+            element.classList.remove('turnOn');
+            element.classList.add('on');
+        }, 250);
+    }
 }

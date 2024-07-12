@@ -350,7 +350,7 @@ function startAnimation(lootBox) {
                     case closestBox.classList.contains('mythic'):
                         animSrc = 'assets/mythic lootbox/mythic-lootbox-anim.webm';
                         overalySrc = 'assets/mythic lootbox/mythic-lootbox-overlay.png';
-                        shineColor = '139 0 0';
+                        shineColor = '256 50 50';
                         break;
                     case closestBox.classList.contains('legendary'):
                         animSrc = 'assets/legendary lootbox/legendary-lootbox-anim.webm';

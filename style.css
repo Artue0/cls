@@ -1241,7 +1241,7 @@ html {
         top: var(--top);
     }
     to {
-        transform: translate(-50%,-50%) rotate(calc(360deg)) scale(5);
+        transform: translate(-50%,-50%) rotate(360deg) scale(5);
         top: 50svh;
     }
 }
@@ -1251,7 +1251,7 @@ html {
     height: calc(12vmin * 5);
     --width: calc(12vmin * 5);
     top: 50svh !important;
-    transform: translate(-50%,-50%) scale(1);
+    transform: translate(-50%,-50%) rotate(360deg) scale(1);
 }
 
 .backgroundCircle {

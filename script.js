@@ -959,9 +959,8 @@ function setHeight() {
     document.getElementById('catsAmount').style.setProperty('--width', document.getElementById('pCollection').getBoundingClientRect().width + 'px');
 }
 
-window.addEventListener("load", setHeight());
+window.addEventListener("load", setHeight);
 window.addEventListener("resize", setHeight);
-setHeight();
 
 const cooldownMap = new WeakMap();
 let infoDeleted = true;

@@ -1268,17 +1268,19 @@ function createCats(animSrc, overalySrc, shineColor) {
                                                 }
                                                 catAnimation.remove();
 
-                                                const stripeContainer2 = document.createElement('div');
-                                                stripeContainer2.classList.add('hideStripes');
-                                                document.body.appendChild(stripeContainer2);
-                                                const stripePattern2 = document.createElement('div');
-                                                stripePattern2.id = 'stripe-pattern';
-                                                stripePattern2.style.setProperty('--backPos', window.getComputedStyle(stripePattern).getPropertyValue('background-position').split(' ')[0]);
-                                                stripeContainer2.appendChild(stripePattern2);
+                                                // const stripeContainer2 = document.createElement('div');
+                                                // stripeContainer2.classList.add('hideStripes');
+                                                // document.body.appendChild(stripeContainer2);
+                                                // const stripePattern2 = document.createElement('div');
+                                                // stripePattern2.id = 'stripe-pattern';
+                                                // stripePattern2.style.setProperty('--backPos', window.getComputedStyle(stripePattern).getPropertyValue('background-position').split(' ')[0]);
+                                                // stripeContainer2.appendChild(stripePattern2);
+                                                stripeContainer.id = '';
+                                                stripeContainer.classList.add('hideStripes');
                                                 setTimeout(function() {
-                                                    stripeContainer2.remove();
-                                                }, 4500);
-                                                stripeContainer.remove();
+                                                    stripeContainer.remove();
+                                                }, 3000);
+                                                // stripeContainer.remove();
 
                                                 save();
                                             }, 2500);

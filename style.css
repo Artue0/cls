@@ -1700,24 +1700,22 @@ html {
 .hideStripes {
     position: absolute;
     z-index: 11;
-    bottom: 0;
-    right: 0;
+    bottom: -25.2vh;
+    right: -25.2vw;
     width: 200vmax;
     height: 200vmax;
     clip-path: polygon(100% 0, 0% 100%, 100% 100%);
     background-color: #3498db;
-    animation: hideStripes 4.5s forwards ease-out;
+    animation: hideStripes 3s forwards ease-out ;
 }
 
 @keyframes hideStripes {
     0% {
-        width: 200vmax;
-        height: 200vmax;
+        clip-path: polygon(100% 0, 0 100%, 100% 100%);
     }
     100% {
-        width: 0;
-        height: 0;
+        clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
     }
 }
 
-.stripe2 {animation: none !important;}
+/* .stripe2 {animation: none !important;} */

@@ -613,22 +613,6 @@ function randomizeCat(element, shineColor) {
         }
     }
     const randStripe = Math.random() * 100;
-    if (randStripe > 25) {
-        const diffrentHead = Math.random() * 5;
-        if (diffrentHead <= 5) {
-            const computedStyle = window.getComputedStyle(element);
-            const catColorString = computedStyle.getPropertyValue('--cat-color').trim();
-            const catColor = catColorString.split(' ').map(value => parseInt(value, 10))
-            const randColor = Math.random() * 40 - 20;
-            const changedColor = [
-                Math.max(catColor[0] + randColor, 0),
-                Math.max(catColor[1] + randColor, 0),
-                Math.max(catColor[2] + randColor, 0)
-            ];
-            element.style.setProperty('--head-color', `${changedColor}`);
-            element.classList.add('head-color');
-        }
-    }
     if (randStripe <= 25) {
         element.classList.add('noStripe');
     } else if (randStripe <= 50) {
@@ -718,6 +702,34 @@ function randomizeCat(element, shineColor) {
     if (randShine <= 1) {
         element.style.setProperty('--shine-color', shineColor);
         element.classList.add('shine');
+    }
+    const randGradient = Math.random() * 50;
+    if (randGradient <= 1) {
+        const cssColors = [
+            "Red", "Green", "Blue", "Cyan", "Magenta", "Black", "Gray",
+            "Maroon", "Olive", "Lime", "Navy", "Teal", "Purple", "Aqua", "Fuchsia", "Silver",
+            "Orange", "Brown", "Pink", "Gold", "Coral", "Crimson", "Indigo", 
+            "Lavender", "Khaki", "Salmon", "Turquoise", "Violet"
+        ];
+        element.style.setProperty('--color-1', cssColors[Math.floor(Math.random() * cssColors.length)]);
+        element.style.setProperty('--color-2', cssColors[Math.floor(Math.random() * cssColors.length)]);
+        element.classList.add('gradientBackground');
+    }
+    if (randStripe > 25 && randGradient > 1) {
+        const diffrentHead = Math.random() * 5;
+        if (diffrentHead <= 5) {
+            const computedStyle = window.getComputedStyle(element);
+            const catColorString = computedStyle.getPropertyValue('--cat-color').trim();
+            const catColor = catColorString.split(' ').map(value => parseInt(value, 10))
+            const randColor = Math.random() * 40 - 20;
+            const changedColor = [
+                Math.max(catColor[0] + randColor, 0),
+                Math.max(catColor[1] + randColor, 0),
+                Math.max(catColor[2] + randColor, 0)
+            ];
+            element.style.setProperty('--head-color', `${changedColor}`);
+            element.classList.add('head-color');
+        }
     }
 }
 
@@ -1265,6 +1277,8 @@ function createCats(animSrc, overalySrc, shineColor) {
                                                 catDisplayClone.id = '';
                                                 catDisplayClone.classList.remove('hidden');
                                                 catDisplayClone.style.setProperty('--shine-color', shineColor);
+                                                catDisplayClone.style.setProperty('--color-1', window.getComputedStyle(hiddenCat).getPropertyValue('--color-1'));
+                                                catDisplayClone.style.setProperty('--color-2', window.getComputedStyle(hiddenCat).getPropertyValue('--color-2'));
                                                 document.getElementById('catCollection').appendChild(catDisplayClone);
                                                 
                                                 classArray.forEach(className => catDisplayClone.querySelector('.displayedCatContainer').querySelector('.displayedCat').classList.add(className));

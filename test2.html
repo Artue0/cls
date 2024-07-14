@@ -3,42 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat Clones</title>
+    <title>Diagonal Gradient Animation</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            overflow: hidden;
-            margin: 0;
-            display: flex;
-            justify-content: center;
+            background-color: brown;
         }
-
-        #stripe-container {
-            position: absolute;
-            z-index: 11;
-            bottom: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-            background-color: #3498db;
-            animation: expand 3s forwards ease-out;
-        }
-
-        @keyframes expand {
-            0% {
-                width: 200vmax;
-                height: 200vmax;
-            }
-            100% {
-                width: 0;
-                height: 0;
-            }
-        }
+.tail1 {
+    height: 244px;
+    width: 105px;
+    /* background: linear-gradient(to bottom, rgb(var(--tail-color)) 15%, rgb(var(--cat-color)) 0); */
+    /* border-top-right-radius: 5vw;
+    border-top-left-radius: 5vw; */
+    -webkit-mask-image: url(assets/mask.svg);
+    mask-image: url(assets/mask.svg);
+    -webkit-mask-size: cover; /* Ensure the mask covers the element */
+    mask-size: cover; /* Ensure the mask covers the element */
+    -webkit-mask-repeat: no-repeat; /* Prevent repetition of the mask image */
+    mask-repeat: no-repeat;
+    background-color: green;
+}
+.bg {
+    background-color: blue;
+    width: 100%;
+    height: 100%;
+}
     </style>
 </head>
 <body>
-    <div id="stripe-container">
-        <div id="stripe-pattern"></div>
+    <div class="tail1">
     </div>
 </body>
 </html>

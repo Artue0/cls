@@ -1374,7 +1374,7 @@ html {
 }
 
 .settingsElement {
-    background-color: #de9f2a;
+    background-color: #555;
     gap: 5%;
 }
 
@@ -1576,6 +1576,7 @@ html {
     aspect-ratio: 17/6;
     background-color: #cb8c18;
     border-radius: 3.5vh;
+    filter: drop-shadow(0 0 15px);
 }
 
 #points2{
@@ -1601,6 +1602,7 @@ html {
     font-size: calc(5vw + 5vh);
     margin-top: 0;
     height: 10%;
+    filter: drop-shadow(0 0 50px rgb(44, 44, 44));
 }
 
 .resetButtonTop {
@@ -1609,33 +1611,6 @@ html {
 
 .resetButtonBottom {
     background-color: #8e0000;
-}
-
-#button-top {
-    z-index: 5;
-    position: absolute;
-    left: 50%;
-    top: calc(50vh - 150px);
-    transform: translate(-50%,-50%);
-    width: 340px;
-    height: 120px;
-    background-color: #de9f2a;
-    border-radius: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#button-bottom {
-    z-index: 1;
-    position: absolute;
-    left: 50%;
-    top: calc(50vh - 130px);
-    transform: translate(-50%,-50%);
-    width: 340px;
-    height: 120px;
-    background-color: #cb8c18;
-    border-radius: 35px;
 }
 
 .green-top {

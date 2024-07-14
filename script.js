@@ -1099,9 +1099,9 @@ function createCats(animSrc, overalySrc, shineColor) {
                 const clones = [];
 
                 let clonesLenght = 15;
-                if (phoneMode) {clonesLenght = 7;}
+                if (phoneMode) {clonesLenght = 5;}
                 let clonesSpawnDelay = 180;
-                if (phoneMode) {clonesSpawnDelay = 350;}
+                if (phoneMode) {clonesSpawnDelay = 500;}
 
                 const createClonesInterval = setInterval(function() {
                     if (clones.length <= clonesLenght && createClones) {

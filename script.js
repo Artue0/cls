@@ -1206,7 +1206,7 @@ function createCats(animSrc, overalySrc, shineColor) {
                                 hiddenCat.classList.add('hiddenCatScale');
                                 overlay.remove();
                                 videoElement.remove();
-                            }, 2000);
+                            }, 2100);
                             clearInterval(moveCat);
                             backgroundCircle.classList.add('backgroundCircleAnim');
                             setTimeout(function() {

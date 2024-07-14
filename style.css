@@ -625,6 +625,11 @@ html {
     transform: translateY(-3%);
 }
 
+.fullColor {
+    background-color: var(--color) !important;
+    background-image: none;
+}
+
 .pointer {
     position: absolute;
     left: 50%;
@@ -1523,7 +1528,7 @@ html {
         transform: translate(-50%,-50%) scale(1);
     }
     to {
-        transform: translate(-50%,-50%) scale(0);
+        transform: translate(-47%,-50%) scale(0);
     }
 }
 
@@ -1537,7 +1542,7 @@ html {
         transform: translate(-50%,-50%) scale(1) rotate(0deg);
     }
     to {
-        transform: translate(-50%,-50%) scale(0) rotate(360deg);
+        transform: translate(-53%,-50%) scale(0) rotate(360deg);
     }
 }
 

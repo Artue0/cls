@@ -70,7 +70,8 @@ function arrowRight2() {
 arrowLeft2();
 
 let cost = 50;
-let coins = 25000;
+const startingCoinsAmount = 25000;
+let coins = startingCoinsAmount;
 let catsAmount = 0;
 document.getElementById('coins').querySelector('p').textContent = coins;
 document.getElementById('catsAmount').querySelector('p').textContent = catsAmount;
@@ -246,9 +247,10 @@ function createBox(src, c, name) {
         img.src = src;
         box.appendChild(img);
     } else {
-        const text = document.createElement('p');
-        text.innerHTML = name;
-        box.appendChild(text);
+        // const text = document.createElement('p');
+        // text.innerHTML = name;
+        // box.appendChild(text);
+        box.classList.add('fullColor');
     }
     
     return box;
@@ -829,13 +831,18 @@ function showCat(element) {
 if (!localStorage.getItem('firstVisit')) {
     localStorage.setItem('firstVisit', 'true');
     localStorage.setItem('settingsData', [0,1,1]);
+    coins = startingCoinsAmount;
+    catsAmount = 0;
+    document.getElementById('coins').querySelector('p').textContent = coins;
+    document.getElementById('catsAmount').querySelector('p').textContent = catsAmount;
 }
 
 function reset() {
     localStorage.removeItem('savedCatCollection');
-    localStorage.removeItem('coinsAmount');
-    localStorage.removeItem('catsAmount');
+    localStorage.setItem('coinsAmount', startingCoinsAmount);
+    localStorage.setItem('catsAmount', 0);
     localStorage.removeItem('setCoins');
+    localStorage.removeItem('firstVisit');
 
     // Remove the existing catCollection element if it exists
     let existingCatCollection = document.getElementById('catCollection');
@@ -881,8 +888,12 @@ function load() {
             e.remove();
         });
 
-        // coins = parseInt(localStorage.getItem('coinsAmount'), 10);
-        // catsAmount = parseInt(localStorage.getItem('catsAmount'), 10);
+        coins = parseInt(localStorage.getItem('coinsAmount'), 10);
+        catsAmount = parseInt(localStorage.getItem('catsAmount'), 10);
+        document.getElementById('coins').querySelector('p').textContent = coins;
+        document.getElementById('catsAmount').querySelector('p').textContent = catsAmount; 
+        console.log('coins: ', coins);
+        console.log('catsAmount: ', catsAmount);
     }
 
     const phoneModeButton = document.getElementById('phoneModeButton');
@@ -928,7 +939,8 @@ function save() {
         localStorage.setItem('savedCatCollection', elementString);
         localStorage.setItem('coinsAmount', coins);
         localStorage.setItem('catsAmount', catsAmount);
-        localStorage.setItem('setCoins', true);
+        console.log('coins: ', coins);
+        console.log('catsAmount: ', catsAmount);
     } else {
         reset();
     }
@@ -1260,27 +1272,18 @@ function createCats(animSrc, overalySrc, shineColor) {
                                                 let headColor = window.getComputedStyle(hiddenCat).getPropertyValue('--head-color');
                                                 catDisplayClone.querySelector('.displayedCatContainer').querySelector('.displayedCat').style.setProperty('--head-color', headColor);
 
-
                                                 hiddenCat.remove();
                                                 backgroundCircle.remove();
                                                 while (lootboxesContainer.firstChild) {
-                                                    lootboxesContainer.removeChild(lootboxesContainer.firstChild);
+                                                      lootboxesContainer.removeChild(lootboxesContainer.firstChild);
                                                 }
                                                 catAnimation.remove();
 
-                                                // const stripeContainer2 = document.createElement('div');
-                                                // stripeContainer2.classList.add('hideStripes');
-                                                // document.body.appendChild(stripeContainer2);
-                                                // const stripePattern2 = document.createElement('div');
-                                                // stripePattern2.id = 'stripe-pattern';
-                                                // stripePattern2.style.setProperty('--backPos', window.getComputedStyle(stripePattern).getPropertyValue('background-position').split(' ')[0]);
-                                                // stripeContainer2.appendChild(stripePattern2);
                                                 stripeContainer.id = '';
                                                 stripeContainer.classList.add('hideStripes');
                                                 setTimeout(function() {
                                                     stripeContainer.remove();
                                                 }, 3000);
-                                                // stripeContainer.remove();
 
                                                 save();
                                             }, 2500);

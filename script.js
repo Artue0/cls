@@ -247,9 +247,9 @@ function createBox(src, c, name) {
         img.src = src;
         box.appendChild(img);
     } else {
-        // const text = document.createElement('p');
-        // text.innerHTML = name;
-        // box.appendChild(text);
+        const text = document.createElement('p');
+        text.innerHTML = name;
+        box.appendChild(text);
         box.classList.add('fullColor');
     }
     

@@ -771,7 +771,7 @@ html {
     --bowTie-color: var(--cat-color);
 }
 
-.gradientBackground .bowTie {opacity: 0;}
+.gradientBackground .bowTie, .gradientBackground .tounge {opacity: 0;}
 
 .black-stripe {--stripe-color: 22 22 22;}
 .white-stripe {--stripe-color: 256 256 256;}
@@ -802,16 +802,16 @@ html {
 .black-bowTie {
     --bowTie-color: 0 0 0;
     --bowTie-color2: var(--bowTie-color);
-    opacity: 1 !important;
 }
 .white-bowTie {
     --bowTie-color: 240 240 240;
     --bowTie-color2: var(--bowTie-color);
-    opacity: 1 !important;
 }
 .stripe-bowTie {
     --bowTie-color: var(--stripe-color);
     --bowTie-color2: var(--bowTie-color);
+}
+.black-bowTie .bowTie, .white-bowTie .bowTie, .stripe-bowTie .bowTie, .withTounge .tounge {
     opacity: 1 !important;
 }
 .catContainer.black-bowTie .cat .catBottom .bowTie, .catContainer.white-bowTie .cat .catBottom .bowTie {z-index: 99;}

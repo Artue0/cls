@@ -708,7 +708,6 @@ html {
 .royalBlue-body {--cat-color: 24 11 165;}
 .jungleGreen-body {--cat-color: 49 175 40;}
 .mint-body {--cat-color: 114 255 222;}
-.peach-body {--cat-color: 247 168 98;}
 .chartreuse-body {--cat-color: 156 255 86;}
 .gold-body {--cat-color: 198 153 17;}
 .forestGreen-body {--cat-color: 12 181 3;}
@@ -771,7 +770,7 @@ html {
     --bowTie-color: var(--cat-color);
 }
 
-.gradientBackground .bowTie, .gradientBackground .tounge {opacity: 0;}
+.gradientBackground .bowTie, .gradientBackground .tounge, .gradientBackground .belly {opacity: 0;}
 
 .black-stripe {--stripe-color: 22 22 22;}
 .white-stripe {--stripe-color: 256 256 256;}
@@ -811,7 +810,7 @@ html {
     --bowTie-color: var(--stripe-color);
     --bowTie-color2: var(--bowTie-color);
 }
-.black-bowTie .bowTie, .white-bowTie .bowTie, .stripe-bowTie .bowTie, .withTounge .tounge {
+.black-bowTie .bowTie, .white-bowTie .bowTie, .stripe-bowTie .bowTie, .withTounge .tounge, .whiteBelly .belly {
     opacity: 1 !important;
 }
 .catContainer.black-bowTie .cat .catBottom .bowTie, .catContainer.white-bowTie .cat .catBottom .bowTie {z-index: 99;}

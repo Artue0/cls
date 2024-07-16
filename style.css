@@ -770,7 +770,7 @@ html {
     --bowTie-color: var(--cat-color);
 }
 
-.gradientBackground .bowTie, .gradientBackground .tounge, .gradientBackground .belly {opacity: 0;}
+.gradientBody .bowTie, .gradientBody .tounge, .gradientBody .belly {opacity: 0;}
 
 .black-stripe {--stripe-color: 22 22 22;}
 .white-stripe {--stripe-color: 256 256 256;}
@@ -1712,37 +1712,37 @@ html {
 
 /* .stripe2 {animation: none !important;} */
 
-.gradientBackground .catTop, .gradientBackground .catBottom,  .gradientBackground .tail3, .gradientBackground .earLeft, .gradientBackground .earRight {
+.gradientBody .catTop, .gradientBody .catBottom,  .gradientBody .tail3, .gradientBody .earLeft, .gradientBody .earRight {
     animation: gradientShift 5s linear infinite;
     background-image: linear-gradient(90deg,var(--color-1),var(--color-2),var(--color-1),var(--color-2));
     background-size: 300% 100%;
 }
 
-.gradientBackground .tail2 {
+.gradientBody .tail2 {
     animation: gradientShift 5s linear infinite;
     background-image: linear-gradient(90deg,var(--color-2),var(--color-1),var(--color-2),var(--color-1));
     background-size: 300% 100%;
 }
 
-.gradientBackground .tail1 {
+.gradientBody .tail1 {
     animation: gradientShift 5s linear infinite;
     background-image: linear-gradient(90deg,var(--color-1),var(--color-2),var(--color-1),var(--color-2));
     background-size: 300% 100%;
 } 
 
-.gradientBackground.whiteTail .tail1 {
+.gradientBody.whiteTail .tail1 {
     background-image:
         linear-gradient(to bottom, rgb(var(--tail-color)) 15%, transparent 0),
         linear-gradient(90deg,var(--color-1),var(--color-2),var(--color-1),var(--color-2));
 }
 
-.gradientBackground .leg {
+.gradientBody .leg {
     animation: gradientShift 5s linear infinite;
     background-image: linear-gradient(90deg,var(--color-1),var(--color-2),var(--color-1),var(--color-2));
     background-size: 300% 100%;
 }
 
-.gradientBackground.firstPaw .firstLeg, .gradientBackground.secondPaw .secondLeg, .gradientBackground.thirdPaw .thirdLeg, .gradientBackground.forthPaw .forthLeg {
+.gradientBody.firstPaw .firstLeg, .gradientBody.secondPaw .secondLeg, .gradientBody.thirdPaw .thirdLeg, .gradientBody.forthPaw .forthLeg {
     background-image:
         linear-gradient(to top, rgb(var(--paws-color)) 35%, transparent 0),
         linear-gradient(90deg,var(--color-1),var(--color-2),var(--color-1),var(--color-2));
@@ -1753,3 +1753,19 @@ html {
     to { background-position: 100% 0%; }
 }
 /* (var(--width) * 0.3 * 0.09) */
+
+.imageCat img {
+    height: 100%;
+    object-fit: contain;
+}
+
+.imageCat {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    transform: translate(-63%, -50%);
+}
+
+.imageCat > :not(img, img) {
+    display: none;
+}

@@ -776,7 +776,7 @@ function randomizeCat(element, shineColor, boxIndex) {
         element.style.setProperty('--head-color', `${catColor}`);
     }
     const imageRand = Math.random() * 50;
-    if (imageRand <= 10 && boxIndex === 6) {
+    if (imageRand <= 1 && boxIndex === 6) {
         const srcRand = Math.random() * 3;
             let src;
             if (srcRand <= 1) {
